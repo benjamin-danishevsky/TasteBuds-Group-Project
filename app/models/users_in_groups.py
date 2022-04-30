@@ -14,13 +14,14 @@ users_groups = db.Table(
     db.Column(
         "user_id",
         db.Integer,
-        db.ForeignKey('users.id')
-        # primary_key=True
+        db.ForeignKey('users.id'),
+        primary_key=True
     ),
 
     db.Column(
         'group_id',
         db.Integer,
-        db.ForeignKey('groups.id')
+        db.ForeignKey('groups.id'),
+        primary_key=True
     )
 )

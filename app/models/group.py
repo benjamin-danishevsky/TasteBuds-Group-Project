@@ -1,4 +1,5 @@
 from .db import db
+from .users_in_groups import users_groups
 
 class Group(db.Model):
     __tablename__ = 'groups'
@@ -14,8 +15,8 @@ class Group(db.Model):
     owner = db.relationship("User", back_populates='groups')
     groups = db.relationship('Event', back_populates='events')
 
-    # users = db.relationship(
-    #     "User",
-    #     secondary=UsersGroups,
-    #     back_populates='group'
-    # )
+    users = db.relationship(
+        "User",
+        secondary=users_groups,
+        back_populates='group'
+    )

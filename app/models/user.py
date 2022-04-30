@@ -15,13 +15,11 @@ class User(db.Model, UserMixin):
 
     groups = db.relationship('Group', back_populates='owner')
 
-    following = db.relationship('Group', secondary=users_groups, backref='followers')
-
-    # group = db.relationship(
-    #     'Group',
-    #     secondary=UsersGroups,
-    #     back_populates='users'
-    # )
+    group = db.relationship(
+        'Group',
+        secondary=users_groups,
+        back_populates='users'
+    )
 
     @property
     def password(self):
