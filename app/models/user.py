@@ -1,4 +1,5 @@
 from .db import db
+from .users_in_groups import users_groups
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -13,6 +14,8 @@ class User(db.Model, UserMixin):
     profile_pic = db.Column(db.String, nullable=True)
 
     groups = db.relationship('Group', back_populates='owner')
+
+    following = db.relationship('Group', secondary=users_groups, backref='followers')
 
     # group = db.relationship(
     #     'Group',

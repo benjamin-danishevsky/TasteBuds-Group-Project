@@ -1,42 +1,9 @@
-from app.models import db, UsersGroups
+from app.models import db, users_groups, User
 
 def seed_users_in_groups():
-    user_group1 = UsersGroups(
-        user_id=1,
-        group_id=1
-    )
-    user_group2 = UsersGroups(
-        user_id=1,
-        group_id=2
-    )
-    user_group3 = UsersGroups(
-        user_id=1,
-        group_id=3
-    )
-    user_group4 = UsersGroups(
-        user_id=2,
-        group_id=1
-    )
-    user_group5 = UsersGroups(
-        user_id=2,
-        group_id=2
-    )
-    user_group6 = UsersGroups(
-        user_id=2,
-        group_id=3
-    )
-    user_group7 = UsersGroups(
-        user_id=3,
-        group_id=1
-    )
-    user_group8 = UsersGroups(
-        user_id=3,
-        group_id=2
-    )
-    user_group9 = UsersGroups(
-        user_id=3,
-        group_id=3
-    )
+    User.demo.following.append(group1)
+    User.demo.following.append(group2)
+    User.demo.following.append(group3)
 
     db.session.add(user_group1)
     db.session.add(user_group2)
