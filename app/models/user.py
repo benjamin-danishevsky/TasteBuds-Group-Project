@@ -14,6 +14,12 @@ class User(db.Model, UserMixin):
 
     groups = db.relationship('Group', back_populates='owner')
 
+    # group = db.relationship(
+    #     'Group',
+    #     secondary=UsersGroups,
+    #     back_populates='users'
+    # )
+
     @property
     def password(self):
         return self.hashed_password

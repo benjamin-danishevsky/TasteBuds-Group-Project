@@ -13,3 +13,9 @@ class Group(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     owner = db.relationship("User", back_populates='groups')
     groups = db.relationship('Event', back_populates='events')
+
+    # users = db.relationship(
+    #     "User",
+    #     secondary=UsersGroups,
+    #     back_populates='group'
+    # )
