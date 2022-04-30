@@ -14,7 +14,7 @@ def seed():
     seed_users()
     seed_groups()
     seed_events()
-    # seed_users_in_groups()
+    seed_users_in_groups()
     # Add other seed functions here
 
 
@@ -24,5 +24,5 @@ def undo():
     undo_users()
     undo_groups()
     undo_events()
-    # undo_users_groups()
+    undo_users_groups()
     # Add other undo functions here
