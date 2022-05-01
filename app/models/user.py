@@ -1,5 +1,6 @@
 from .db import db
 from .users_in_groups import users_groups
+from .users_attending_event import users_events
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -18,6 +19,12 @@ class User(db.Model, UserMixin):
     group = db.relationship(
         'Group',
         secondary=users_groups,
+        back_populates='users'
+    )
+
+    events = db.relationship(
+        'Event',
+        secondary=users_events,
         back_populates='users'
     )
 
