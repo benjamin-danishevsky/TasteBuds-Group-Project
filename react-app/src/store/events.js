@@ -8,9 +8,14 @@ const getEvents = events => ({
 
 
 export const getAllEventsThunk = () => async dispatch => {
-    const res = await fetch('/api/events/');
+    const res = await fetch('/api/events/', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
     if (res.ok) {
+        console.log('Res was ok')
         const events = await res.json()
         console.log('Thunk Events =>', events)
         dispatch(getEvents(events))
@@ -25,9 +30,10 @@ const eventsReducer = (state = {}, action) => {
 
             console.log('Get Events action', typeof(action.events), action.events)
 
-            // action.events.forEach(event => {
-            //     allEvents[event.id] = event
-            // })
+
+            action.events.events.forEach(event => {
+                allEvents[event.id] = event
+            })
             return {
                 ...allEvents,
                 ...state
