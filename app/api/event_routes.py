@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Event, User, db
+from app.models import Event, User, users_groups, db
 
 events_route = Blueprint('events', __name__)
 
@@ -18,3 +18,7 @@ def single_event(id):
     return {
         "event": event.to_dict()
     }
+
+@events_route.route('/new-event', methods=['GET', 'POST'])
+def new_event():
+    
