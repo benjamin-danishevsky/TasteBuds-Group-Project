@@ -30,8 +30,8 @@ jobs:
         cache: "pip"
     - run: pip install pipenv
     #UNCOMMENT IN THE FUTURE WHEN MIRROR COMES UP
-    # - name: Update requirments.txt for container install
-    #   run: pipenv lock -r > requirements.txt
+    - name: Update requirments.txt for container install
+      run: pipenv requirements --hash > requirements.txt
 
     - name: Login to Heroku Container registry
       env:

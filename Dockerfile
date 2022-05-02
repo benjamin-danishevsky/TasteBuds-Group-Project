@@ -23,7 +23,7 @@ COPY /react-app/build/* app/static/
 # install -r requirements.txt
 # install psycopg2
 #LINE 26 IS TEMPORARY, REMOVE WHEN MIRROR COMES UP
-RUN pip install pypi-simple
+# RUN pip install pypi-simple
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
 # Start the flask environment by setting our
