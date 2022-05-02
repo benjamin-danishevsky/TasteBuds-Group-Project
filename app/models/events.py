@@ -37,6 +37,8 @@ class Event(db.Model):
             'location': self.location,
             'date': self.date,
             'background_img': self.background_img,
+            'owner_id': self.owner_id,
+            'group_id': self.group_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

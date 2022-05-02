@@ -17,15 +17,16 @@ const Events = () => {
         <>
             <div>
                 {eventsData.map((event, idx) => (
-                    <div key={idx}>
+                    <a href={`/events/${event.id}`} key={idx}>
                         <h3>{event?.title}</h3>
                         <ul>
+                            <li>Posted By: </li>
                             <li>{event?.description}</li>
                             <li>{event?.location}</li>
                             <li>{event?.date}</li>
                             <img src={event?.background_img}/>
                         </ul>
-                    </div>
+                    </a>
                 ))}
             </div>
         </>
