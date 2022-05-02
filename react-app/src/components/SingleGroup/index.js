@@ -7,20 +7,19 @@ const SingleGroup = () => {
 
   const dispatch = useDispatch()
 
-  const { groupId } = useParams();
-  const groups = useSelector(state => state.groups);
+  const { id } = useParams();
+  const groups = useSelector(state => state.groups[id]);
   console.log(groups, "DATAAAAAAAAAAAAAAAAAAAAAAAAA")
-  const groupData = Object.values(groups)
 
 
-  useEffect(async () => {
-    await dispatch(groupActions.loadOneGroup(groupId))
-  }, [dispatch, groupId])
+  useEffect(() => {
+    dispatch(groupActions.loadGroup(id))
+  }, [dispatch, id])
 
   return (
     <>
       <div>
-        <h1>{groupData.name}</h1>
+        <h1>{groups?.name}</h1>
       </div>
     </>
   )

@@ -46,7 +46,7 @@ function App() {
         <Route path='/groups' exact={true}>
           <Groups />
         </Route>
-        <Route path='/groups/:groupId' exact={true}>
+        <Route path='/groups/:id' exact={true}>
           <SingleGroup />
         </Route>
         <ProtectedRoute path='/' exact={true} >

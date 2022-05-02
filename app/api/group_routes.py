@@ -11,4 +11,4 @@ def get_all_groups():
 @group_routes.route('/<int:id>')
 def get_group(id):
   group = Group.query.get(id);
-  return group.to_dict()
+  return {"group": group.to_dict()}
