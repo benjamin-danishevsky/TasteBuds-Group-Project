@@ -28,6 +28,11 @@ class User(db.Model, UserMixin):
         back_populates='users'
     )
 
+    event = db.relationship(
+        'Event',
+        back_populates='owner'
+    )
+
     @property
     def password(self):
         return self.hashed_password

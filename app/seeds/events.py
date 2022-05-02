@@ -10,6 +10,7 @@ def seed_events():
         background_img = 'https://torontogold.com/wp-content/uploads/2018/04/Pho-King.jpg',
         created_at= datetime.datetime.today(),
         updated_at= datetime.datetime.today(),
+        owner_id= 1,
         group_id=1
     )
 
@@ -21,6 +22,7 @@ def seed_events():
         background_img='https://woodlandfoods.com/img/WF_Images/m37-bamboo-mushroom-wontons-1.jpg',
         created_at = datetime.datetime.today(),
         updated_at = datetime.datetime.today(),
+        owner_id= 2,
         group_id=2
     )
 
@@ -32,6 +34,7 @@ def seed_events():
         background_img='https://cdn.vox-cdn.com/thumbor/UYfpXxYnpXfuo4z_U6F-sSykt64=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13743816/photo_w7.jpg',
         created_at = datetime.datetime.today(),
         updated_at = datetime.datetime.today(),
+        owner_id= 3,
         group_id=3
     )
 
@@ -43,6 +46,7 @@ def seed_events():
         background_img='https://www.mashed.com/img/gallery/the-real-reason-steakhouses-never-use-frozen-steak/intro-1603649181.jpg',
         created_at=datetime.datetime.today(),
         updated_at=datetime.datetime.today(),
+        owner_id= 1,
         group_id=4
     )
 
