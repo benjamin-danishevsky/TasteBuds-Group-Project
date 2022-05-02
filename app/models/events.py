@@ -21,3 +21,15 @@ class Event(db.Model):
         secondary=users_events,
         back_populates='events'
     )
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'location': self.location,
+            'date': self.date,
+            'background_img': self.background_img,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
