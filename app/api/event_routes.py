@@ -11,6 +11,6 @@ def events():
     # Events =>  [<Event 1>, <Event 2>, <Event 3>, <Event 4>]
     # print('Event 1', events[0].to_dict())
     return "test"
-    return {
+    return jsonify({
         "events": [event.to_dict() for event in events]
-    }
+    })

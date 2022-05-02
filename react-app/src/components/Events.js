@@ -5,8 +5,8 @@ import * as eventActions from '../store/events';
 const Events = () => {
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(eventActions.getAllEventsThunk())
+    useEffect(async () => {
+        await dispatch(eventActions.getAllEventsThunk())
     }, [dispatch])
 
     const events = useSelector(state => state.events);
