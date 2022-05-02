@@ -7,7 +7,7 @@ def seed_users_in_groups():
     insert3 = users_groups.insert().values(user_id=1, group_id=3)
     insert4 = users_groups.insert().values(user_id=2, group_id=1)
     insert5 = users_groups.insert().values(user_id=2, group_id=2)
-    insert6 = users_groups.insert().values(user_id=3, group_id=3)
+    insert6 = users_groups.insert().values(user_id=2, group_id=3)
     insert7 = users_groups.insert().values(user_id=3, group_id=1)
     insert8 = users_groups.insert().values(user_id=3, group_id=2)
     insert9 = users_groups.insert().values(user_id=3, group_id=3)

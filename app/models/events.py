@@ -13,13 +13,20 @@ class Event(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey('groups.id'), nullable=False)
+
     events = db.relationship('Group', back_populates='groups')
+
 
     users = db.relationship(
         "User",
         secondary=users_events,
         back_populates='events'
+    )
+    owner = db.relationship(
+        "User",
+        back_populates='event'
     )
 
     def to_dict(self):
