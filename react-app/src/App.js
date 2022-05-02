@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Groups from './components/Groups'
+import SingleGroup from './components/SingleGroup'
 import { authenticate } from './store/session';
 import Events from './components/Events';
 
@@ -44,6 +45,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/groups' exact={true}>
           <Groups />
+        </Route>
+        <Route path='/groups/:groupId' exact={true}>
+          <SingleGroup />
         </Route>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
