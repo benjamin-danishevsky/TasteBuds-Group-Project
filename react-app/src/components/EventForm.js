@@ -25,11 +25,12 @@ const EventForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        const formatDate = date.split('T').join(' ')+':00'
         const payload = {
             title,
             description,
             location,
-            date,
+            date: formatDate,
             background_img,
             owner_id: sessionUser.id,
             group_id: id
@@ -42,7 +43,7 @@ const EventForm = () => {
         }
     }
 
-    console.log('events', events)
+    
 
     return (
         <div>
@@ -70,7 +71,7 @@ const EventForm = () => {
                     onChange={e => setLocation(e.target.value)}
                 />
                 <input
-                    type='input'
+                    type='datetime-local'
                     placeholder='date'
                     required
                     value={date}

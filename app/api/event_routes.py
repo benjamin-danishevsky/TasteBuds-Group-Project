@@ -31,8 +31,9 @@ def delete_event(id):
 def update_event(id):
     current_event = Event.query.get(id)
     form = UpdatedEventForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        
+
         data = form.data
 
         current_event.title = data["title"]

@@ -86,7 +86,8 @@ export const updateEventThunk = (id, event) => async dispatch => {
     })
 
     if(res.ok){
-        const updatedEvent = res.json();
+        const updatedEvent = await res.json();
+        console.log(updatedEvent);
         return dispatch(updateEvent(updatedEvent))
     }
 }
@@ -141,7 +142,7 @@ const eventsReducer = (state = {}, action) => {
 
         case UPDATE_EVENT:
             const updateState = {...state}
-            updateState[action.event.event.id] = action.event.event
+            updateState[action.event.id] = action.event
             return updateState;
         default:
             return state

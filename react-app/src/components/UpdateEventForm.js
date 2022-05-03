@@ -4,25 +4,26 @@ import { useHistory, useParams } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as eventActions from '../store/events';
 
-const UpdateEventForm = () => {
+const UpdateEventForm = ({event, hideForm}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const {id} = useParams()
 
     const sessionUser = useSelector(state => state.session.user);
-
     const events = useSelector(state => state.events)
-    console.log(events[id])
+
+    useEffect(async () => {
+        await dispatch(eventActions.getAllEventsThunk())
+    }, [dispatch])
 
 
     const [title, setTitle] = useState(events[id]?.title)
     const [description, setDescription] = useState(events[id]?.description)
     const [location, setLocation] = useState(events[id]?.location)
+    // date format: YYYY-MM-DD HH:mm:ss;
+    // 2022-10-31 15:55:00
     const [date, setDate] = useState(events[id]?.date)
     const [background_img, setBackground_img] = useState(events[id]?.background_img)
-    useEffect(async () => {
-        await dispatch(eventActions.getAllEventsThunk())
-    }, [dispatch])
 
 
     if(!sessionUser) {
@@ -31,19 +32,19 @@ const UpdateEventForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        const formatDate = date.split('T').join(' ')+':00'
+
         const payload = {
             title,
             description,
             location,
-            date,
+            date: formatDate,
             background_img,
         }
 
-        const updatedEvent = await dispatch(eventActions.updateEventThunk(id, payload));
+        dispatch(eventActions.updateEventThunk(id, payload));
 
-        if(updatedEvent) {
-            history.push(`/events/${updatedEvent.event.event.id}`)
-        }
+        hideForm()
     }
 
 
@@ -74,7 +75,7 @@ const UpdateEventForm = () => {
                     onChange={e => setLocation(e.target.value)}
                 />
                 <input
-                    type='input'
+                    type='datetime-local'
                     placeholder='date'
                     required
                     value={date}
@@ -87,8 +88,12 @@ const UpdateEventForm = () => {
                     value={background_img}
                     onChange={e => setBackground_img(e.target.value)}
                 />
-                <button>Edit Event</button>
+                <button type='submit'>Update Event</button>
             </form>
+            <button onClick={e => {
+                e.preventDefault();
+                hideForm()
+            }}>Cancel</button>
         </div>
     )
 }
