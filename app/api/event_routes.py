@@ -69,10 +69,11 @@ def attending_event(id):
 
     if request.method == 'DELETE':
         delete_info = request.json # {'user_id': '1', 'event_id': '3'}
-        print(users_events.metadata, '-----'*50)
-        # deletion = (delete(users_events).where(users_events.user_id==delete_info['user_id']).where(users_events.event_id==delete_info['event_id']))
-        # db.session.execute(deletion)
-        # db.session.commit()
+
+        # deletion = users_events.query.filter_by(user_id=delete_info['user_id'], event_id=deletion['event_id']).delete()
+        db.session.execute(f"DELETE FROM users_attending_event WHERE user_id={delete_info['user_id']} and event_id={delete_info['event_id']};")
+        db.session.commit()
+
         return delete_info
 
 # @events_route.route('/new-event', methods=['GET', 'POST'])
