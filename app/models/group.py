@@ -13,13 +13,12 @@ class Group(db.Model):
 
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     owner = db.relationship("User", back_populates='groups', cascade="all, delete")
-    groups = db.relationship('Event', back_populates='events', cascade="all, delete")
+    groups = db.relationship('Event', back_populates='events')
 
     users = db.relationship(
         "User",
         secondary=users_groups,
-        back_populates='group',
-        cascade="all, delete"
+        back_populates='group'
     )
 
     def to_dict(self):

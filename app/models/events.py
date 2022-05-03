@@ -16,19 +16,17 @@ class Event(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey('groups.id'), nullable=False)
 
-    events = db.relationship('Group', back_populates='groups', cascade="all, delete")
+    events = db.relationship('Group', back_populates='groups')
 
 
     users = db.relationship(
         "User",
         secondary=users_events,
         back_populates='events',
-        cascade="all, delete"
     )
     owner = db.relationship(
         "User",
         back_populates='event',
-        cascade="all, delete"
     )
 
     def to_dict(self):

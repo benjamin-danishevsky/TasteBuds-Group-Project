@@ -20,14 +20,12 @@ class User(db.Model, UserMixin):
         'Group',
         secondary=users_groups,
         back_populates='users',
-        cascade="all, delete"
     )
 
     events = db.relationship(
         'Event',
         secondary=users_events,
         back_populates='users',
-        cascade="all, delete"
     )
 
     event = db.relationship(

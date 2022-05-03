@@ -36,12 +36,17 @@ def get_group(id):
 
 #     return form.errors
 
+# @group_routes.route('/<int:id>', methods=["PUT"])
+# @login_required
+# def edit_group(id):
+
+
 @group_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_group(id):
   print('----------BACKEND ROUTE HIT----------')
   group = Group.query.get(id);
-  print('GROUP ID IS', group)
+  print('GROUP ID IS', '-' * 30, group)
   deleted = group.to_dict()
   db.session.delete(group)
   db.session.commit()
