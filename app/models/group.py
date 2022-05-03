@@ -12,8 +12,8 @@ class Group(db.Model):
     state = db.Column(db.String, nullable=False)
 
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    owner = db.relationship("User", back_populates='groups', cascade="all, delete")
-    groups = db.relationship('Event', back_populates='events')
+    owner = db.relationship("User", back_populates='groups')
+    groups = db.relationship('Event', back_populates='events', cascade="all, delete-orphan")
 
     users = db.relationship(
         "User",

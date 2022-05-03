@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String, nullable=True)
 
-    groups = db.relationship('Group', back_populates='owner', cascade="all, delete")
+    groups = db.relationship('Group', back_populates='owner', cascade="all, delete-orphan")
 
     group = db.relationship(
         'Group',
