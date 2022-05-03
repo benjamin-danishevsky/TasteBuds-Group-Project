@@ -11,9 +11,9 @@ const SingleEvent = () => {
 
     useEffect(() => {
         async function fetchData() {
-        const response = await fetch('/api/users/');
-        const responseData = await response.json();
-        setUsers(responseData.users);
+            const response = await fetch('/api/users/');
+            const responseData = await response.json();
+            setUsers(responseData.users);
         }
         fetchData();
     }, []);
@@ -26,8 +26,9 @@ const SingleEvent = () => {
     const ownerId = event?.owner_id;
 
 
-    const eventOwner = users.filter(user => user.id === ownerId)
+    const eventOwner = users?.filter(user => user.id === ownerId)
 
+    console.log(eventOwner)
 
     return (
         <>
