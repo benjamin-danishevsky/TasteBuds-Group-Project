@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Event, User, db
+from app.models import Event, User, db, users_events
 from app.forms import NewEventForm, UpdatedEventForm
 from datetime import datetime
 events_route = Blueprint('events', __name__)
@@ -48,6 +48,17 @@ def update_event(id):
         return current_event.to_dict()
 
     return form.errors
+
+@events_route.route('/<int:id>/join', methods=['POST', 'DELETE', 'GET'])
+def attending_event(id):
+
+    if request.method == 'GET':
+        event = Event.query.get(id)
+        users = event.users.all()
+        return {
+            "users": [user.to_dict() for user in users]
+        }
+
 # @events_route.route('/new-event', methods=['GET', 'POST'])
 # def new_event():
 #     form = NewEventForm()

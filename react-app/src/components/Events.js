@@ -25,6 +25,7 @@ const Events = () => {
                             <li>{event?.location}</li>
                             <li>{event?.date}</li>
                             <img src={event?.background_img}/>
+                            <button>JOIN/LEAVE</button>
                         </ul>
                     </a>
                 ))}
