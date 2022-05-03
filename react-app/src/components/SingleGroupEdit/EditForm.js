@@ -18,7 +18,8 @@ const EditGroupForm = ({group, hideForm}) => {
   console.log('GROUP', sessionGroup)
 
   useEffect(async () => {
-    await dispatch(groupActions.loadGroup(id))
+    await dispatch(groupActions.loadGroup(id)
+    )
   }, [dispatch])
 
 
