@@ -11,6 +11,8 @@ import Groups from './components/Groups'
 import SingleGroup from './components/SingleGroup'
 import { authenticate } from './store/session';
 import Events from './components/Events';
+import CreateGroup from './components/CreateGroupForm';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +51,9 @@ function App() {
         <Route path='/groups/:id' exact={true}>
           <SingleGroup />
         </Route>
+        <ProtectedRoute path='/groups/new-group' exact={true}>
+          <CreateGroup />
+        </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>

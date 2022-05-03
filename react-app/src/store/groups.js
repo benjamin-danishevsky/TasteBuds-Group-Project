@@ -2,6 +2,8 @@
 
 const LOAD = 'groups/LOAD'
 const LOAD_ONE_GROUP = 'groups/LOAD_ONE_GROUP'
+const ADD_GROUP = 'groups/addGroup'
+
 
 export const load = groups => ({
   type: LOAD,
@@ -13,7 +15,16 @@ export const loadOneGroup = group => ({
   group
 });
 
-export const loadAllGroups = () => async dispatch => {
+
+export const addGroup = group => {
+  return {
+    type: ADD_GROUP,
+    group
+  }
+}
+
+
+export const loadAllGroupsThunk = () => async dispatch => {
   const result = await fetch('/api/groups/', {
     headers: {
       'Content-Type': 'application/json'
@@ -27,7 +38,7 @@ export const loadAllGroups = () => async dispatch => {
   }
 }
 
-export const loadGroup = id => async dispatch => {
+export const loadGroupThunk = id => async dispatch => {
   const result = await fetch(`/api/groups/${id}`, {
     headers: {
       'Content-Type': 'application/json'
@@ -39,6 +50,26 @@ export const loadGroup = id => async dispatch => {
     dispatch(loadOneGroup(group));
   }
 }
+
+
+
+export const createGroupThunk = group => async dispatch =>{
+      const res = await fetch(`/api/groups/new-group`, {
+        method: 'POST',
+        header: {
+          'Accept': 'application/json',
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(group)
+      })
+      if(res.ok){
+        const data = await res.json()
+        dispatch(addGroup(data))
+      }
+}
+
+
+
 
 const initialState = {}
 
@@ -59,8 +90,11 @@ const groupReducer = (state = initialState, action) => {
         ...state,
         ...allGroups
       };
-      default:
-        return state;
+    case ADD_GROUP:
+      newState = { ...state, [action.group.group.id]: action.group.group}
+      return newState
+    default:
+      return state;
   }
 }
 

@@ -13,7 +13,7 @@ const SingleGroup = () => {
 
 
   useEffect(() => {
-    dispatch(groupActions.loadGroup(id))
+    dispatch(groupActions.loadGroupThunk(id))
   }, [dispatch, id])
 
   return (

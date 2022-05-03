@@ -7,7 +7,7 @@ const Groups = () => {
   const dispatch = useDispatch()
 
   useEffect(async () => {
-    await dispatch(groupActions.loadAllGroups())
+    await dispatch(groupActions.loadAllGroupsThunk())
   }, [dispatch])
 
   const groups = useSelector(state => state.groups);
