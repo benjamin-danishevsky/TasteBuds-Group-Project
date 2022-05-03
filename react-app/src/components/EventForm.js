@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import * as eventActions from '../store/events';
 
 const EventForm = () => {
@@ -9,6 +10,7 @@ const EventForm = () => {
     const {id} = useParams()
 
     const sessionUser = useSelector(state => state.session.user);
+    const events = useSelector(state => state.events)
 
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
@@ -33,10 +35,14 @@ const EventForm = () => {
             group_id: id
         }
 
-        let createdEvent = await dispatch(eventActions.createEventThunk(id, payload));
+        const createdEvent = await dispatch(eventActions.createEventThunk(id, payload));
 
-        console.log(createdEvent)
+        if(createdEvent) {
+            history.push(`/events/${createdEvent.event.event.id}`)
+        }
     }
+
+    console.log('events', events)
 
     return (
         <div>

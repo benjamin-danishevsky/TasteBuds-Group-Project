@@ -37,6 +37,7 @@ def newGroup():
 
 @group_routes.route('/<int:id>/new-event', methods=['GET', 'POST'])
 def new_event(id):
+    print('payload ::::', id)
     form = NewEventForm()
 
     if request.method == "POST":
@@ -56,6 +57,9 @@ def new_event(id):
                       )
           db.session.add(event)
           db.session.commit()
-          return 'Success'
+          print('New event', event.to_dict())
+          return {
+            "event": event.to_dict()
+          }
 
-    return form.errors
+    return 'hello ben'

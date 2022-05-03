@@ -54,9 +54,14 @@ export const createEventThunk = (id, payload) => async dispatch => {
         body: JSON.stringify(payload)
     });
 
+    // console.log(res);
+
     if (res.ok) {
         const newEvent = await res.json();
-        dispatch(createEvent(newEvent))
+
+        // console.log('New Event after res.json()', newEvent)
+
+        return dispatch(createEvent(newEvent))
     }
 }
 
@@ -82,18 +87,19 @@ const eventsReducer = (state = {}, action) => {
             return {...state, ...newEvent}
 
         case CREATE_EVENT:
-            if(!state[action.event.id]) {
+            console.log("Action event", action.event.event.id)
+            if(!state[action.event.event.id]) {
                 const newState = {
                     ...state,
-                    [action.event.id]: action.event
+                    [action.event.event.id]: action.event.event
                 }
                 return newState;
             }
             return {
                 ...state,
-                [action.event.id]: {
-                    ...state[action.event.id],
-                    ...action.event
+                [action.event.event.id]: {
+                    ...state[action.event.event.id],
+                    ...action.event.event
                 }
             }
         default:
