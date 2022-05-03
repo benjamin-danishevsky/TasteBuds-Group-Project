@@ -11,6 +11,7 @@ import Groups from './components/Groups'
 import SingleGroup from './components/SingleGroup'
 import { authenticate } from './store/session';
 import Events from './components/Events';
+import EventForm from './components/EventForm'
 import SingleEvent from './components/SingleEvent'
 
 function App() {
@@ -58,6 +59,9 @@ function App() {
         </Route>
         <Route path='/events/:id'>
           <SingleEvent />
+        </Route>
+        <Route path='/groups/:id/new-event'>
+          <EventForm />
         </Route>
       </Switch>
     </BrowserRouter>

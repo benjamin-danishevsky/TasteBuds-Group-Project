@@ -1,7 +1,7 @@
-from flask import Blueprint, Flask, jsonify, session
-from app.models import db, User, Group
-from app.forms import NewGroupForm
-
+from flask import Blueprint, Flask, jsonify, session, request
+from app.models import db, User, Group, Event
+from app.forms import NewGroupForm, NewEventForm
+from datetime import datetime
 
 group_routes = Blueprint('groups', __name__)
 
@@ -34,3 +34,28 @@ def newGroup():
         return 'Group Created!'
 
   return form.errors
+
+@group_routes.route('/<int:id>/new-event', methods=['GET', 'POST'])
+def new_event(id):
+    form = NewEventForm()
+
+    if request.method == "POST":
+      form['csrf_token'].data = request.cookies['csrf_token']
+      if form.validate_on_submit():
+          data = form.data
+          event = Event(
+                        title=data['title'],
+                        description=data['description'],
+                        location=data['location'],
+                        date=data['date'],
+                        background_img=data['background_img'],
+                        created_at=datetime.now(),
+                        updated_at=datetime.now(),
+                        owner_id=data['owner_id'],
+                        group_id=id
+                      )
+          db.session.add(event)
+          db.session.commit()
+          return 'Success'
+
+    return form.errors
