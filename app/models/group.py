@@ -20,3 +20,13 @@ class Group(db.Model):
         secondary=users_groups,
         back_populates='group'
     )
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'background_img': self.background_img,
+            'city': self.city,
+            'state': self.state,
+        }
