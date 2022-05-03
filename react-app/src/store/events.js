@@ -1,6 +1,8 @@
 const GET_EVENTS = 'events/GET_EVENTS'
 const SINGLE_EVENT = 'events/SINGLE_EVENT'
 const CREATE_EVENT = 'events/CREATE_EVENT'
+const DELETE_EVENT = 'events/DELETE_EVENT'
+const UPDATE_EVENT = 'events/UPDATE_EVENT'
 
 
 const getEvents = events => ({
@@ -19,6 +21,15 @@ const createEvent = event => ({
     event
 })
 
+const deleteEvent = id => ({
+    type: DELETE_EVENT,
+    id
+})
+
+const updateEvent = event => ({
+    type: UPDATE_EVENT,
+    event
+})
 
 export const getAllEventsThunk = () => async dispatch => {
     const res = await fetch('/api/events/', {
@@ -65,15 +76,36 @@ export const createEventThunk = (id, payload) => async dispatch => {
     }
 }
 
+export const updateEventThunk = (id, event) => async dispatch => {
+    const res = await fetch(`/api/events/${id}/update`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(event)
+    })
+
+    if(res.ok){
+        const updatedEvent = res.json();
+        return dispatch(updateEvent(updatedEvent))
+    }
+}
+
+export const deleteEventThunk = (id) => async dispatch => {
+    const res = await fetch(`/api/events/${id}`, {
+        method: 'DELETE'
+    })
+    if (res.ok){
+
+        return dispatch(deleteEvent(id))
+    }
+}
+
 
 const eventsReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_EVENTS:
             const allEvents = {};
-
-            // console.log('Get Events action', typeof(action.events), action.events)
-
-
             action.events.events.forEach(event => {
                 allEvents[event.id] = event
             })
@@ -102,6 +134,15 @@ const eventsReducer = (state = {}, action) => {
                     ...action.event.event
                 }
             }
+        case DELETE_EVENT:
+            const newState = {...state}
+            delete newState[action.id]
+            return newState;
+
+        case UPDATE_EVENT:
+            const updateState = {...state}
+            updateState[action.event.event.id] = action.event.event
+            return updateState;
         default:
             return state
     }

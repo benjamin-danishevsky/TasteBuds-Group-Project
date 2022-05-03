@@ -13,6 +13,8 @@ import { authenticate } from './store/session';
 import Events from './components/Events';
 import EventForm from './components/EventForm'
 import SingleEvent from './components/SingleEvent'
+import UpdateEventForm from './components/UpdateEventForm'
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,11 +59,14 @@ function App() {
         <Route exact path='/events'>
           <Events />
         </Route>
-        <Route path='/events/:id'>
+        <Route exact path='/events/:id'>
           <SingleEvent />
         </Route>
         <Route path='/groups/:id/new-event'>
           <EventForm />
+        </Route>
+        <Route exact path='/events/:id/edit'>
+          <UpdateEventForm />
         </Route>
       </Switch>
     </BrowserRouter>

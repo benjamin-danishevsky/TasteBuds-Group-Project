@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Event, User, db
-from app.forms import NewEventForm
+from app.forms import NewEventForm, UpdatedEventForm
 from datetime import datetime
 events_route = Blueprint('events', __name__)
 
@@ -20,6 +20,33 @@ def single_event(id):
         "event": event.to_dict()
     }
 
+@events_route.route('/<int:id>', methods=['DELETE'])
+def delete_event(id):
+    deleted_event = Event.query.get(id)
+    db.session.delete(deleted_event)
+    db.session.commit()
+    return deleted_event.to_dict()
+
+@events_route.route('/<int:id>/update', methods=['POST'])
+def update_event(id):
+    current_event = Event.query.get(id)
+    form = UpdatedEventForm()
+    if form.validate_on_submit():
+        
+        data = form.data
+
+        current_event.title = data["title"]
+        current_event.description = data["description"]
+        current_event.date = data["date"]
+        current_event.location = data["location"]
+        current_event.background_img = data["background_img"]
+        current_event.updated_at = datetime.now()
+
+        db.session.commit()
+
+        return current_event.to_dict()
+
+    return form.errors
 # @events_route.route('/new-event', methods=['GET', 'POST'])
 # def new_event():
 #     form = NewEventForm()
