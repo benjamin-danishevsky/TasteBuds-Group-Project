@@ -2,6 +2,7 @@
 
 const LOAD = 'groups/LOAD'
 const LOAD_ONE_GROUP = 'groups/LOAD_ONE_GROUP'
+const DELETE_ONE_GROUP = 'groups/DELETE_ONE_GROUP'
 
 export const load = groups => ({
   type: LOAD,
@@ -10,6 +11,11 @@ export const load = groups => ({
 
 export const loadOneGroup = group => ({
   type: LOAD_ONE_GROUP,
+  group
+});
+
+export const deleteOneGroup = group => ({
+  type: DELETE_ONE_GROUP,
   group
 });
 
@@ -40,6 +46,16 @@ export const loadGroup = id => async dispatch => {
   }
 }
 
+export const deleteGroupThunk = id => async dispatch => {
+  console.log('----------TESTING----------')
+  const response = await fetch(`/api/groups/${id}`, {
+    method: "DELETE",
+  });
+  if(response.ok) {
+    dispatch(deleteOneGroup(id))
+  }
+};
+
 const initialState = {}
 
 const groupReducer = (state = initialState, action) => {
@@ -59,6 +75,10 @@ const groupReducer = (state = initialState, action) => {
         ...state,
         ...allGroups
       };
+      case DELETE_ONE_GROUP:
+        const deletedState = {...state};
+        delete deletedState[action.id];
+        return deletedState
       default:
         return state;
   }

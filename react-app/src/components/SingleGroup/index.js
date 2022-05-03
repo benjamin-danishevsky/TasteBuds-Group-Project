@@ -9,17 +9,24 @@ const SingleGroup = () => {
 
   const { id } = useParams();
   const groups = useSelector(state => state.groups[id]);
-  console.log(groups, "DATAAAAAAAAAAAAAAAAAAAAAAAAA")
 
+  const [showDelete, setShowDelete] = useState(false);
 
   useEffect(() => {
     dispatch(groupActions.loadGroup(id))
   }, [dispatch, id])
 
+  async function onClick(group) {
+    await dispatch(groupActions.deleteGroupThunk(group))
+  }
+
   return (
     <>
       <div>
         <h1>{groups?.name}</h1>
+        <button type="button" onClick={()=> {
+          onClick(groups.id)
+        }}>Delete</button>
       </div>
     </>
   )
