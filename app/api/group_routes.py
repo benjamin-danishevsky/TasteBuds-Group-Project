@@ -1,6 +1,7 @@
-from flask import Blueprint, Flask, jsonify, session
+from flask import Blueprint, Flask, jsonify, session, request
 from app.models import db, User, Group
 # from app.forms import NewGroupForm
+from app.forms import EditGroupForm
 from flask_login import login_required
 
 
@@ -35,18 +36,32 @@ def get_group(id):
 #         return 'Group Created!'
 
 #     return form.errors
+# EDIT
+@group_routes.route('/<int:id>/edit', methods=["POST"])
+@login_required
+def edit_group(id):
+  form = EditGroupForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  data = form.data
+  group = Group.query.get(id)
 
-# @group_routes.route('/<int:id>', methods=["PUT"])
-# @login_required
-# def edit_group(id):
+  if form.validate_on_submit():
+    group.name = data["name"],
+    group.description = data["description"],
+    group.background_img = data["background_img"],
+    group.city = data["city"],
+    group.state = data["state"]
+
+    db.session.commit()
+    return group.to_dict()
+
+  return form.errors
 
 
 @group_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_group(id):
-  print('----------BACKEND ROUTE HIT----------')
   group = Group.query.get(id);
-  print('GROUP ID IS', '-' * 30, group)
   deleted = group.to_dict()
   db.session.delete(group)
   db.session.commit()

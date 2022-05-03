@@ -12,6 +12,7 @@ const SingleGroup = () => {
   const groups = useSelector(state => state.groups[id]);
 
   const [showDelete, setShowDelete] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(groupActions.loadGroup(id))
@@ -34,6 +35,7 @@ const SingleGroup = () => {
           <p>{groups?.city}, {groups?.state}</p>
         </div>
       </div>
+
         <button type="button" onClick={()=> {
           onClick(groups.id)
         }}>Delete</button>

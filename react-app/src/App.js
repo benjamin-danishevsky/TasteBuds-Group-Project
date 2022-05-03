@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Groups from './components/Groups'
 import SingleGroup from './components/SingleGroup'
+import EditGroupForm from './components/SingleGroupEdit/EditForm';
 import { authenticate } from './store/session';
 import Events from './components/Events';
 
@@ -49,6 +50,9 @@ function App() {
         <Route path='/groups/:id' exact={true}>
           <SingleGroup />
         </Route>
+        <ProtectedRoute path='/groups/:id/edit' exact={true}>
+          <EditGroupForm />
+        </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
