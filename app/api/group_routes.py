@@ -33,4 +33,4 @@ def newGroup():
         db.session.commit()
         return 'Group Created!'
 
-    return form.errors
+  return form.errors
