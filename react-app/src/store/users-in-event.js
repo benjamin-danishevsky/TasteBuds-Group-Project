@@ -1,10 +1,16 @@
 const GET_USERS = "event/GET_USERS";
+const JOIN_EVENT = 'event/JOIN_EVENT'
 
 
 const getUsers = (users) => ({
     type: GET_USERS,
     users,
 });
+
+const joinEvent = user => ({
+    type: JOIN_EVENT,
+    user
+})
 
 export const usersAttendingThunk = (id) => async (dispatch) => {
     const res = await fetch(`/api/events/${id}/join`, {
@@ -18,6 +24,20 @@ export const usersAttendingThunk = (id) => async (dispatch) => {
     }
 };
 
+export const joiningEventThunk = (id, user) => async dispatch => {
+    const res = await fetch(`/api/events/${id}/join`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    if (res.ok){
+        const joinedUser = await res.json();
+        return dispatch(joinEvent(joinedUser))
+    }
+}
+
 
 const usersEventsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -27,6 +47,9 @@ const usersEventsReducer = (state = {}, action) => {
                 allUsers[user.id] = user;
             });
             return { ...allUsers, ...state };
+        case JOIN_EVENT:
+            const joinedUsers = {...state};
+            return { ...joinedUsers, ...action.user.user}
         default:
             return state;
     }

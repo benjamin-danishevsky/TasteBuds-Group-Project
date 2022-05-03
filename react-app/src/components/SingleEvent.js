@@ -76,12 +76,13 @@ const SingleEvent = () => {
                     <li key={attendee.id}>{attendee.username}</li>
                 ))}
             </ul>
-            
+
             {joinedEvent
                 ? <button onClick={() => {
                     setJoinedEvent(false)
                 }}>LEAVE</button>
                 : <button onClick={() => {
+                    dispatch(usersAttendingActions.joiningEventThunk(id, user))
                     setJoinedEvent(true)
                 }}>JOIN</button>
             }

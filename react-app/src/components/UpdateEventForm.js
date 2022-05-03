@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as eventActions from '../store/events';
 
-const UpdateEventForm = ({event, hideForm}) => {
+const UpdateEventForm = ({ hideForm}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const {id} = useParams()
