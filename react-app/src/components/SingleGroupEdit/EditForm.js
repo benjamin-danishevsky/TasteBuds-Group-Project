@@ -10,13 +10,8 @@ const EditGroupForm = ({group, hideForm}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
-
   const sessionUser = useSelector(state => state.session.user)
   const sessionGroup = useSelector(state => state.groups[id])
-
-  console.log('USER', sessionUser)
-  console.log('GROUP', sessionGroup)
 
   useEffect(async () => {
     await dispatch(groupActions.loadGroup(id)

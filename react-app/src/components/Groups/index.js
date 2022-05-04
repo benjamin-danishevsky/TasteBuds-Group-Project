@@ -12,17 +12,18 @@ const Groups = () => {
 
   const groups = useSelector(state => state.groups);
   const groupData = Object.values(groups)
-  console.log(groupData)
 
   return (
     <>
     <div>
       {groupData.map((group, idx) => (
+        <>
         <div key={idx}>
-          <ul>
-            <li>{group?.name}</li>
-          </ul>
+          <a href={`/groups/${group.id}`}>
+            <p>{group?.name}</p>
+          </a>
         </div>
+        </>
       ))}
     </div>
     </>
