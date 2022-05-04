@@ -128,3 +128,21 @@ def delete_group(id):
   db.session.delete(group)
   db.session.commit()
   return deleted
+
+
+
+@group_routes.route("/<int:id>/calendar", methods=["POST"])
+def getCalendar(id):
+  eventList = []
+  res = request.json
+
+  group = Group.query.get(id)
+  events = group.groups
+
+  element = res['datetime']
+  date = element.split()[0]
+
+  for event in events:
+    if str(event.date).split()[0] == str(date):
+      eventList.append(event)
+  return {"event": [event.to_dict() for event in eventList]}

@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import groups from './groups'
+import calendarReducer from './calendar'
 import eventsReducer from './events';
 import usersEventsReducer from './users-in-event'
 import searchReducer from './search'
@@ -9,6 +10,7 @@ import searchReducer from './search'
 const rootReducer = combineReducers({
   session,
   groups,
+  calendar: calendarReducer,
   events: eventsReducer,
   usersAttending: usersEventsReducer,
   searches: searchReducer

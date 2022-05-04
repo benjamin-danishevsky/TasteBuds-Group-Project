@@ -19,6 +19,7 @@ import SplashPage from './components/SplashPage'
 import EditGroupForm from './components/SingleGroupEdit/EditForm';
 import SearchBar from './components/SearchBar/index'
 import SearchResults from './components/SearchBar/SearchResults'
+import { ShowCalendar } from './components/Calendar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -67,6 +68,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route exact path='/groups/:id/calendar'>
+          <ShowCalendar/>
+        </Route>
         <Route exact path='/events'>
           <Events />
         </Route>
