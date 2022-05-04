@@ -1,0 +1,28 @@
+h1 {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.group_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header_left {
+  display: flex;
+  margin-right: 100px;
+  justify-content: center;
+}
+
+.header_img {
+  object-fit: contain;
+  height: 600px;
+  width: 600px
+}
+
+.header_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

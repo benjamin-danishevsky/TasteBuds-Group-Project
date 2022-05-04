@@ -27,7 +27,7 @@ class Event(db.Model):
     )
     owner = db.relationship(
         "User",
-        back_populates='event'
+        back_populates='event',
     )
 
     def to_dict(self):
