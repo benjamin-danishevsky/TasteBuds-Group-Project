@@ -25,6 +25,7 @@ export const usersAttendingThunk = (id) => async (dispatch) => {
 };
 
 export const joiningEventThunk = (id, user) => async dispatch => {
+    console.log(id, user, '<--');
     const res = await fetch(`/api/events/${id}/join`, {
         method: 'POST',
         headers: {

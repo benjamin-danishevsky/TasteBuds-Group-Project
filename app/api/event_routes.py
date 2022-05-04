@@ -3,6 +3,7 @@ from app.models import Event, User, db, users_events
 from app.forms import NewEventForm, UpdatedEventForm
 from datetime import datetime
 from sqlalchemy import delete
+from flask_login import current_user
 
 events_route = Blueprint('events', __name__)
 
@@ -62,8 +63,11 @@ def attending_event(id):
         }
     if request.method == 'POST':
         info = request.json # {'user_id': '1', 'event_id': '3'}
-        insert1 = users_events.insert().values(user_id=info['user_id'], event_id=info['event_id'])
-        db.session.execute(insert1)
+        currEvent = Event.query.get(id)
+        # currEvent.users.append(current_user)
+        print(info, '<---')
+        # ? working
+        db.session.execute(f"INSERT INTO users_attending_event (user_id, event_id) VALUES ({info['id']}, {currEvent.id})")
         db.session.commit()
         return info
 
