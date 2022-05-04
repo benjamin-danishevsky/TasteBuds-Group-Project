@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import * as eventActions from '../store/events';
+import * as eventActions from '../../store/events'
 
 const EventForm = () => {
     const dispatch = useDispatch()
@@ -43,7 +43,7 @@ const EventForm = () => {
         }
     }
 
-    
+
 
     return (
         <div>

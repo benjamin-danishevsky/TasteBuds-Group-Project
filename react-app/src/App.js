@@ -10,10 +10,10 @@ import User from './components/User';
 import Groups from './components/Groups'
 import SingleGroup from './components/SingleGroup'
 import { authenticate } from './store/session';
-import Events from './components/Events';
-import EventForm from './components/EventForm'
-import SingleEvent from './components/SingleEvent'
-import UpdateEventForm from './components/UpdateEventForm'
+import Events from './components/Events/Events';
+import EventForm from './components/Events/EventForm'
+import SingleEvent from './components/Events/SingleEvent'
+import UpdateEventForm from './components/Events/UpdateEventForm'
 
 
 function App() {
