@@ -26,7 +26,6 @@ class User(db.Model, UserMixin):
         'Event',
         secondary=users_events,
         back_populates='users',
-        lazy='dynamic'
     )
 
     event = db.relationship(

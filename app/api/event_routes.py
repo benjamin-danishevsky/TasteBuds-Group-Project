@@ -57,7 +57,7 @@ def attending_event(id):
 
     if request.method == 'GET':
         event = Event.query.get(id)
-        users = event.users.all()
+        users = event.users
         return {
             "users": [user.to_dict() for user in users]
         }
@@ -65,20 +65,14 @@ def attending_event(id):
 
         info = request.json # {'user_id': '1', 'event_id': '3'}
         currEvent = Event.query.get(id)
-        # currEvent.users.append(current_user)
-        print(info, '<---')
-        # ? working
-        db.session.execute(f"INSERT INTO users_attending_event (user_id, event_id) VALUES ({info['id']}, {currEvent.id})")
+        currEvent.users.append(current_user)
         db.session.commit()
         return info
 
     if request.method == 'DELETE':
-        # delete_info = request.json # {'user_id': '1', 'event_id': '3'}
-        # print(delete_info, '<--')
 
         currEvent = Event.query.get(id)
-        # deletion = users_events.query.filter_by(user_id=delete_info['user_id'], event_id=deletion['event_id']).delete()
-        db.session.execute(f"DELETE FROM users_attending_event WHERE user_id={current_user.id} and event_id={currEvent.id};")
+        currEvent.users.remove(current_user)
         db.session.commit()
 
         return {
