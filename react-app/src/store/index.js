@@ -4,12 +4,14 @@ import session from './session'
 import groups from './groups'
 import eventsReducer from './events';
 import usersEventsReducer from './users-in-event'
+import searchReducer from './search'
 
 const rootReducer = combineReducers({
   session,
   groups,
   events: eventsReducer,
-  usersAttending: usersEventsReducer
+  usersAttending: usersEventsReducer,
+  searches: searchReducer
 });
 
 

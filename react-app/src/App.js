@@ -17,7 +17,7 @@ import SingleEvent from './components/Events/SingleEvent'
 import UpdateEventForm from './components/Events/UpdateEventForm'
 import SplashPage from './components/SplashPage'
 import EditGroupForm from './components/SingleGroupEdit/EditForm';
-
+import SearchBar from './components/SearchBar'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -80,6 +80,7 @@ function App() {
         </Route>
         <Route exact path='/splash'>
           <SplashPage />
+          <SearchBar />
         </Route>
       </Switch>
     </BrowserRouter>
