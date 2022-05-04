@@ -10,7 +10,6 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.group_routes import group_routes
 from .api.event_routes import events_route
-
 from .seeds import seed_commands
 
 from .config import Config
