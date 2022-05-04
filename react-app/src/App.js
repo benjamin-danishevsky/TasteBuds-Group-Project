@@ -17,6 +17,8 @@ import SingleEvent from './components/Events/SingleEvent'
 import UpdateEventForm from './components/Events/UpdateEventForm'
 import SplashPage from './components/SplashPage'
 import EditGroupForm from './components/SingleGroupEdit/EditForm';
+import SearchBar from './components/SearchBar/index'
+import SearchResults from './components/SearchBar/SearchResults'
 import { ShowCalendar } from './components/Calendar';
 
 function App() {
@@ -83,6 +85,10 @@ function App() {
         </Route>
         <Route exact path='/splash'>
           <SplashPage />
+          <SearchBar />
+        </Route>
+        <Route patch='/search/results'>
+          <SearchResults />
         </Route>
       </Switch>
     </BrowserRouter>
