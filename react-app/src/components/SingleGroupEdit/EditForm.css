@@ -1,0 +1,8 @@
+.EditGroupForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.EditGroupForm input {
+  height: 25px;
+}

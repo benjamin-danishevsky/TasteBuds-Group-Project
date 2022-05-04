@@ -1,9 +1,11 @@
 // import { csrfFetch } from "./csrf";
 
-const LOAD = 'groups/LOAD'
-const LOAD_ONE_GROUP = 'groups/LOAD_ONE_GROUP'
-const DELETE_ONE_GROUP = 'groups/DELETE_ONE_GROUP'
+
 const ADD_GROUP = 'groups/ADD_GROUP'
+const LOAD = 'groups/LOAD';
+const LOAD_ONE_GROUP = 'groups/LOAD_ONE_GROUP';
+const DELETE_ONE_GROUP = 'groups/DELETE_ONE_GROUP';
+const EDIT_ONE_GROUP = 'groups/EDIT_ONE_GROUP';
 
 
 
@@ -27,6 +29,11 @@ const addGroup = group => ({
 
 const deleteOneGroup = group => ({
   type: DELETE_ONE_GROUP,
+  group
+});
+
+export const editOneGroup = group => ({
+  type: EDIT_ONE_GROUP,
   group
 });
 
@@ -77,7 +84,6 @@ export const createGroupThunk = (group) => async (dispatch) => {
 
 
 export const deleteGroupThunk = id => async dispatch => {
-  console.log('----------TESTING----------')
   const response = await fetch(`/api/groups/${id}`, {
     method: "DELETE",
   });
@@ -85,6 +91,18 @@ export const deleteGroupThunk = id => async dispatch => {
     dispatch(deleteOneGroup(id))
   }
 };
+
+export const editGroupThunk = (id, payload) => async dispatch => {
+  const response = await fetch(`/api/groups/${id}/edit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+  if(response.ok) {
+    const editedGroup = await response.json();
+    return dispatch(editOneGroup(editedGroup));
+  }
+}
 
 const initialState = {}
 
@@ -109,9 +127,14 @@ const groupReducer = (state = initialState, action) => {
       const newGroup = { ...state };
       newGroup[action.group.id] = action.group;
       return newGroup;
+    case EDIT_ONE_GROUP:
+      return {
+        ...state,
+        [action.group.id]: action.group
+      };
     case DELETE_ONE_GROUP:
-      const deletedState = { ...state };
-      delete deletedState[action.id];
+      const deletedState = {...state};
+      delete deletedState[action.group];
       return deletedState
     default:
       return state;

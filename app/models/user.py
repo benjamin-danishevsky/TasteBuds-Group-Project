@@ -31,8 +31,7 @@ class User(db.Model, UserMixin):
 
     event = db.relationship(
         'Event',
-        back_populates='owner',
-        cascade="all, delete"
+        back_populates='owner'
     )
 
     @property

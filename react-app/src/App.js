@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -9,7 +8,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-
 import Groups from './components/Groups'
 import SingleGroup from './components/SingleGroup'
 import CreateGroup from './components/CreateGroupForm'
@@ -17,8 +15,8 @@ import Events from './components/Events/Events';
 import EventForm from './components/Events/EventForm'
 import SingleEvent from './components/Events/SingleEvent'
 import UpdateEventForm from './components/Events/UpdateEventForm'
-
 import SplashPage from './components/SplashPage'
+import EditGroupForm from './components/SingleGroupEdit/EditForm';
 
 
 function App() {
@@ -62,6 +60,9 @@ function App() {
           {console.log("SINGLE ROUTE TEST")}
           <SingleGroup />
         </Route>
+        {/* <ProtectedRoute path='/groups/:id/edit' exact={true}>
+          <EditGroupForm />
+        </ProtectedRoute> */}
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>

@@ -29,4 +29,5 @@ class Group(db.Model):
             'background_img': self.background_img,
             'city': self.city,
             'state': self.state,
+            'owner_id':self.owner_id
         }

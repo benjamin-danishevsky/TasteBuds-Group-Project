@@ -1,34 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from '../../store/groups'
+import EditGroupForm from "../SingleGroupEdit/EditForm";
+import './SingleGroup.css'
 
 const SingleGroup = () => {
 
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
-  console.log(id, "==============>")
+
+  const sessionUser = useSelector(state => state.session.user)
   const groups = useSelector(state => state.groups[id]);
-  const [showDelete, setShowDelete] = useState(false);
+
+  console.log("GROUPS", groups)
+  const ownerId = groups?.owner_id;
+  console.log(ownerId)
+  console.log('OWNER', sessionUser)
+
+  const [showEditForm, setShowEditForm] = useState(false);
 
   useEffect(() => {
     dispatch(groupActions.loadGroupThunk(id))
   }, [dispatch, id])
   console.log("HELLLLOOOOOOOO")
 
-  async function onClick(group) {
-    await dispatch(groupActions.deleteGroupThunk(group))
-  }
-
   return (
     <>
       <div>
-        <h1>{groups?.name}</h1>
-        <button type="button" onClick={()=> {
-          onClick(groups.id)
-        }}>Delete</button>
+        <div className="group_header">
+        <div className="header_left">
+          <img className="header_img" src={groups?.background_img} alt={groups?.name}/>
+        </div>
+        <div className="header_right">
+          <h1>{groups?.name}</h1>
+          <p>{groups?.city}, {groups?.state}</p>
+            {sessionUser?.id === ownerId && (
+              <>
+              <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
+                {showEditForm && <EditGroupForm />}
+              </>
+            )}
+        </div>
       </div>
+      <div>
+        {groups?.description}
+      </div>
+    </div>
     </>
   )
 }
