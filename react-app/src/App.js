@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -40,18 +40,19 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/groups' exact={true}>
+        <ProtectedRoute path='/groups' exact={true}>
           <Groups />
-        </Route>
-        <Route path='/groups/:id' exact={true}>
+        </ProtectedRoute>
+        <Route path='/groups/:id(\\d+)' exact={true}>
+          {console.log("SINGLE ROUTE TEST")}
           <SingleGroup />
         </Route>
-        <ProtectedRoute path='/groups/new-group' exact={true}>
+        <ProtectedRoute exact path='/groups/new-group'>
           <CreateGroup />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >

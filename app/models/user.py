@@ -14,23 +14,24 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String, nullable=True)
 
-    groups = db.relationship('Group', back_populates='owner')
+    groups = db.relationship('Group', back_populates='owner', cascade="all, delete-orphan")
 
     group = db.relationship(
         'Group',
         secondary=users_groups,
-        back_populates='users'
+        back_populates='users',
     )
 
     events = db.relationship(
         'Event',
         secondary=users_events,
-        back_populates='users'
+        back_populates='users',
     )
 
     event = db.relationship(
         'Event',
-        back_populates='owner'
+        back_populates='owner',
+        cascade="all, delete"
     )
 
     @property

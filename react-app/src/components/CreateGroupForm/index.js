@@ -1,40 +1,35 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from '../../store/groups'
 
 
 function CreateGroup() {
     const dispatch = useDispatch()
+    const {id} = useParams()
+
     const history = useHistory()
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [backgroundImg, setbackgroundImg] = useState("")
+    const [background_img, setbackgroundImg] = useState("")
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
 
     const sessionUser = useSelector((state) => state.session.user)
+    const groups = useSelector(state => state.groups)
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const group = { userId: sessionUser.id, name, description, backgroundImg, city, state }
+        const group = { owner_id: sessionUser.id, name, description, background_img, city, state }
 
-        dispatch(groupActions.createGroupThunk(group))
+        await dispatch(groupActions.createGroupThunk(group))
 
-        history.push('/') //redirect to home after added
+        history.push('/groups') //redirect to home after added
     }
     return (
         <section>
             <form className="createGroupForm" onSubmit={handleSubmit}>
-                {/* <ul className="errors">
-                    {errors.map((error, indx) => (
-                        <li key={indx}>
-                            {error}
-                        </li>
-                    ))}
-                </ul> */}
                 <input
                     type="text"
                     placeholder="Name"
@@ -54,7 +49,7 @@ function CreateGroup() {
                 <input
                     type="text"
                     placeholder="Image"
-                    value={backgroundImg}
+                    value={background_img}
                     onChange={(e) => setbackgroundImg(e.target.value)}
                     required
                     className="fieldText"

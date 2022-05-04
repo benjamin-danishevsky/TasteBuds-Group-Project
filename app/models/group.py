@@ -13,7 +13,7 @@ class Group(db.Model):
 
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     owner = db.relationship("User", back_populates='groups')
-    groups = db.relationship('Event', back_populates='events')
+    groups = db.relationship('Event', back_populates='events', cascade="all, delete-orphan")
 
     users = db.relationship(
         "User",

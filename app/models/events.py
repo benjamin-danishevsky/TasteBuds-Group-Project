@@ -22,11 +22,11 @@ class Event(db.Model):
     users = db.relationship(
         "User",
         secondary=users_events,
-        back_populates='events'
+        back_populates='events',
     )
     owner = db.relationship(
         "User",
-        back_populates='event'
+        back_populates='event',
     )
 
     def to_dict(self):
