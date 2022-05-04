@@ -1,8 +1,7 @@
 from flask import Blueprint, Flask, jsonify, session, request
-from app.models import db, User, Group
-from app.forms import NewGroupForm
-from flask_login import login_required
-
+from app.models import db, User, Group, Event
+from app.forms import NewGroupForm, NewEventForm
+from datetime import datetime
 
 group_routes = Blueprint('groups', __name__)
 
@@ -34,35 +33,46 @@ def newGroup():
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
-    data = form.data
-    newGroup = Group(
-      name=data['name'],
-      description=data['description'],
-      background_img=data['background_img'],
-      city=data['city'],
-      state=data['state'],
-      owner_id=data['owner_id'],
-    )
-    db.session.add(newGroup)
-    db.session.commit()
-
-    # response = {'data': newGroup.to_dict()}
-    return {"group": newGroup.to_dict()}
+        data = form.data
+        group = Group(
+                      name=data['name'],
+                      description=data['description'],
+                      background_img=data['background_img'],
+                      city=data['city'],
+                      state=data['state'],
+                      owner_id=data['owner_id'],
+                      )
+        db.session.add(group)
+        db.session.commit()
+        return {'group' : group.to_dict()}
 
   return form.errors
 
-# @group_routes.route('/<int:id>', methods=["PUT"])
-# @login_required
-# def edit_group(id):
+@group_routes.route('/<int:id>/new-event', methods=['GET', 'POST'])
+def new_event(id):
+    print('payload ::::', id)
+    form = NewEventForm()
 
+    if request.method == "POST":
+      form['csrf_token'].data = request.cookies['csrf_token']
+      if form.validate_on_submit():
+          data = form.data
+          event = Event(
+                        title=data['title'],
+                        description=data['description'],
+                        location=data['location'],
+                        date=data['date'],
+                        background_img=data['background_img'],
+                        created_at=datetime.now(),
+                        updated_at=datetime.now(),
+                        owner_id=data['owner_id'],
+                        group_id=id
+                      )
+          db.session.add(event)
+          db.session.commit()
+          print('New event', event.to_dict())
+          return {
+            "event": event.to_dict()
+          }
 
-@group_routes.route('/<int:id>', methods=["DELETE"])
-@login_required
-def delete_group(id):
-  print('----------BACKEND ROUTE HIT----------')
-  group = Group.query.get(id);
-  print('GROUP ID IS', '-' * 30, group)
-  deleted = group.to_dict()
-  db.session.delete(group)
-  db.session.commit()
-  return deleted
+    return 'hello ben'

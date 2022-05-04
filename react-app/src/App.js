@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import { authenticate } from './store/session';
+
 import Groups from './components/Groups'
 import SingleGroup from './components/SingleGroup'
-import { authenticate } from './store/session';
-import Events from './components/Events';
-import CreateGroup from './components/CreateGroupForm';
+import CreateGroup from './components/CreateGroupForm'
+import Events from './components/Events/Events';
+import EventForm from './components/Events/EventForm'
+import SingleEvent from './components/Events/SingleEvent'
+import UpdateEventForm from './components/Events/UpdateEventForm'
+
+import SplashPage from './components/SplashPage'
 
 
 function App() {
@@ -58,8 +65,20 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <Route path='/events'>
+        <Route exact path='/events'>
           <Events />
+        </Route>
+        <Route exact path='/events/:id'>
+          <SingleEvent />
+        </Route>
+        <Route path='/groups/:id/new-event'>
+          <EventForm />
+        </Route>
+        <Route exact path='/events/:id/edit'>
+          <UpdateEventForm />
+        </Route>
+        <Route exact path='/splash'>
+          <SplashPage />
         </Route>
       </Switch>
     </BrowserRouter>
