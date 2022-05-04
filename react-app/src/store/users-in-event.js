@@ -1,6 +1,6 @@
 const GET_USERS = "event/GET_USERS";
 const JOIN_EVENT = 'event/JOIN_EVENT'
-
+const LEAVE_EVENT = 'event/LEAVE_EVENT'
 
 const getUsers = (users) => ({
     type: GET_USERS,
@@ -10,6 +10,11 @@ const getUsers = (users) => ({
 const joinEvent = user => ({
     type: JOIN_EVENT,
     user
+})
+
+const leaveEvent = id => ({
+    type: LEAVE_EVENT,
+    id
 })
 
 export const usersAttendingThunk = (id) => async (dispatch) => {
@@ -25,7 +30,7 @@ export const usersAttendingThunk = (id) => async (dispatch) => {
 };
 
 export const joiningEventThunk = (id, user) => async dispatch => {
-    console.log(id, user, '<--');
+    // console.log(id, user, '<--');
     const res = await fetch(`/api/events/${id}/join`, {
         method: 'POST',
         headers: {
@@ -39,6 +44,19 @@ export const joiningEventThunk = (id, user) => async dispatch => {
     }
 }
 
+export const leavingEventThunk = (id, user) => async dispatch => {
+    const res = await fetch(`/api/events/${id}/join`, {
+        method: "DELETE",
+        body: JSON.stringify(user)
+    })
+
+    if(res.ok) {
+        const leftUser = await res.json()
+        console.log('--->', leftUser)
+        dispatch(leaveEvent(leftUser.user.id))
+    }
+}
+
 
 const usersEventsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -49,8 +67,26 @@ const usersEventsReducer = (state = {}, action) => {
             });
             return { ...allUsers, ...state };
         case JOIN_EVENT:
-            const joinedUsers = {...state};
-            return { ...joinedUsers, ...action.user.user}
+            if(!state[action.user.id]) {
+                const newState = {
+                    ...state,
+                    [action.user.id]: action.user
+                }
+
+                return newState
+            }
+            return {
+                ...state,
+                [action.user.id]: {
+                    ...state[action.user.id],
+                    ...action.user
+                }
+            }
+
+        case LEAVE_EVENT:
+            const newState = { ...state }
+            delete newState[action.id];
+            return newState
         default:
             return state;
     }

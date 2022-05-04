@@ -62,6 +62,7 @@ def attending_event(id):
             "users": [user.to_dict() for user in users]
         }
     if request.method == 'POST':
+
         info = request.json # {'user_id': '1', 'event_id': '3'}
         currEvent = Event.query.get(id)
         # currEvent.users.append(current_user)
@@ -72,13 +73,17 @@ def attending_event(id):
         return info
 
     if request.method == 'DELETE':
-        delete_info = request.json # {'user_id': '1', 'event_id': '3'}
+        # delete_info = request.json # {'user_id': '1', 'event_id': '3'}
+        # print(delete_info, '<--')
 
+        currEvent = Event.query.get(id)
         # deletion = users_events.query.filter_by(user_id=delete_info['user_id'], event_id=deletion['event_id']).delete()
-        db.session.execute(f"DELETE FROM users_attending_event WHERE user_id={delete_info['user_id']} and event_id={delete_info['event_id']};")
+        db.session.execute(f"DELETE FROM users_attending_event WHERE user_id={current_user.id} and event_id={currEvent.id};")
         db.session.commit()
 
-        return delete_info
+        return {
+            "user": current_user.to_dict()
+        }
 
 # @events_route.route('/new-event', methods=['GET', 'POST'])
 # def new_event():
