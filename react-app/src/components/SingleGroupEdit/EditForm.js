@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from "../../store/groups";
+import './EditForm.css'
 
 const EditGroupForm = ({group, hideForm}) => {
 
@@ -29,6 +30,8 @@ const EditGroupForm = ({group, hideForm}) => {
   const [city, setCity] = useState(sessionGroup?.city || "");
   const [state, setState] = useState(sessionGroup?.state || "");
 
+  const [hasSubmitted, setHasSubmitted] = useState(false)
+
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -45,7 +48,7 @@ const EditGroupForm = ({group, hideForm}) => {
 
 return (
   <section>
-    <form className="createGroupForm" onSubmit={handleSubmit}>
+    <form className="EditGroupForm" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Name"

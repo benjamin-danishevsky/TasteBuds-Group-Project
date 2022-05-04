@@ -24,11 +24,6 @@ const SingleGroup = () => {
     dispatch(groupActions.loadGroup(id))
   }, [dispatch, id])
 
-  async function onClick(group) {
-    await dispatch(groupActions.deleteGroupThunk(group))
-  }
-
-
   return (
     <>
       <div>
@@ -49,7 +44,8 @@ const SingleGroup = () => {
       </div>
 
         <button type="button" onClick={()=> {
-          onClick(groups.id)
+          dispatch(groupActions.deleteGroupThunk(id))
+          history.push('/groups')
         }}>Delete</button>
       <div>
         {groups?.description}

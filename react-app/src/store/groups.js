@@ -99,7 +99,7 @@ const groupReducer = (state = initialState, action) => {
       };
       case DELETE_ONE_GROUP:
         const deletedState = {...state};
-        delete deletedState[action.id];
+        delete deletedState[action.group];
         return deletedState
       default:
         return state;
