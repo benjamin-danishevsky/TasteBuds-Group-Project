@@ -7,8 +7,14 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import Groups from './components/Groups'
+import SingleGroup from './components/SingleGroup'
 import { authenticate } from './store/session';
-import Events from './components/Events';
+import Events from './components/Events/Events';
+import EventForm from './components/Events/EventForm'
+import SingleEvent from './components/Events/SingleEvent'
+import UpdateEventForm from './components/Events/UpdateEventForm'
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,11 +47,26 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path='/groups' exact={true}>
+          <Groups />
+        </Route>
+        <Route path='/groups/:id' exact={true}>
+          <SingleGroup />
+        </Route>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <Route path='/events'>
+        <Route exact path='/events'>
           <Events />
+        </Route>
+        <Route exact path='/events/:id'>
+          <SingleEvent />
+        </Route>
+        <Route path='/groups/:id/new-event'>
+          <EventForm />
+        </Route>
+        <Route exact path='/events/:id/edit'>
+          <UpdateEventForm />
         </Route>
       </Switch>
     </BrowserRouter>
