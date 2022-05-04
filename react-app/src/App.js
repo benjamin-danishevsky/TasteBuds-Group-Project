@@ -48,13 +48,13 @@ function App() {
         <ProtectedRoute path='/groups' exact={true}>
           <Groups />
         </ProtectedRoute>
-        <Route path='/groups/:id(\\d+)' exact={true}>
+        <ProtectedRoute path='/groups/new-group' exact={true}>
+          <CreateGroup />
+        </ProtectedRoute>
+        <Route path='/groups/:id(\d+)' exact={true}>
           {console.log("SINGLE ROUTE TEST")}
           <SingleGroup />
         </Route>
-        <ProtectedRoute exact path='/groups/new-group'>
-          <CreateGroup />
-        </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
