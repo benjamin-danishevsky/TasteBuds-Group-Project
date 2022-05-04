@@ -5,13 +5,15 @@ import groups from './groups'
 import calendarReducer from './calendar'
 import eventsReducer from './events';
 import usersEventsReducer from './users-in-event'
+import searchReducer from './search'
 
 const rootReducer = combineReducers({
   session,
   groups,
   calendar: calendarReducer,
   events: eventsReducer,
-  usersAttending: usersEventsReducer
+  usersAttending: usersEventsReducer,
+  searches: searchReducer
 });
 
 
