@@ -15,6 +15,7 @@ function SearchBar(){
             search
         }
         dispatch(searchActions.submitSearchThunk(payload))
+        history.push('/search/results')
     }
 
     return (
