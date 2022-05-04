@@ -23,8 +23,8 @@ class Event(db.Model):
         "User",
         secondary=users_events,
         back_populates='events',
-        lazy='dynamic'
     )
+    
     owner = db.relationship(
         "User",
         back_populates='event',

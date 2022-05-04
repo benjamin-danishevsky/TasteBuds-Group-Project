@@ -73,7 +73,7 @@ def new_event(id):
                       )
           db.session.add(event)
           db.session.commit()
-          print('New event', event.to_dict())
+          # print('New event', event.to_dict())
           return {
             "event": event.to_dict()
           }

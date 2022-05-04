@@ -79,6 +79,7 @@ const SingleEvent = () => {
 
             {joinedEvent
                 ? <button onClick={() => {
+                    dispatch(usersAttendingActions.leavingEventThunk(id, user))
                     setJoinedEvent(false)
                 }}>LEAVE</button>
                 : <button onClick={() => {

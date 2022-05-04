@@ -3,6 +3,7 @@ from app.models import Event, User, db, users_events
 from app.forms import NewEventForm, UpdatedEventForm
 from datetime import datetime
 from sqlalchemy import delete
+from flask_login import current_user
 
 events_route = Blueprint('events', __name__)
 
@@ -56,25 +57,27 @@ def attending_event(id):
 
     if request.method == 'GET':
         event = Event.query.get(id)
-        users = event.users.all()
+        users = event.users
         return {
             "users": [user.to_dict() for user in users]
         }
     if request.method == 'POST':
+
         info = request.json # {'user_id': '1', 'event_id': '3'}
-        insert1 = users_events.insert().values(user_id=info['user_id'], event_id=info['event_id'])
-        db.session.execute(insert1)
+        currEvent = Event.query.get(id)
+        currEvent.users.append(current_user)
         db.session.commit()
         return info
 
     if request.method == 'DELETE':
-        delete_info = request.json # {'user_id': '1', 'event_id': '3'}
 
-        # deletion = users_events.query.filter_by(user_id=delete_info['user_id'], event_id=deletion['event_id']).delete()
-        db.session.execute(f"DELETE FROM users_attending_event WHERE user_id={delete_info['user_id']} and event_id={delete_info['event_id']};")
+        currEvent = Event.query.get(id)
+        currEvent.users.remove(current_user)
         db.session.commit()
 
-        return delete_info
+        return {
+            "user": current_user.to_dict()
+        }
 
 # @events_route.route('/new-event', methods=['GET', 'POST'])
 # def new_event():
