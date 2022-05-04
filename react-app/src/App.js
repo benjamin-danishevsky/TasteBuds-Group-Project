@@ -17,7 +17,7 @@ import SingleEvent from './components/Events/SingleEvent'
 import UpdateEventForm from './components/Events/UpdateEventForm'
 import SplashPage from './components/SplashPage'
 import EditGroupForm from './components/SingleGroupEdit/EditForm';
-
+import { ShowCalendar } from './components/Calendar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -66,6 +66,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route exact path='/groups/:id/calendar'>
+          <ShowCalendar/>
+        </Route>
         <Route exact path='/events'>
           <Events />
         </Route>
