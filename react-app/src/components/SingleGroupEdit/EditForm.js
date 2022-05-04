@@ -30,11 +30,32 @@ const EditGroupForm = ({group, hideForm}) => {
   const [city, setCity] = useState(sessionGroup?.city || "");
   const [state, setState] = useState(sessionGroup?.state || "");
 
-  const [hasSubmitted, setHasSubmitted] = useState(false)
+  const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
+  if(!sessionUser) {
+    history.push(`/`)
+  }
+
+  const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
+ useEffect(() => {
+   const errors = [];
+
+   if(name.length > 50 || name.length < 1) errors.push('Name must be between 1 and 50 characters long');
+   if(description.length < 1) errors.push("Please provide a description for your group")
+   if (!(background_img.match(url))) errors.push("Please enter a valid URL for your image");
+   if(city.length > 50 || city.length < 1) errors.push("Please enter a valid city")
+   if(state.length > 50 || state.length < 2) errors.push("Plerase provide a valid state")
+  setErrors(errors);
+ }, [name, description, background_img, city, state])
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    setHasSubmitted(true);
+
+    if(errors.length > 0) return;
 
     const payload = {
       name,
@@ -44,11 +65,19 @@ const EditGroupForm = ({group, hideForm}) => {
       state
     }
     dispatch(groupActions.editGroupThunk(id, payload));
+
   }
 
 return (
   <section>
     <form className="EditGroupForm" onSubmit={handleSubmit}>
+      <div className ="errorDiv">
+        <ul className="errors">
+          {hasSubmitted && errors.map((error, idx) => (
+            <li key ={idx}>{error}</li>
+          ))}
+        </ul>
+      </div>
       <input
         type="text"
         placeholder="Name"
@@ -90,6 +119,10 @@ return (
         className="fieldText"
       />
       <button className="updateBtn" type="Submit">Edit Group</button>
+      <button type="button" onClick={() => {
+        dispatch(groupActions.deleteGroupThunk(id))
+        history.push('/groups')
+      }}>Delete</button>
     </form>
   </section>
 )

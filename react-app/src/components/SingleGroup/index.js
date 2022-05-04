@@ -42,11 +42,6 @@ const SingleGroup = () => {
             )}
         </div>
       </div>
-
-        <button type="button" onClick={()=> {
-          dispatch(groupActions.deleteGroupThunk(id))
-          history.push('/groups')
-        }}>Delete</button>
       <div>
         {groups?.description}
       </div>
