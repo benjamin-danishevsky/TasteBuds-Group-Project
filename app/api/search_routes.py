@@ -11,14 +11,16 @@ def search():
 
     if request.method == 'POST':
         info = request.json # { "search": "tennis san francisco" }
-        print(info, '-------'*50)
-        events = Event.query.filter(Event.location.ilike(f"%{info['search']}%")) #working
-        return {
-            "events": [event.to_dict() for event in events]
-        }
-        # groups = Group.query.filter(Group.name.ilike(f"%{info['search']}%"))
 
-
+        #events back from search by location
+        # events = Event.query.filter(Event.location.ilike(f"%{info['search']}%")) #working
         # return {
-        #     'events': events
+        #     "events": [event.to_dict() for event in events]
         # }
+
+        # all events back from search by group name
+        groups = Group.query.filter(Group.name.ilike(f"%{info['search']}%")).all()
+        new_list = sum([group.groups for group in groups], [])
+        return {
+            'events': [event.to_dict() for event in new_list]
+        }
