@@ -13,14 +13,27 @@ def search():
         info = request.json # { "search": "tennis san francisco" }
 
         #events back from search by location
-        # events = Event.query.filter(Event.location.ilike(f"%{info['search']}%")) #working
+        events_location = Event.query.filter(Event.location.ilike(f"%{info['search']}%")).all() #working
         # return {
         #     "events": [event.to_dict() for event in events]
         # }
 
         # all events back from search by group name
         groups = Group.query.filter(Group.name.ilike(f"%{info['search']}%")).all()
-        new_list = sum([group.groups for group in groups], [])
+        new_list_group_name = sum([group.groups for group in groups], [])
+        # return {
+        #     'events': [event.to_dict() for event in new_list]
+        # }
+
+        #all events back from search by group description
+        groups2 = Group.query.filter(Group.description.ilike(f"%{info['search']}%")).all()
+        new_list_group_description = sum([group.groups for group in groups2], [])
+
+
+        print(info,'------'*50)
+        final_multi_list = [events_location, new_list_group_description, new_list_group_name]
+        result = set().union(*final_multi_list)
+
         return {
-            'events': [event.to_dict() for event in new_list]
+            'events': [event.to_dict() for event in result]
         }
