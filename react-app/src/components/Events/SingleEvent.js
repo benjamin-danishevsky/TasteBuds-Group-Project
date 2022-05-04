@@ -33,10 +33,10 @@ const SingleEvent = () => {
     const ownerId = event?.owner_id;
     const eventOwner = users?.filter((user) => user.id === ownerId);
     let content = null
-    if(showEditForm){
+    if (showEditForm) {
         content = (
             <>
-                <UpdateEventForm event={event} hideForm={() => setShowEditForm(false)}/>
+                <UpdateEventForm event={event} hideForm={() => setShowEditForm(false)} />
             </>
         )
     }
@@ -45,7 +45,7 @@ const SingleEvent = () => {
     const attendeeList = Object.values(attendees)
 
     useEffect(() => {
-        if(attendees[user.id]) setJoinedEvent(true);
+        if (attendees[user.id]) setJoinedEvent(true);
     }, [attendees, user])
 
 
@@ -72,8 +72,11 @@ const SingleEvent = () => {
             {showEditForm && content}
 
             <ul>Attendees
-                {attendeeList.map(attendee =>(
-                    <li key={attendee.id}>{attendee.username}</li>
+                {attendeeList.map(attendee => (
+                    <>
+                        <li style={{ listStyle:"none"}} ><img style={{ borderRadius:'50%', height:'75px'}} src={attendee.profile_pic}/></li>
+                        <li style={{ listStyle:"none"}} key={attendee.id}>{attendee.username}</li>
+                    </>
                 ))}
             </ul>
 
