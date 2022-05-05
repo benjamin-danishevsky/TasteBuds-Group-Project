@@ -73,7 +73,7 @@ function App() {
         <Route exact path='/groups/:id/calendar'>
           <ShowCalendar/>
         </Route>
-        <Route path='/home' exact={true}>
+        <Route path='/home/:id' exact={true}>
           {console.log("SINGLE USER ROUTE")}
           <UserProfile />
         </Route>

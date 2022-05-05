@@ -18,3 +18,12 @@ def user(id):
     user = User.query.get(id)
     print(user)
     return user.to_dict()
+
+
+@user_routes.route('/<int:id>/join')
+def get_events_for_user(id):
+    user = User.query.get(id)
+    events = user.events
+    return {
+        "events": [event.to_dict() for event in events]
+    }
