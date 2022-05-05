@@ -145,4 +145,7 @@ def getCalendar(id):
   for event in events:
     if str(event.date).split()[0] == str(date):
       eventList.append(event)
-  return {"event": [event.to_dict() for event in eventList]}
+  if len(eventList):
+    return {"event": [event.to_dict() for event in eventList]}
+  else:
+    return {}
