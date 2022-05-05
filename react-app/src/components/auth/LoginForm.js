@@ -36,6 +36,7 @@ const LoginForm = ({showModal}) => {
     if (data) {
       setErrors(data);
     }
+    showModal(false)
   }
 
 
