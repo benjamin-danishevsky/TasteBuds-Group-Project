@@ -78,7 +78,6 @@ return (
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        required
         className="fieldText"
       />
       <input
@@ -86,7 +85,6 @@ return (
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        required
         className="fieldText"
       />
       <input
@@ -94,7 +92,6 @@ return (
         placeholder="Image"
         value={background_img}
         onChange={(e) => setBackground_img(e.target.value)}
-        required
         className="fieldText"
       />
       <input
@@ -102,7 +99,6 @@ return (
         placeholder="City"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        required
         className="fieldText"
       />
       <input
@@ -110,7 +106,6 @@ return (
         placeholder="State"
         value={state}
         onChange={(e) => setState(e.target.value)}
-        required
         className="fieldText"
       />
       <button className="updateBtn" type="Submit">Edit Group</button>
