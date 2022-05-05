@@ -1,0 +1,26 @@
+.allGroupsImg {
+  display:flex;
+  height: 200px;
+  width: 300px;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 50px;
+}
+
+.allGroups ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: solid lightgray 1px;
+  border-bottom: solid lightgray 1px;
+}
+
+.allGroups li {
+  padding-top: 10px;
+}
+
+.allGroupsInfo {
+  display: flex;
+  flex-direction: column;
+}

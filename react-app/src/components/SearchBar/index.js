@@ -20,7 +20,6 @@ function SearchBar(){
 
     return (
         <>
-            <h1>Search Bar</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type='text'

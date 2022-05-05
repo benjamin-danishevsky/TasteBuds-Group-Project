@@ -17,16 +17,13 @@ def get_all_groups():
 @group_routes.route('/<int:id>')
 def get_group(id):
   group = Group.query.get(id)
-  print(group, "===========================>"*50)
   return {"group": group.to_dict()}
 
-
-# @group_routes.route('/<int:id>')
-# def get_group(id):
-#   groups = Group.query.join(User).filter(User.id == id).all();
-#   response = {"groups": [group.to_dict() for group in groups]}
-#   return response
-
+@group_routes.route('/<int:id>/join')
+def get_events_from_group(id):
+  groups = Group.query.get(id)
+  events = groups.groups
+  return { 'events': [event.to_dict() for event in events] }
 
 
 @group_routes.route('/new-group', methods=['GET', 'POST'])
@@ -53,7 +50,6 @@ def newGroup():
 
 @group_routes.route('/<int:id>/new-event', methods=['GET', 'POST'])
 def new_event(id):
-    print('payload ::::', id)
     form = NewEventForm()
 
     if request.method == "POST":
@@ -73,31 +69,12 @@ def new_event(id):
                       )
           db.session.add(event)
           db.session.commit()
-          # print('New event', event.to_dict())
           return {
             "event": event.to_dict()
           }
 
     return 'hello ben'
-# @group_routes.route('/new-group', methods=['GET', 'POST'])
-# def newGroup():
-#   form = NewGroupForm()
 
-#   if form.validate_on_submit():
-#         data = form.data
-#         group = Group(
-#                       name=data['name'],
-#                       description=data['description'],
-#                       background_img=data['background_img'],
-#                       city=data['city'],
-#                       state=data['state'],
-#                       owner_id=data['owner_id'],
-#                       )
-#         db.session.add(group)
-#         db.session.commit()
-#         return 'Group Created!'
-
-#     return form.errors
 # EDIT
 @group_routes.route('/<int:id>/edit', methods=["POST"])
 @login_required
@@ -145,4 +122,7 @@ def getCalendar(id):
   for event in events:
     if str(event.date).split()[0] == str(date):
       eventList.append(event)
-  return {"event": [event.to_dict() for event in eventList]}
+  if len(eventList):
+        return {"event": [event.to_dict() for event in eventList]}
+  else:
+    return {}

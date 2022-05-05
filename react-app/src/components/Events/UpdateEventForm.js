@@ -24,7 +24,7 @@ const UpdateEventForm = ({ hideForm}) => {
     // 2022-10-31 15:55:00
     const [date, setDate] = useState(events[id]?.date)
     const [background_img, setBackground_img] = useState(events[id]?.background_img)
-
+    const [errors, setErrors] = useState([]);
 
     if(!sessionUser) {
         history.push(`/`)
@@ -32,8 +32,26 @@ const UpdateEventForm = ({ hideForm}) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const formatDate = date.split('T').join(' ')+':00'
 
+        const validateErrors = [];
+        if(!title) validateErrors.push('Event title is required.');
+        else if(title.length < 3) validateErrors.push('Event title must be at least 3 characters.')
+        else if(title.length > 50) validateErrors.push('Event title must be no more than 50 characters')
+
+        if(!description) validateErrors.push('Event description is required.');
+        else if(description.length < 5) validateErrors.push('Event description must be at least 5 characters.')
+
+        if(!location) validateErrors.push('Event location is required.')
+        else if(location.length > 100) validateErrors.push('Event location must be less than 100 characters');
+        if(!date) validateErrors.push('Event date is required.');
+        if(!background_img) validateErrors.push('Event image is required.')
+        if(validateErrors.length > 0){
+            setErrors(validateErrors);
+            return
+        }
+
+
+        const formatDate = date.split('T').join(' ')+':00'
         const payload = {
             title,
             description,
@@ -52,17 +70,20 @@ const UpdateEventForm = ({ hideForm}) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <ul className="update-event-errors-list">
+                    {errors && errors.map((error) => (
+                        <li className='error'key={error} style={{color: 'red'}}>{error}</li>
+                    ))}
+                </ul>
                 <input
                     type='input'
                     placeholder='title'
-                    required
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                 />
                 <input
                     type='input'
                     placeholder='description'
-                    required
                     value={description}
                     onChange={e => setDescription(e.target.value)}
 
@@ -70,21 +91,18 @@ const UpdateEventForm = ({ hideForm}) => {
                 <input
                     type='input'
                     placeholder='location'
-                    required
                     value={location}
                     onChange={e => setLocation(e.target.value)}
                 />
                 <input
                     type='datetime-local'
                     placeholder='date'
-                    required
                     value={date}
                     onChange={e => setDate(e.target.value)}
                 />
                 <input
                     type='input'
                     placeholder='Image'
-                    required
                     value={background_img}
                     onChange={e => setBackground_img(e.target.value)}
                 />

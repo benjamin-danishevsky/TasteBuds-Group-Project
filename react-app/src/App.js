@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -42,9 +43,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
+        </Route> */}
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
@@ -61,7 +62,6 @@ function App() {
           <CreateGroup />
         </ProtectedRoute>
         <Route path='/groups/:id(\d+)' exact={true}>
-          {console.log("SINGLE ROUTE TEST")}
           <SingleGroup />
         </Route>
         {/* <ProtectedRoute path='/groups/:id/edit' exact={true}>
@@ -73,7 +73,7 @@ function App() {
         <Route exact path='/groups/:id/calendar'>
           <ShowCalendar/>
         </Route>
-        <Route path='/home' exact={true}>
+        <Route path='/home/:id' exact={true}>
           {console.log("SINGLE USER ROUTE")}
           <UserProfile />
         </Route>
@@ -97,6 +97,7 @@ function App() {
           <SearchResults />
         </Route>
       </Switch>
+        <Footer />
     </BrowserRouter>
   );
 }
