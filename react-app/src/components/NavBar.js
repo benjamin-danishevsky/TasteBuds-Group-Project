@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './auth/LoginModal';
 import SignUpFormModal from './auth/SignUpModal';
@@ -8,6 +9,9 @@ import SearchBar from './SearchBar';
 import './NavBar.css';
 
 const NavBar = () => {
+
+  const sessionUser = useSelector(state => state.session.user);
+
   return (
     <div className='nav-bar'>
       <nav>

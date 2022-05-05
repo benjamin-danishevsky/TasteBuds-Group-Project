@@ -17,8 +17,6 @@ const SingleGroup = () => {
   const sessionEvents = useSelector(state => state.groupEvents)
   const events = Object.values(sessionEvents)
 
-  console.log('HI', events)
-
   const ownerId = groups?.owner_id;
 
 
