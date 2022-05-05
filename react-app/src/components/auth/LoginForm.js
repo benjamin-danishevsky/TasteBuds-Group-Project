@@ -48,7 +48,7 @@ const LoginForm = ({showModal}) => {
   };
 
   if (user) {
-    return <Redirect to='/home' />;
+    return <Redirect to={`/home/${user.id}`} />;
   }
 
   return (

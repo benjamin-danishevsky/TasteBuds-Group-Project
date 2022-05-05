@@ -93,8 +93,11 @@ function App() {
           <SplashPage />
           <SearchBar />
         </Route>
-        <Route patch='/search/results'>
+        <Route path='/search/results'>
           <SearchResults />
+        </Route>
+        <Route exact path ='/forbidden'>
+          <h2>Please log in before trying again</h2>
         </Route>
       </Switch>
         <Footer />
