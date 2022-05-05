@@ -58,10 +58,15 @@ const userEventsReducer = (state = {}, action) => {
 
         case GET_FILTERED_EVENT:
             const filtered = {}
-            // console.log(action.events.event, "==========>")
-            action.events.event.forEach(event => {
-                filtered[event.id] = event
-            });
+
+            if(action.events.event) {
+                action.events.event.forEach(event => {
+                    filtered[event.id] = event
+                });
+            } else {
+                return { ...filtered }
+            }
+            console.log('right before return ==>', { ...filtered})
             return { ...state, ...filtered }
         default:
             return state

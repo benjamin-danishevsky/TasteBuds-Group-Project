@@ -30,10 +30,15 @@ const calendarReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_EVENT:
             const allEvents = {}
-            // console.log(action.events.event, "==========>")
-            action.events.event.forEach(event => {
-                allEvents[event.id] = event
-            });
+
+            if(action.events.event) {
+                action.events.event.forEach(event => {
+                    allEvents[event.id] = event
+                });
+            } else {
+                return { ...allEvents }
+            }
+            // console.log('right before return ==>', { ...allEvents})
             return { ...state, ...allEvents }
         default:
             return state
