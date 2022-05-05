@@ -46,9 +46,6 @@ const SingleGroup = () => {
               </>
             )}
         </div>
-        <div>
-          <button onClick={() => history.push(`/groups/${id}/calendar`)}>Group's Event Calendar</button>
-        </div>
       </div>
       <div>
         {groups?.description}

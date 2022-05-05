@@ -4,7 +4,9 @@ import { filterEventThunk } from "../../store/calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-export const ShowCalendar = () => {
+export const ShowCalendar = ({ groupEvents }) => {
+
+    console.log(groupEvents)
 
     const { id } = useParams()
     const [date, setDate] = useState()
@@ -34,7 +36,7 @@ export const ShowCalendar = () => {
                         value={date}
                         onChange={e => setDate(e.target.value)}
                     />
-                    <button>SEARCH</button>
+                    <button>Filter Events</button>
                 </form>
             </div>
 
