@@ -122,9 +122,7 @@ def getCalendar(id):
   for event in events:
     if str(event.date).split()[0] == str(date):
       eventList.append(event)
-  print('\n', eventList, '<====\n')
   if len(eventList):
-    return {"event": [event.to_dict() for event in eventList]}
+        return {"event": [event.to_dict() for event in eventList]}
   else:
-    print('Else Statement \n')
     return {}

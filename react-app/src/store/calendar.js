@@ -10,7 +10,7 @@ export const getEvent = events => ({
 
 
 export const filterEventThunk = (date, id) => async dispatch => {
-    const res = await fetch(`/api/groups/${id}/calendar`, {
+    const res = await fetch(`/api/users/${id}/calendar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -20,10 +20,8 @@ export const filterEventThunk = (date, id) => async dispatch => {
 
     if (res.ok) {
         const events = await res.json()
-        console.log(events)
-
-        dispatch(getEvent(events))
-
+        console.log(events, 'filtered events in the thunk')
+        return dispatch(getEvent(events))
     }
 }
 

@@ -7,16 +7,9 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [credential, setCredential] = useState('');
+  // const [credential, setCredential] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-
-
-  const demo = () =>{
-    setCredential('demo@aa.io');
-    setPassword('password');
-    return;
-  }
 
 
   const onLogin = async (e) => {
@@ -25,8 +18,17 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
-
   };
+
+
+  const onDemo = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io','password'));
+    if (data) {
+      setErrors(data);
+    }
+  }
+
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -37,10 +39,11 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
+    <>
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error, ind) => (
@@ -67,9 +70,10 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
-        <button type="submit" className="demoBtn" onClick={demo}>Demo Login</button>
       </div>
     </form>
+     <button type="submit" className="demoBtn" onClick={onDemo}>Demo Login</button>
+     </>
   );
 };
 
