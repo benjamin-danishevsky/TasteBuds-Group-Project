@@ -23,9 +23,9 @@ export const UserProfile = () => {
 
     const events = useSelector(state => Object.values(state.events))
 
-    events.forEach((event) => {
-        dispatch(userEventsActions.usersAttendingThunk(event.id))
-    })
+    // events.forEach((event) => {
+    //     dispatch(userEventsActions.usersAttendingThunk(event.id))
+    // })
 
 
 
