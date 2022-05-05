@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './modals.css'
 
 const LoginForm = ({showModal}) => {
   const [errors, setErrors] = useState([]);
@@ -54,7 +55,8 @@ const LoginForm = ({showModal}) => {
 
   return (
     <>
-    <form onSubmit={onLogin}>
+    <form className="loginForm" onSubmit={onLogin}>
+      <h2>Log in</h2>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -79,10 +81,13 @@ const LoginForm = ({showModal}) => {
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        <div className="formButtons">
+          <button type='submit'>Login</button>
+          <p>or</p>
+          <button type="submit" className="demoBtn" onClick={onDemo}>Demo Login</button>
+        </div>
       </div>
     </form>
-     <button type="submit" className="demoBtn" onClick={onDemo}>Demo Login</button>
      </>
   );
 };

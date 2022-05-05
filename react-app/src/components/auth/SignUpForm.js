@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './modals.css'
 
 const SignUpForm = ({showModal}) => {
   const [errors, setErrors] = useState([]);
@@ -12,6 +13,7 @@ const SignUpForm = ({showModal}) => {
   const [profilePic, setProfilePic] = useState('')
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
