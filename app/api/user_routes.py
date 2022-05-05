@@ -36,12 +36,26 @@ def filter_events(id):
     events = user.events
 
     res = request.json
+
+    print(events, 'events \n')
+
     eventList = []
 
     element = res['datetime']
 
     date = element.split()[0]
+
+    print(date, "\n")
+
+
     for event in events:
         if str(event.date).split()[0] == str(date):
             eventList.append(event)
-    return {"event": [event.to_dict() for event in eventList]}
+    if len(eventList):
+        return {"event": [event.to_dict() for event in eventList]}
+    elif str(date) == ':00':
+        return {
+            "event": [event.to_dict() for event in events]
+        }
+    else:
+        return {}

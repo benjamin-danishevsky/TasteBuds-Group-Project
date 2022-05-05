@@ -1,6 +1,6 @@
 const GET_EVENTS = "event/GET_EVENTS";
-const GET_FILTERED_EVENT = "calendar/GET_EVENT"
-
+const GET_FILTERED_EVENT = "event/GET_FILTERED_EVENT"
+const CLEAR_STATE = 'event/CLEAR_STATE'
 
 const loadUserEvents = events => ({
     type: GET_EVENTS,
@@ -10,9 +10,13 @@ const loadUserEvents = events => ({
 
 
 
-export const getEvent = events => ({
+const getEvent = events => ({
     type: GET_FILTERED_EVENT,
     events
+})
+
+const clearState = () => ({
+    type: CLEAR_STATE,
 })
 
 
@@ -29,6 +33,7 @@ export const filterEventThunk = (date, id) => async dispatch => {
     if (res.ok) {
         const events = await res.json()
         console.log(events)
+        dispatch(clearState())
         dispatch(getEvent(events))
     }
 }
@@ -68,6 +73,8 @@ const userEventsReducer = (state = {}, action) => {
             }
             console.log('right before return ==>', { ...filtered})
             return { ...state, ...filtered }
+        case CLEAR_STATE:
+            return {}
         default:
             return state
     }

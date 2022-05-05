@@ -50,6 +50,7 @@ export const UserProfile = () => {
     const myCreatedEvents = eventsArr.filter(event => event.owner_id === +sessionUser.id)
 
 
+
     return (
         <>
             <div>
@@ -83,10 +84,10 @@ export const UserProfile = () => {
 
                 <div>
                     <h1>Upcoming Events</h1>
-                    <ShowCalendar setSubmit={setSubmit} />
-                    {!submit && (allEvents.map((event, idx) => (
+                    <ShowCalendar setSubmit={setSubmit} allEvents={allEvents}/>
+                    {/* {!submit && (allEvents.map((event, idx) => (
                         <p>{event.title}</p>
-                    )))}
+                    )))} */}
 
                 </div>
 
