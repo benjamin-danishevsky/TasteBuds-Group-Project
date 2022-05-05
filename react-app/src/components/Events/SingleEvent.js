@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import * as eventActions from "../../store/events";
 import * as usersAttendingActions from '../../store/users-in-event'
 import UpdateEventForm from "./UpdateEventForm"
+import { BsPersonCircle } from 'react-icons/bs'
 
 const SingleEvent = () => {
     const dispatch = useDispatch();
@@ -74,7 +75,13 @@ const SingleEvent = () => {
             <ul>Attendees
                 {attendeeList.map(attendee => (
                     <>
-                        <li style={{ listStyle:"none"}} ><img style={{ borderRadius:'50%', height:'75px'}} src={attendee.profile_pic}/></li>
+                        <li style={{ listStyle:"none"}} >
+                            {attendee.profile_pic ? (
+                                <img style={{ borderRadius:'50%', height:'75px'}} src={attendee.profile_pic} />
+                            ):
+                                <BsPersonCircle style={{fontSize: '75px'}}/>
+                            }
+                        </li>
                         <li style={{ listStyle:"none"}} key={attendee.id}>{attendee.username}</li>
                     </>
                 ))}
