@@ -59,7 +59,6 @@ function App() {
           <CreateGroup />
         </ProtectedRoute>
         <Route path='/groups/:id(\d+)' exact={true}>
-          {console.log("SINGLE ROUTE TEST")}
           <SingleGroup />
         </Route>
         {/* <ProtectedRoute path='/groups/:id/edit' exact={true}>

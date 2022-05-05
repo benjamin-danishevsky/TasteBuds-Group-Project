@@ -26,3 +26,14 @@ h1 {
   flex-direction: column;
   justify-content: center;
 }
+
+li, a {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.groupEvents ul {
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 20px;
+}
