@@ -13,7 +13,7 @@ const LoginForm = () => {
 
 
   const demo = () =>{
-    setCredential('demo@aa.io');
+    setEmail('demo@aa.io');
     setPassword('password');
     return;
   }
