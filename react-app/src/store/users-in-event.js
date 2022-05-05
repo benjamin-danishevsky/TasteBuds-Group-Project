@@ -62,6 +62,7 @@ const usersEventsReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_USERS:
             const allUsers = {};
+            // console.log(action.users, ' <== action')
             action.users.users.forEach((user) => {
                 allUsers[user.id] = user;
             });

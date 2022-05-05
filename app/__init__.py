@@ -11,7 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.group_routes import group_routes
 from .api.event_routes import events_route
 from .api.search_routes import search_route
-
+# from .api.home_routes import home_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -37,6 +37,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(group_routes, url_prefix='/api/groups')
 app.register_blueprint(events_route, url_prefix='/api/events')
 app.register_blueprint(search_route, url_prefix='/api/search')
+# app.register_blueprint(home_routes, url_prefix='/api/home')
 db.init_app(app)
 Migrate(app, db)
 
