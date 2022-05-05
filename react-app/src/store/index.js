@@ -6,10 +6,12 @@ import calendarReducer from './calendar'
 import eventsReducer from './events';
 import usersEventsReducer from './users-in-event'
 import searchReducer from './search'
+// import homeReducer from './home';
 
 const rootReducer = combineReducers({
   session,
   groups,
+  // home: homeReducer,
   calendar: calendarReducer,
   events: eventsReducer,
   usersAttending: usersEventsReducer,

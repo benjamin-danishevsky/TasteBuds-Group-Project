@@ -20,6 +20,8 @@ import EditGroupForm from './components/SingleGroupEdit/EditForm';
 import SearchBar from './components/SearchBar/index'
 import SearchResults from './components/SearchBar/SearchResults'
 import { ShowCalendar } from './components/Calendar';
+import  {UserProfile}  from './components/UserProfile';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -70,6 +72,10 @@ function App() {
         </ProtectedRoute>
         <Route exact path='/groups/:id/calendar'>
           <ShowCalendar/>
+        </Route>
+        <Route path='/home' exact={true}>
+          {console.log("SINGLE USER ROUTE")}
+          <UserProfile />
         </Route>
         <Route exact path='/events'>
           <Events />
