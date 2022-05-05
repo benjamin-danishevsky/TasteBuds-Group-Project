@@ -4,9 +4,10 @@ import { filterEventThunk } from "../../store/calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-export const ShowCalendar = () => {
-
+export const ShowCalendar = ({ setSubmit }) => {
+    // user id
     const { id } = useParams()
+
     const [date, setDate] = useState()
     const dispatch = useDispatch()
     const events = useSelector(state => state.calendar)
@@ -23,7 +24,10 @@ export const ShowCalendar = () => {
         }
 
         await dispatch(filterEventThunk(payload, id))
+        setSubmit(true)
     }
+
+    console.log(date, "<-- Date")
 
     return (
         <>

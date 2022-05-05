@@ -10,7 +10,7 @@ export const getEvent = events => ({
 
 
 export const filterEventThunk = (date, id) => async dispatch => {
-    const res = await fetch(`/api/groups/${id}/calendar`, {
+    const res = await fetch(`/api/users/${id}/calendar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -5,6 +5,8 @@ import * as groupActions from '../../store/groups'
 import * as eventActions from '../../store/events';
 // import * as userEventsActions from '../../store/users-in-event'
 import * as userEventActions from '../../store/events-in-user'
+import {ShowCalendar} from '../Calendar'
+
 
 export const UserProfile = () => {
     // current user id
@@ -14,10 +16,15 @@ export const UserProfile = () => {
 
     const dispatch = useDispatch()
 
+    const [submit, setSubmit] = useState(false)
 
     const events = useSelector(state => state.events)
-
     const eventsArr = Object.values(events)
+    const eventsInUser = useSelector(state => state.usersEvents)
+
+    const allEvents = Object.values(eventsInUser)
+
+    console.log(allEvents, '<---')
 
     useEffect(async () => {
 
@@ -65,20 +72,22 @@ export const UserProfile = () => {
                 </div>
 
 
-                <div>
+                {/* <div>
                     <h1>Groups Joined</h1>
-                    {/* {myCreatedEvents.map((event, idx) => (
+                    {groups.map((event, idx) => (
                         <p>{event.title}</p>
-                    ))} */}
-                </div>
+                    ))}
+                </div> */}
 
 
 
                 <div>
                     <h1>Upcoming Events</h1>
-                    {/* {myCreatedEvents.map((event, idx) => (
+                    <ShowCalendar setSubmit={setSubmit} />
+                    {!submit && (allEvents.map((event, idx) => (
                         <p>{event.title}</p>
-                    ))} */}
+                    )))}
+
                 </div>
 
 

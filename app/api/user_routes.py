@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User
 
@@ -27,3 +27,21 @@ def get_events_for_user(id):
     return {
         "events": [event.to_dict() for event in events]
     }
+
+
+@user_routes.route('/<int:id>/calendar', methods=['POST'])
+def filter_events(id):
+    print('IN THE ROUTE')
+    user = User.query.get(id)
+    events = user.events
+
+    res = request.json
+    eventList = []
+
+    element = res['datetime']
+
+    date = element.split()[0]
+    for event in events:
+        if str(event.date).split()[0] == str(date):
+            eventList.append(event)
+    return {"event": [event.to_dict() for event in eventList]}
