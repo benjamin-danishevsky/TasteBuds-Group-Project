@@ -12,6 +12,13 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
 
+  const demo = () =>{
+    setEmail('demo@aa.io');
+    setPassword('password');
+    return;
+  }
+
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
