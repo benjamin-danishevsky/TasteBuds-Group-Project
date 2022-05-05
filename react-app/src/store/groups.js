@@ -1,6 +1,3 @@
-// import { csrfFetch } from "./csrf";
-
-
 const ADD_GROUP = 'groups/ADD_GROUP'
 const LOAD = 'groups/LOAD';
 const LOAD_ONE_GROUP = 'groups/LOAD_ONE_GROUP';
@@ -53,7 +50,6 @@ export const loadAllGroupsThunk = () => async dispatch => {
 
 
 export const loadGroupThunk = id => async dispatch => {
-  console.log(id, "<=====>")
   const result = await fetch(`/api/groups/${id}`, {
     headers: {
       'Content-Type': 'application/json'
