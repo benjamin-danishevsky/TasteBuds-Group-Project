@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from '../../store/groups'
+import * as joinActions from '../../store/groups-events'
 import EditGroupForm from "../SingleGroupEdit/EditForm";
 import './SingleGroup.css'
 
@@ -13,18 +14,20 @@ const SingleGroup = () => {
 
   const sessionUser = useSelector(state => state.session.user)
   const groups = useSelector(state => state.groups[id]);
+  const sessionEvents = useSelector(state => state.groupEvents)
+  const events = Object.values(sessionEvents)
 
-  console.log("GROUPS", groups)
+  console.log('HI', events)
+
   const ownerId = groups?.owner_id;
-  console.log(ownerId)
-  console.log('OWNER', sessionUser)
+
 
   const [showEditForm, setShowEditForm] = useState(false);
 
   useEffect(() => {
     dispatch(groupActions.loadGroupThunk(id))
+    dispatch(joinActions.loadAllEventsThunk(id))
   }, [dispatch, id])
-  console.log("HELLLLOOOOOOOO")
 
   return (
     <>
@@ -49,6 +52,19 @@ const SingleGroup = () => {
       </div>
       <div>
         {groups?.description}
+      </div>
+      <div className="groupEvents">
+        <h3>Events</h3>
+          {events.map((event, i) => (
+            <a href={`/events/${event.id}`} key={i}>
+              <ul>
+                <li>{event?.date}</li>
+                <li>{event?.title}</li>
+                <li>{event?.description}</li>
+                <li>{event?.location}</li>
+              </ul>
+            </a>
+          ))}
       </div>
     </div>
     </>
