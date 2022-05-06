@@ -75,7 +75,6 @@ const userEventsReducer = (state = {}, action) => {
             } else {
                 return { ...filtered }
             }
-            console.log('right before return ==>', { ...filtered})
             return { ...state, ...filtered }
         case CLEAR_STATE:
             return {}
