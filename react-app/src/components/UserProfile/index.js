@@ -6,7 +6,7 @@ import * as eventActions from '../../store/events';
 // import * as userEventsActions from '../../store/users-in-event'
 import * as userEventActions from '../../store/events-in-user'
 import {ShowCalendar} from '../Calendar'
-
+import {motion} from 'framer-motion'
 
 export const UserProfile = () => {
     // current user id

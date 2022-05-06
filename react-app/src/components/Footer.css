@@ -1,3 +1,7 @@
+button:hover {
+  cursor: pointer;
+}
+
 footer {
   background-color: #ff9800;
   display: flex;

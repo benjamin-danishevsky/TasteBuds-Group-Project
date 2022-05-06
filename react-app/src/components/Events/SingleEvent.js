@@ -14,6 +14,15 @@ const SingleEvent = () => {
     const [users, setUsers] = useState([]);
     const [showEditForm, setShowEditForm] = useState(false);
     const [joinedEvent, setJoinedEvent] = useState(false)
+    const [visibility, setVisibility] = useState(true)
+
+    const sessionUser = useSelector(state => state.session.user)
+
+    useEffect(() => {
+        if(!sessionUser) {
+            setVisibility(false)
+        }
+    }, [])
 
     useEffect(() => {
         async function fetchData() {
@@ -32,7 +41,9 @@ const SingleEvent = () => {
     const event = useSelector((state) => state.events[id]);
 
     const ownerId = event?.owner_id;
-    const eventOwner = users?.filter((user) => user.id === ownerId);
+    let eventOwner = users?.filter((user) => user?.id === ownerId);
+
+    console.log(eventOwner, 'event owner #@$_', users, 'users -1231')
     let content = null
     if (showEditForm) {
         content = (
@@ -46,7 +57,7 @@ const SingleEvent = () => {
     const attendeeList = Object.values(attendees)
 
     useEffect(() => {
-        if (attendees[user.id]) setJoinedEvent(true);
+        if (attendees[user?.id]) setJoinedEvent(true);
     }, [attendees, user])
 
 
@@ -72,7 +83,7 @@ const SingleEvent = () => {
                 EDIT</button>
             {showEditForm && content}
 
-            <ul>Attendees
+            <ul style={{display:'inline'}}>Attendees
                 {attendeeList.map(attendee => (
                     <>
                         <li style={{ listStyle:"none"}} >
@@ -88,11 +99,11 @@ const SingleEvent = () => {
             </ul>
 
             {joinedEvent
-                ? <button onClick={() => {
+                ? <button style={{ visibility : visibility ? 'visible' : 'hidden'}} onClick={() => {
                     dispatch(usersAttendingActions.leavingEventThunk(id, user))
                     setJoinedEvent(false)
                 }}>LEAVE</button>
-                : <button onClick={() => {
+                : <button style={{ visibility : visibility ? 'visible' : 'hidden'}} onClick={() => {
                     dispatch(usersAttendingActions.joiningEventThunk(id, user))
                     setJoinedEvent(true)
                 }}>JOIN</button>

@@ -50,7 +50,7 @@ const SingleGroup = () => {
       </div>
       <div className="groupEvents">
         <h3>Events</h3>
-          {events.map((event, i) => (
+          {events?.map((event, i) => (
             <a href={`/events/${event.id}`} key={i}>
               <ul>
                 <li>{event?.date}</li>
