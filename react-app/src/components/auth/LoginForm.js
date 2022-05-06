@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './modals.css'
+import { motion } from 'framer-motion';
 
 const LoginForm = ({showModal}) => {
   const [errors, setErrors] = useState([]);
@@ -82,9 +83,9 @@ const LoginForm = ({showModal}) => {
           onChange={updatePassword}
         />
         <div className="formButtons">
-          <button type='submit'>Login</button>
+          <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} type='submit'>Login</motion.button>
           <p>or</p>
-          <button type="submit" className="demoBtn" onClick={onDemo}>Demo Login</button>
+          <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} type="submit" className="demoBtn" onClick={onDemo}>Demo Login</motion.button>
         </div>
       </div>
     </form>
