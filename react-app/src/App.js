@@ -67,9 +67,9 @@ function App() {
         {/* <ProtectedRoute path='/groups/:id/edit' exact={true}>
           <EditGroupForm />
         </ProtectedRoute> */}
-        <ProtectedRoute path='/' exact={true} >
+        {/* <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route exact path='/groups/:id/calendar'>
           <ShowCalendar/>
         </Route>
@@ -89,9 +89,9 @@ function App() {
         <Route exact path='/events/:id/edit'>
           <UpdateEventForm />
         </Route>
-        <Route exact path='/splash'>
+        <Route exact path='/'>
           <SplashPage />
-          <SearchBar />
+          {/* <SearchBar /> */}
         </Route>
         <Route path='/search/results'>
           <SearchResults />
