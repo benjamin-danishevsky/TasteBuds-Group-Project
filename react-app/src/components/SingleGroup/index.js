@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from '../../store/groups'
 import * as joinActions from '../../store/groups-events'
+import * as userJoinGroupActions from '../../store/users-in-groups';
+
 import EditGroupForm from "../SingleGroupEdit/EditForm";
 import './SingleGroup.css'
 
@@ -62,6 +64,7 @@ const SingleGroup = () => {
           ))}
       </div>
     </div>
+    <button onClick={() => dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}>Join</button>
     </>
   )
 }

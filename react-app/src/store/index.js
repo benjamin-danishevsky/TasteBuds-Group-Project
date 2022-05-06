@@ -10,6 +10,7 @@ import searchReducer from './search'
 import userEventsReducer from './events-in-user';
 import groupsJoinEventsReducer from './groups-events';
 import usersGroupsReducer from './groups-in-users';
+import usersJoinGroupsReducer from './users-in-groups';
 
 const rootReducer = combineReducers({
   session,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   usersAttending: usersEventsReducer,
   searches: searchReducer,
   usersEvents: userEventsReducer,
-  usersGroups: usersGroupsReducer
+  usersGroups: usersGroupsReducer,
+  usersJoinGroups: usersJoinGroupsReducer
 });
 
 
