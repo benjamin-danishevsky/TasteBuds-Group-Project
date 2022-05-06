@@ -11,12 +11,6 @@ const LoginForm = ({showModal}) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const demo = () =>{
-    setEmail('demo@aa.io');
-    setPassword('password');
-    return;
-  }
-
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -27,7 +21,6 @@ const LoginForm = ({showModal}) => {
     }
 
   };
-
 
   const onDemo = async (e) => {
     e.preventDefault();

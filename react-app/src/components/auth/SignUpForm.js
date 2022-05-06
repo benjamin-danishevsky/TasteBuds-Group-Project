@@ -14,6 +14,7 @@ const SignUpForm = ({showModal}) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
   const onSignUp = async (e) => {
     e.preventDefault();
 
@@ -21,9 +22,10 @@ const SignUpForm = ({showModal}) => {
       const data = await dispatch(signUp(username, email, password, profilePic));
       if (data) {
         setErrors(data)
+      } else {
+        showModal(false)
       }
     }
-    showModal(false)
   };
 
   const updateUsername = (e) => {
@@ -43,7 +45,7 @@ const SignUpForm = ({showModal}) => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to={`/home/${user.id}`} />;
   }
 
   return (
