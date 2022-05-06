@@ -22,6 +22,7 @@ import SearchBar from './components/SearchBar/index'
 import SearchResults from './components/SearchBar/SearchResults'
 import { ShowCalendar } from './components/Calendar';
 import  {UserProfile}  from './components/UserProfile';
+import ErrorPage from './components/Errors/ErrorPage';
 
 
 function App() {
@@ -98,6 +99,9 @@ function App() {
         </Route>
         <Route exact path ='/forbidden'>
           <h2>Please log in before trying again</h2>
+        </Route>
+        <Route path="*">
+          <ErrorPage />
         </Route>
       </Switch>
         <Footer />
