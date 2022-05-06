@@ -7,7 +7,7 @@ import LoginFormModal from './auth/LoginModal';
 import SignUpFormModal from './auth/SignUpModal';
 import SearchBar from './SearchBar';
 import './NavBar.css';
-import { BsChatRight, BsPersonCircle } from 'react-icons/bs'
+import { BsPersonCircle } from 'react-icons/bs'
 
 const NavBar = () => {
 
