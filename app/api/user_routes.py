@@ -58,3 +58,14 @@ def filter_events(id):
         }
     else:
         return {}
+
+
+@user_routes.route('/<int:id>/groups')
+def user_groups(id):
+    user = User.query.get(id)
+    groups = user.group
+
+    print(groups, '<-- \n')
+    return {
+        "groups": [group.to_dict() for group in groups]
+    }

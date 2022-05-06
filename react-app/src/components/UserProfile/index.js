@@ -5,6 +5,7 @@ import * as groupActions from '../../store/groups'
 import * as eventActions from '../../store/events';
 // import * as userEventsActions from '../../store/users-in-event'
 import * as userEventActions from '../../store/events-in-user'
+import * as userGroupActions from '../../store/groups-in-users'
 import {ShowCalendar} from '../Calendar'
 import {motion} from 'framer-motion'
 
@@ -22,7 +23,9 @@ export const UserProfile = () => {
     const eventsArr = Object.values(events)
     const eventsInUser = useSelector(state => state.usersEvents)
 
+    const groupsInUser = useSelector(state => state.usersGroups)
     const allEvents = Object.values(eventsInUser)
+    const allGroups = Object.values(groupsInUser)
 
     console.log(allEvents, '<---')
 
@@ -31,6 +34,7 @@ export const UserProfile = () => {
         await dispatch(groupActions.loadAllGroupsThunk())
         await dispatch(eventActions.getAllEventsThunk())
         await dispatch(userEventActions.loadUserEventsThunk(id))
+        await dispatch(userGroupActions.usersGroupsThunk(id))
 
     }, [dispatch])
 
@@ -73,12 +77,12 @@ export const UserProfile = () => {
                 </div>
 
 
-                {/* <div>
+                <div>
                     <h1>Groups Joined</h1>
-                    {groups.map((event, idx) => (
-                        <p>{event.title}</p>
+                    {allGroups.map((group, idx) => (
+                        <p key={idx}>{group.name}</p>
                     ))}
-                </div> */}
+                </div>
 
 
 
