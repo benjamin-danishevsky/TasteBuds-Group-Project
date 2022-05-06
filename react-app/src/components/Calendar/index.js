@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { filterEventThunk } from "../../store/events-in-user";
+import { filterEventThunk, loadUserEventsThunk } from "../../store/events-in-user";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { motion } from 'framer-motion'
@@ -65,7 +65,13 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >Filter Events</motion.button>
+
                 </form>
+                    <motion.button
+                        onClick={() => dispatch(loadUserEventsThunk(id))}
+                        whileHover={{ scale:1.1 }}
+                        whileTap={{ scale: .9 }}
+                    >Clear Filter</motion.button>
             </div>
 
             {eventsFromThunk?.map(event => (
