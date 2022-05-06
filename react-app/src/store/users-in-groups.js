@@ -44,6 +44,17 @@ export const joinGroupThunk = (id, user) => async dispatch => {
   }
 }
 
+export const leaveGroupThunk = (id, user) => async dispatch => {
+  const result = await fetch(`/api/groups/${id}/join`, {
+    method: 'DELETE',
+    body: JSON.stringify(user)
+  })
+  if(result.ok) {
+    const leavingUser = await result.json()
+    dispatch(leaveGroup(leavingUser))
+  }
+}
+
 const initialState = {}
 
 const usersJoinGroupsReducer = (state = initialState, action) => {
@@ -69,6 +80,11 @@ const usersJoinGroupsReducer = (state = initialState, action) => {
           ...action.user
         }
       }
+    case LEAVE_GROUP:
+      const newState = { ...state }
+      console.log(action.id, '------------------')
+      delete newState[action.id.user.id];
+      return newState
     default:
       return state
   }

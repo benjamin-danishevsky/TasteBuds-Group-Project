@@ -18,11 +18,27 @@ const SingleGroup = () => {
   const groups = useSelector(state => state.groups[id]);
   const sessionEvents = useSelector(state => state.groupEvents)
   const events = Object.values(sessionEvents)
+  const userInGroup = useSelector(state => state.usersJoinGroups)
+
+  const [inGroup, setInGroup] = useState(false)
+
+  useEffect(() => {
+    const allUsers = Object.values(userInGroup)
+    allUsers.forEach(user => {
+      if(user.id === sessionUser.id) {
+        setInGroup(true)
+      }
+    })
+  }, [userInGroup])
+
+
+
 
   const ownerId = groups?.owner_id;
 
 
   const [showEditForm, setShowEditForm] = useState(false);
+
 
   useEffect(() => {
     dispatch(groupActions.loadGroupThunk(id))
@@ -64,7 +80,15 @@ const SingleGroup = () => {
           ))}
       </div>
     </div>
-    <button onClick={() => dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}>Join</button>
+      {inGroup
+        ? <button onClick={() => {
+          setInGroup(false)
+         dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))}}>Leave</button>
+         :
+        <button onClick={() => {
+          setInGroup(true)
+         dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</button>
+      }
     </>
   )
 }
