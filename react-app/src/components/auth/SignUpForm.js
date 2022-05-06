@@ -15,6 +15,19 @@ const SignUpForm = ({showModal}) => {
   const dispatch = useDispatch();
 
 
+  // const onSignUp = async (e) => {
+  //   e.preventDefault();
+
+  //   if (password === repeatPassword) {
+  //     const data = await dispatch(signUp(username, email, password, profilePic));
+  //     if (data) {
+  //       setErrors(data)
+  //     } else {
+  //       showModal(false)
+  //     }
+  //   }
+  // };
+
   const onSignUp = async (e) => {
     e.preventDefault();
 
@@ -23,7 +36,10 @@ const SignUpForm = ({showModal}) => {
       if (data) {
         setErrors(data)
       }
-    }
+    } else if (password !== repeatPassword) {
+        return setErrors(['Passwords don\'t match. Please try again'])
+    } else {
+      }
     showModal(false)
   };
 
@@ -44,7 +60,7 @@ const SignUpForm = ({showModal}) => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to={`/home/${user.id}`} />;
   }
 
   return (

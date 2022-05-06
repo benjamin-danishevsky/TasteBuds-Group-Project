@@ -8,28 +8,19 @@ const LoginForm = ({showModal}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [credential, setCredential] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-
-
-  const demo = () =>{
-    setEmail('demo@aa.io');
-    setPassword('password');
-    return;
-  }
-
 
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      showModal(false)
     }
 
-    showModal(false)
   };
-
 
   const onDemo = async (e) => {
     e.preventDefault();
