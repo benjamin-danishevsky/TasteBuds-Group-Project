@@ -15,6 +15,19 @@ const SignUpForm = ({showModal}) => {
   const dispatch = useDispatch();
 
 
+  // const onSignUp = async (e) => {
+  //   e.preventDefault();
+
+  //   if (password === repeatPassword) {
+  //     const data = await dispatch(signUp(username, email, password, profilePic));
+  //     if (data) {
+  //       setErrors(data)
+  //     } else {
+  //       showModal(false)
+  //     }
+  //   }
+  // };
+
   const onSignUp = async (e) => {
     e.preventDefault();
 
@@ -22,10 +35,12 @@ const SignUpForm = ({showModal}) => {
       const data = await dispatch(signUp(username, email, password, profilePic));
       if (data) {
         setErrors(data)
-      } else {
-        showModal(false)
       }
-    }
+    } else if (password !== repeatPassword) {
+        return setErrors(['Passwords don\'t match. Please try again'])
+    } else {
+      }
+    showModal(false)
   };
 
   const updateUsername = (e) => {
