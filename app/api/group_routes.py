@@ -19,16 +19,20 @@ def get_group(id):
   group = Group.query.get(id)
   return {"group": group.to_dict()}
 
-@group_routes.route('/<int:id>/join')
+@group_routes.route('/<int:id>/events')
 def get_events_from_group(id):
   groups = Group.query.get(id)
   events = groups.groups
   return { 'events': [event.to_dict() for event in events] }
 
 
-@group_routes.route('/<int:id>/join', methods=['POST', 'DELETE'])
+@group_routes.route('/<int:id>/groups', methods=['GET','POST', 'DELETE'])
 @login_required
 def joining_group(id):
+  if request.method == 'GET':
+    group = Group.query.get(id)
+    users = group.users
+    return { 'users': [user.to_dict() for user in users] }
 
   if request.method == 'POST':
     info = request.json

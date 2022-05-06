@@ -1,4 +1,4 @@
-const GET_USERS = 'event/GET_USERS'
+const GET_USERS = 'groups/GET_USERS'
 const JOIN_GROUP = 'groups/JOIN_GROUP';
 const LEAVE_GROUP = 'groups/LEAVE_GROUP'
 
@@ -19,7 +19,7 @@ const leaveGroup = id => ({
 })
 
 export const usersInGroupsThunk = id => async dispatch => {
-  const result = await fetch(`/api/groups/${id}/join`, {
+  const result = await fetch(`/api/groups/${id}/groups`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -31,7 +31,7 @@ export const usersInGroupsThunk = id => async dispatch => {
 }
 
 export const joinGroupThunk = (id, user) => async dispatch => {
-  const result = await fetch(`/api/groups/${id}/join`, {
+  const result = await fetch(`/api/groups/${id}/groups`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export const joinGroupThunk = (id, user) => async dispatch => {
 }
 
 export const leaveGroupThunk = (id, user) => async dispatch => {
-  const result = await fetch(`/api/groups/${id}/join`, {
+  const result = await fetch(`/api/groups/${id}/groups`, {
     method: 'DELETE',
     body: JSON.stringify(user)
   })
@@ -61,6 +61,7 @@ const usersJoinGroupsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USERS:
       const allUsers = {}
+      console.log(action.users, '102312301023010203002030102301203')
       action.users.users.forEach(user => {
         allUsers[user.id] = user
       })
@@ -82,7 +83,6 @@ const usersJoinGroupsReducer = (state = initialState, action) => {
       }
     case LEAVE_GROUP:
       const newState = { ...state }
-      console.log(action.id, '------------------')
       delete newState[action.id.user.id];
       return newState
     default:

@@ -7,7 +7,7 @@ import LoginFormModal from './auth/LoginModal';
 import SignUpFormModal from './auth/SignUpModal';
 import SearchBar from './SearchBar';
 import './NavBar.css';
-import { BsChatRight, BsPersonCircle } from 'react-icons/bs'
+import { BsPersonCircle } from 'react-icons/bs'
 
 const NavBar = () => {
 
@@ -27,6 +27,16 @@ const NavBar = () => {
           <li className='homeButton'>
             <NavLink to='/' exact={true} activeClassName='active'>
               Home
+            </NavLink>
+          </li>
+          <li className='homeButton'>
+            <NavLink to='/events' exact={true} activeClassName='active'>
+              Events
+            </NavLink>
+          </li>
+          <li className='homeButton'>
+            <NavLink to='/groups' exact={true} activeClassName='active'>
+              Groups
             </NavLink>
           </li>
           <div className='search-bar' style={{ marginTop: '7px'}}>
