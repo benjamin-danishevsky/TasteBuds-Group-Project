@@ -29,6 +29,16 @@ const NavBar = () => {
               Home
             </NavLink>
           </li>
+          <li className='homeButton'>
+            <NavLink to='/events' exact={true} activeClassName='active'>
+              Events
+            </NavLink>
+          </li>
+          <li className='homeButton'>
+            <NavLink to='/groups' exact={true} activeClassName='active'>
+              Groups
+            </NavLink>
+          </li>
           <div className='search-bar' style={{ marginTop: '7px'}}>
             <SearchBar />
           </div>

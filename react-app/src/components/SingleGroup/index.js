@@ -43,6 +43,7 @@ const SingleGroup = () => {
   useEffect(() => {
     dispatch(groupActions.loadGroupThunk(id))
     dispatch(joinActions.loadAllEventsThunk(id))
+    dispatch(userJoinGroupActions.usersInGroupsThunk(id))
   }, [dispatch, id])
 
   return (

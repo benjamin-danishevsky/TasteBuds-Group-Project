@@ -12,7 +12,7 @@ nav ul {
 }
 
 .pfp {
-  margin-right: 165px;
+  transform: translate(-150px, 5px);
 }
 
 
@@ -34,7 +34,7 @@ nav ul {
 .auth-routes {
   display: flex;
   flex-direction: row;
-  margin-left: 500px;
+  margin-left: 400px;
 
 }
 
@@ -44,4 +44,5 @@ nav ul {
 
 .homeButton {
   margin-top: 8px;
+  margin-left: 5px;
 }
