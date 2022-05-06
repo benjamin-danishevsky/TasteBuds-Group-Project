@@ -5,7 +5,6 @@ const DELETE_ONE_GROUP = 'groups/DELETE_ONE_GROUP';
 const EDIT_ONE_GROUP = 'groups/EDIT_ONE_GROUP';
 
 
-
 const load = groups => ({
   type: LOAD,
   groups
