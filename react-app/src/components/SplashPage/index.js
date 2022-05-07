@@ -16,6 +16,7 @@ function SplashPage(){
             <div className="page-container">
                 <div className="info-container">
                     <div className="info-text">
+                        {/* <img src="./TasteBudsFinal.png" style={{width:'300px', height:'300px'}} className='logo'/> */}
                         <h1>Start your journey of connecting with new taste buds</h1>
                         <p>
                             Whatever you're looking to do this year, Taste Buds can help.

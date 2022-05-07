@@ -6,6 +6,8 @@ import * as usersAttendingActions from '../../store/users-in-event'
 import * as groupActions from '../../store/groups'
 import UpdateEventForm from "./UpdateEventForm"
 import { BsPersonCircle } from 'react-icons/bs'
+import './SingleEvent.css'
+
 
 
 const SingleEvent = () => {
@@ -27,14 +29,14 @@ const SingleEvent = () => {
 
 
     useEffect(() => {
-        if(!sessionUser) {
+        if (!sessionUser) {
             setVisibility(false)
         }
     }, [])
 
     useEffect(() => {
-        if(sessionUser) {
-            if(sessionUser.id === event?.owner_id){
+        if (sessionUser) {
+            if (sessionUser.id === event?.owner_id) {
                 setCanEdit(true)
             }
         }
@@ -81,54 +83,61 @@ const SingleEvent = () => {
 
     return (
         <>
-            <span>{event?.date}</span>
-            <h1>{event?.title}</h1>
-            <div>Hosted By {eventOwner[0]?.username}</div>
-            <a href={`/groups/${group?.id}`}>From Group: {group?.name}</a>
-            <img src={event?.background_img} />
-            <p>{event?.description}</p>
-            <p>{event?.location}</p>
-            <button
-                style={{ visibility : canEdit ? 'visible' : 'hidden'}}
-                onClick={() => {
-                    dispatch(eventActions.deleteEventThunk(id));
-                    history.push('/events')
-                }}
-            >
-                DELETE
-            </button>
-            <button
-                style={{ visibility : canEdit ? 'visible' : 'hidden'}}
-                onClick={() => setShowEditForm(true)}
-            >
-                EDIT</button>
-            {showEditForm && content}
-
-            <ul style={{display:'inline'}}>Attendees
-                {attendeeList.map(attendee => (
-                    <>
-                        <li style={{ listStyle:"none"}} >
-                            {attendee.profile_pic ? (
-                                <img style={{ borderRadius:'50%', height:'75px'}} src={attendee.profile_pic} />
-                            ):
-                                <BsPersonCircle style={{fontSize: '75px'}}/>
-                            }
-                        </li>
-                        <li style={{ listStyle:"none"}} key={attendee.id}>{attendee.username}</li>
-                    </>
-                ))}
-            </ul>
-
-            {joinedEvent
-                ? <button style={{ visibility : visibility ? 'visible' : 'hidden'}} onClick={() => {
-                    dispatch(usersAttendingActions.leavingEventThunk(id, user))
-                    setJoinedEvent(false)
-                }}>LEAVE</button>
-                : <button style={{ visibility : visibility ? 'visible' : 'hidden'}} onClick={() => {
-                    dispatch(usersAttendingActions.joiningEventThunk(id, user))
-                    setJoinedEvent(true)
-                }}>JOIN</button>
-            }
+            <div className="topNavEvent">
+                <h1>{event?.title}</h1>
+                <span>{`Date/Time: ${event?.date}`}</span>
+                <div>Hosted By {eventOwner[0]?.username}</div>
+                <a href={`/groups/${group?.id}`}>From Group: {group?.name}</a>
+            </div>
+            <div className="allNav">
+                <div className="bottomNavEvent">
+                    <img src={event?.background_img} style={{ width: '700px', height: '500px' }} />
+                    <p className="descriptionBox">{`Description: ${event?.description}`}</p>
+                    <p>{`Location: ${event?.location}`}</p>
+                    <button
+                        style={{ visibility: canEdit ? 'visible' : 'hidden' }}
+                        onClick={() => {
+                            dispatch(eventActions.deleteEventThunk(id));
+                            history.push('/events')
+                        }}
+                    >
+                        DELETE
+                    </button>
+                    <button
+                        style={{ visibility: canEdit ? 'visible' : 'hidden' }}
+                        onClick={() => setShowEditForm(true)}
+                    >
+                        EDIT</button>
+                    {showEditForm && content}
+                </div>
+                <div className='attendeesCards'>
+                    <ul>
+                        <h1 className='attendeeHeader'>Attendees({attendeeList.length})</h1>
+                        {attendeeList.map(attendee => (
+                            <div className="personalCard">
+                                <li style={{ listStyle: "none" }} >
+                                    {attendee.profile_pic ? (
+                                        <img style={{ borderRadius: '50%', height: '75px' }} src={attendee.profile_pic} />
+                                    ) :
+                                        <BsPersonCircle style={{ fontSize: '75px' }} />
+                                    }
+                                </li>
+                                <li style={{ listStyle: "none" }} key={attendee.id} className='personalName'>{attendee.username}</li>
+                            </div>
+                        ))}
+                    </ul>
+                </div>
+                {joinedEvent
+                    ? <button style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
+                        dispatch(usersAttendingActions.leavingEventThunk(id, user))
+                        setJoinedEvent(false)
+                    }}>LEAVE</button>
+                    : <button style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
+                        dispatch(usersAttendingActions.joiningEventThunk(id, user))
+                        setJoinedEvent(true)
+                    }}>JOIN</button>
+                }
+            </div>
         </>
     );
 };
