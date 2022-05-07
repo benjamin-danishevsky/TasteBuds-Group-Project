@@ -1,6 +1,7 @@
 body {
   margin: 0;
 }
+
 nav ul {
   position: sticky;
   display: flex;
@@ -10,26 +11,38 @@ nav ul {
 
 }
 
+.pfp {
+  transform: translate(-75px, 5px);
+}
+
+
 .nav-bar {
 
-    display: flex;
-    border-bottom: solid 2px lightgray;
-    background-color: #f6412d;
-    top: 0;
-    position: sticky;
-    z-index: 100;
-    width: 100%;
-    clear: both;
-    height: 60px;
-    justify-content: space-evenly;
+  display: flex;
+  /* border-bottom: solid 2px lightgray; */
+  background-color: #ffc100;
+  top: 0;
+  position: sticky;
+  z-index: 100;
+  width: 100%;
+  clear: both;
+  height: 60px;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .auth-routes {
   display: flex;
   flex-direction: row;
-  margin-left: 500px;
+  margin-left: 400px;
+
 }
 
 .search-bar form {
   margin-left: 500px;
+}
+
+.homeButton {
+  margin-top: 8px;
+  margin-left: 5px;
 }

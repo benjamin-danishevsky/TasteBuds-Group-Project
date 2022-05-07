@@ -6,7 +6,7 @@ const loadEvents = event => ({
 })
 
 export const loadAllEventsThunk = (id) => async dispatch => {
-  const result = await fetch(`/api/groups/${id}/join`, {
+  const result = await fetch(`/api/groups/${id}/events`, {
     headers: {
       'Content-Type': 'application/json'
     }

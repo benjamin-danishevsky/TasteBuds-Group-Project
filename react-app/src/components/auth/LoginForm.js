@@ -3,33 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './modals.css'
+import { motion } from 'framer-motion';
 
 const LoginForm = ({showModal}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [credential, setCredential] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-
-
-  const demo = () =>{
-    setEmail('demo@aa.io');
-    setPassword('password');
-    return;
-  }
-
 
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      showModal(false)
     }
 
-    showModal(false)
   };
-
 
   const onDemo = async (e) => {
     e.preventDefault();
@@ -82,9 +74,9 @@ const LoginForm = ({showModal}) => {
           onChange={updatePassword}
         />
         <div className="formButtons">
-          <button type='submit'>Login</button>
+          <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} type='submit'>Login</motion.button>
           <p>or</p>
-          <button type="submit" className="demoBtn" onClick={onDemo}>Demo Login</button>
+          <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} type="submit" className="demoBtn" onClick={onDemo}>Demo Login</motion.button>
         </div>
       </div>
     </form>

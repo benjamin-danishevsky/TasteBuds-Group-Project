@@ -1,0 +1,12 @@
+.error-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.error-div form {
+  margin-top: 70px;
+  margin-bottom: 250px;
+}

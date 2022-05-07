@@ -3,6 +3,20 @@
 }
 
 /* Login Form Styling */
+.navButton {
+  background-color: #ff5607;
+  border: none;
+  border-radius: 20px;
+  height: 2.3rem;
+  width: 10rem;
+  color: white;
+}
+
+.navButtonDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .loginForm {
   height: 500px;

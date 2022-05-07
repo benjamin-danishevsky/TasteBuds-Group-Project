@@ -5,9 +5,9 @@ button:hover {
 footer {
   background-color: #ff9800;
   display: flex;
-  display: flex;
   flex-direction: row;
   margin-top: 50px;
+  bottom: 0;
 }
 
 .footer-top {
