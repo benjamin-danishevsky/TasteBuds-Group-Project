@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as eventActions from "../../store/events";
 import * as usersAttendingActions from '../../store/users-in-event'
+import * as groupActions from '../../store/groups'
 import UpdateEventForm from "./UpdateEventForm"
 import { BsPersonCircle } from 'react-icons/bs'
+
 
 const SingleEvent = () => {
     const dispatch = useDispatch();
@@ -18,7 +20,10 @@ const SingleEvent = () => {
     const [canEdit, setCanEdit] = useState(false)
 
     const sessionUser = useSelector(state => state.session.user)
+    const group = useSelector(state => state.groups[id]);
     const event = useSelector((state) => state.events[id]);
+
+
 
 
     useEffect(() => {
@@ -29,12 +34,11 @@ const SingleEvent = () => {
 
     useEffect(() => {
         if(sessionUser) {
-
             if(sessionUser.id === event?.owner_id){
-                console.log('session-user', sessionUser.id === event?.owner_id);
                 setCanEdit(true)
             }
         }
+        dispatch(groupActions.loadGroupThunk(event?.group_id))
     }, [event])
 
     useEffect(() => {
@@ -47,8 +51,10 @@ const SingleEvent = () => {
     }, []);
 
     useEffect(() => {
+
         dispatch(eventActions.getSingleEventThunk(id));
         dispatch(usersAttendingActions.usersAttendingThunk(id))
+
     }, [dispatch]);
 
 
@@ -78,6 +84,7 @@ const SingleEvent = () => {
             <span>{event?.date}</span>
             <h1>{event?.title}</h1>
             <div>Hosted By {eventOwner[0]?.username}</div>
+            <a href={`/groups/${group?.id}`}>From Group: {group?.name}</a>
             <img src={event?.background_img} />
             <p>{event?.description}</p>
             <p>{event?.location}</p>

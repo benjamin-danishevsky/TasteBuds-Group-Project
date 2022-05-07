@@ -2,7 +2,7 @@ const ADD_GROUP = 'groups/ADD_GROUP'
 const LOAD = 'groups/LOAD';
 const LOAD_ONE_GROUP = 'groups/LOAD_ONE_GROUP';
 const DELETE_ONE_GROUP = 'groups/DELETE_ONE_GROUP';
-const EDIT_ONE_GROUP = 'groups/EDIT_ONE_GROUP';
+const EDIT_ONE_GROUP = 'groups/EDIT_ONE_GROUP'; 
 
 
 const load = groups => ({
