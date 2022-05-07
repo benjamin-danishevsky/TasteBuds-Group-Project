@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from '../../store/groups'
-
+import './CreateGroupForm.css'
 
 function CreateGroup() {
     const dispatch = useDispatch()
@@ -53,6 +53,8 @@ function CreateGroup() {
                         <li className='error'key={error} style={{color: 'red'}}>{error}</li>
                     ))}
                 </ul>
+                <h2>Start a Group</h2>
+                <div>
                 <input
                     type="text"
                     placeholder="Name"
@@ -60,6 +62,8 @@ function CreateGroup() {
                     onChange={(e) => setName(e.target.value)}
                     className="fieldText"
                 />
+                </div>
+                <div>
                 <input
                     type="text"
                     placeholder="Description"
@@ -67,6 +71,8 @@ function CreateGroup() {
                     onChange={(e) => setDescription(e.target.value)}
                     className="fieldText"
                 />
+                </div>
+                <div>
                 <input
                     type="text"
                     placeholder="Image"
@@ -74,6 +80,8 @@ function CreateGroup() {
                     onChange={(e) => setbackgroundImg(e.target.value)}
                     className="fieldText"
                 />
+                </div>
+                <div>
                 <input
                     type="text"
                     placeholder="City"
@@ -81,6 +89,8 @@ function CreateGroup() {
                     onChange={(e) => setCity(e.target.value)}
                     className="fieldText"
                 />
+                </div>
+                <div>
                 <input
                     type="text"
                     placeholder="State"
@@ -88,7 +98,10 @@ function CreateGroup() {
                     onChange={(e) => setState(e.target.value)}
                     className="fieldText"
                 />
+                </div>
+                <div>
                 <button className="updateBtn" type="Submit">Create Group</button>
+                </div>
             </form>
         </section>
     )

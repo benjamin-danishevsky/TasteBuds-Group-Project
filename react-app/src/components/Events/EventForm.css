@@ -1,11 +1,9 @@
-
-
 .eventForm-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 80vh;
+  height: 90vh;
 }
 
 .eventForm-div form {
@@ -34,4 +32,5 @@
 
 .create-event-errors-list {
   text-align: center;
+  margin-top: 20px;
 }
