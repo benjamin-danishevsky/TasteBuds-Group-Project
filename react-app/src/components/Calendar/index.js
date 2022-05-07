@@ -4,6 +4,8 @@ import { filterEventThunk, loadUserEventsThunk } from "../../store/events-in-use
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { motion } from 'framer-motion'
+import './calendar.css'
+
 
 export const ShowCalendar = ({ setSubmit, allEvents }) => {
     // user id
@@ -22,9 +24,9 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
         console.log(date, '<-- date on submission')
 
 
-        console.log(typeof(date), '+++++ type of date')
+        console.log(typeof (date), '+++++ type of date')
 
-        if(typeof(date) != String && !date) {
+        if (typeof (date) != String && !date) {
             const errors = []
             errors.push('Please enter a valid date')
             setErrors(errors)
@@ -54,7 +56,7 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
             <div>
                 <form onSubmit={handleSubmit}>
                     {errors && errors.map((error) => (
-                        <li className='error'key={error} style={{color: 'red'}}>{error}</li>
+                        <li className='error' key={error} style={{ color: 'red' }}>{error}</li>
                     ))}
                     <input
                         type="datetime-local"
@@ -64,23 +66,24 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                    >Filter Events</motion.button>
+                    >Pick a Date</motion.button>
 
                 </form>
-                    <motion.button
-                        onClick={() => dispatch(loadUserEventsThunk(id))}
-                        whileHover={{ scale:1.1 }}
-                        whileTap={{ scale: .9 }}
-                    >Clear Filter</motion.button>
+                <motion.button
+                    onClick={() => dispatch(loadUserEventsThunk(id))}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: .9 }}
+                >Clear Filter</motion.button>
             </div>
-
-            {eventsFromThunk?.map(event => (
-                <a href={`/events/${event.id}`}>
-                    <img src={event.background_img} style={{width:300, height:200}}/>
-                    <p>{event.title}</p>
-                    <p>{event.location}</p>
-                </a>
-            ))}
+            <div className='calendarRes'>
+                {eventsFromThunk?.map(event => (
+                    <a href={`/events/${event.id}`}>
+                        <p className="calContent">{event.title}</p>
+                        <img src={event.background_img} style={{ width: 300, height: 200 }} />
+                        {/* <p>{event.location}</p> */}
+                    </a>
+                ))}
+            </div>
         </>
     )
 }

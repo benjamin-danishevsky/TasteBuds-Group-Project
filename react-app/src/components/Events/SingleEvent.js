@@ -91,7 +91,7 @@ const SingleEvent = () => {
                 </div>
                 <div className='attendeesCards'>
                     <ul>
-                        <h1 className='attendeeHeader'>Attendees</h1>
+                        <h1 className='attendeeHeader'>Attendees({attendeeList.length})</h1>
                         {attendeeList.map(attendee => (
                             <div className="personalCard">
                                 <li style={{ listStyle: "none" }} >
