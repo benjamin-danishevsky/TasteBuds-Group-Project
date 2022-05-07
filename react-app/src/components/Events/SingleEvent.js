@@ -25,7 +25,6 @@ const SingleEvent = () => {
         if(!sessionUser) {
             setVisibility(false)
         }
-
     }, [])
 
     useEffect(() => {
