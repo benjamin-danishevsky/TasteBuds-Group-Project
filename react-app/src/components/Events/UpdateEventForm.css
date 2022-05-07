@@ -1,0 +1,28 @@
+.editEventDiv {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.editEventDiv input {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border-color: lightgray;
+  margin-top: 10px;
+}
+
+.editEventDiv input:hover {
+  border-color: black;
+}
+
+.editEventDiv button {
+  background-color: #ff5607;
+  border: none;
+  border-radius: 20px;
+  height: 2rem;
+  width: 7.5rem;
+  color: white;
+  margin-top: 15px;
+}
