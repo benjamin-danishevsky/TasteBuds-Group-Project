@@ -3,7 +3,7 @@ h1 {
   font-weight: bold;
 }
 
-button {
+.button {
   background-color: #ff5607;
   border: none;
   border-radius: 20px;

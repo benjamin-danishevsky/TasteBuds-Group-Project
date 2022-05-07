@@ -58,7 +58,7 @@ const SingleGroup = () => {
           <p>{groups?.city}, {groups?.state}</p>
             {sessionUser?.id === ownerId && (
               <>
-              <motion.button whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
+              <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
                 {showEditForm && <EditGroupForm />}
               </>
             )}
@@ -82,19 +82,18 @@ const SingleGroup = () => {
       </div>
     </div>
       {inGroup
-        ? <motion.button whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => {
+        ? <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => {
           setInGroup(false)
          dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))}}>Leave</motion.button>
          :
-        <motion.button whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => {
+        <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => {
           setInGroup(true)
          dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</motion.button>
       }
       {inGroup && (
-        <motion.button onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
+        <motion.button className='button' onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
       )}
     </>
   )
 }
-
 export default SingleGroup;
