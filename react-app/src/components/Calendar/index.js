@@ -79,7 +79,7 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
                 {eventsFromThunk?.map(event => (
                     <a href={`/events/${event.id}`}>
                         <p className="calContent">{event.title}</p>
-                        <img src={event.background_img} style={{ width: 300, height: 200 }} />
+                        <img src={event.background_img} style={{ width: 300, height: 200 }} className="calendarImg"/>
                         {/* <p>{event.location}</p> */}
                     </a>
                 ))}

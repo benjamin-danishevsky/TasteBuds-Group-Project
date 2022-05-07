@@ -78,25 +78,26 @@ export const UserProfile = () => {
                         </a>
                     ))}
                 </div>
-                <div className="groupsCreated">
-                    <h1>Groups Created</h1>
-                    {myCreatedGroups.map((group, idx) => (
-                        <a href={`/groups/${group.id}`}>
-                            <p key={idx} className='linkText'>{group.name}</p>
-                        </a>
-                    ))}
-                </div>
+                {/* <div className="bottomTwo">
+                    <div className="groupsCreated">
+                        <h1>Groups Created</h1>
+                        {myCreatedGroups.map((group, idx) => (
+                            <a href={`/groups/${group.id}`}>
+                                <p key={idx} className='linkText'>{group.name}</p>
+                            </a>
+                        ))}
+                    </div>
 
 
-                <div className="eventsCreated">
-                    <h1>Events Created</h1>
-                    {myCreatedEvents.map((event, idx) => (
-                        <a href={`/events/${event.id}`}>
-                            <p key={idx} className='linkText'>{event.title}</p>
-                        </a>
-                    ))}
-                </div>
-
+                    <div className="eventsCreated">
+                        <h1>Events Created</h1>
+                        {myCreatedEvents.map((event, idx) => (
+                            <a href={`/events/${event.id}`}>
+                                <p key={idx} className='linkText'>{event.title}</p>
+                            </a>
+                        ))}
+                    </div>
+                </div> */}
             </div>
         </>
     )
