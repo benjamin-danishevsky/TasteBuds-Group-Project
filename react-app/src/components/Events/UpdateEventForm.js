@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as eventActions from '../../store/events';
+import './UpdateEventForm.css'
 
 const UpdateEventForm = ({ hideForm}) => {
     const dispatch = useDispatch()
@@ -68,19 +69,22 @@ const UpdateEventForm = ({ hideForm}) => {
 
 
     return (
-        <div>
+        <div className="editEventDiv">
             <form onSubmit={handleSubmit}>
                 <ul className="update-event-errors-list">
                     {errors && errors.map((error) => (
                         <li className='error'key={error} style={{color: 'red'}}>{error}</li>
                     ))}
                 </ul>
+                <div>
                 <input
                     type='input'
                     placeholder='title'
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                 />
+                </div>
+                <div>
                 <input
                     type='input'
                     placeholder='description'
@@ -88,25 +92,34 @@ const UpdateEventForm = ({ hideForm}) => {
                     onChange={e => setDescription(e.target.value)}
 
                 />
+                </div>
+                <div>
                 <input
                     type='input'
                     placeholder='location'
                     value={location}
                     onChange={e => setLocation(e.target.value)}
                 />
+                </div>
+                <div>
                 <input
                     type='datetime-local'
                     placeholder='date'
                     value={date}
                     onChange={e => setDate(e.target.value)}
                 />
+                </div>
+                <div>
                 <input
                     type='input'
                     placeholder='Image'
                     value={background_img}
                     onChange={e => setBackground_img(e.target.value)}
                 />
+                </div>
+                <div>
                 <button type='submit'>Update Event</button>
+                </div>
             </form>
             <button onClick={e => {
                 e.preventDefault();
