@@ -1,0 +1,36 @@
+.eventForm-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+}
+
+.eventForm-div form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.eventForm-div input {
+  margin-top: 25px;
+  width: 250px;
+}
+
+.eventForm-div input:hover {
+  border-color: black;
+}
+
+.eventForm-div button {
+    background-color: #ff5607;
+      border: none;
+      border-radius: 20px;
+      height: 2.3rem;
+      width: 10rem;
+      color: white;
+      margin-top: 50px;
+}
+
+.create-event-errors-list {
+  text-align: center;
+  margin-top: 20px;
+}

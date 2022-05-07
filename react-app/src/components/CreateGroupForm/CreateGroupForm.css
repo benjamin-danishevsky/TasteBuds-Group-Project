@@ -1,0 +1,41 @@
+.createGroupForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+  align-items: center;
+}
+
+.createGroupForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createGroupForm input {
+  margin-top: 25px;
+  width: 250px;
+}
+
+.createGroupForm input:hover {
+  border-color: black;
+}
+
+.createGroupForm button {
+  background-color: #ff5607;
+  border: none;
+  border-radius: 20px;
+  height: 2.3rem;
+  width: 10rem;
+  color: white;
+  margin-top: 50px;
+}
+
+.create-group-errors-list {
+  text-align: center;
+}
+
+.createGroupForm h2 {
+  font-size: 50px;
+}
