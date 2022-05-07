@@ -15,14 +15,28 @@ const SingleEvent = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [joinedEvent, setJoinedEvent] = useState(false)
     const [visibility, setVisibility] = useState(true)
+    const [canEdit, setCanEdit] = useState(false)
 
     const sessionUser = useSelector(state => state.session.user)
+    const event = useSelector((state) => state.events[id]);
+
 
     useEffect(() => {
         if(!sessionUser) {
             setVisibility(false)
         }
+
     }, [])
+
+    useEffect(() => {
+        if(sessionUser) {
+
+            if(sessionUser.id === event?.owner_id){
+                console.log('session-user', sessionUser.id === event?.owner_id);
+                setCanEdit(true)
+            }
+        }
+    }, [event])
 
     useEffect(() => {
         async function fetchData() {
@@ -38,12 +52,11 @@ const SingleEvent = () => {
         dispatch(usersAttendingActions.usersAttendingThunk(id))
     }, [dispatch]);
 
-    const event = useSelector((state) => state.events[id]);
 
     const ownerId = event?.owner_id;
     let eventOwner = users?.filter((user) => user?.id === ownerId);
 
-    console.log(eventOwner, 'event owner #@$_', users, 'users -1231')
+    //console.log(eventOwner, 'event owner #@$_', users, 'users -1231')
     let content = null
     if (showEditForm) {
         content = (
@@ -70,6 +83,7 @@ const SingleEvent = () => {
             <p>{event?.description}</p>
             <p>{event?.location}</p>
             <button
+                style={{ visibility : canEdit ? 'visible' : 'hidden'}}
                 onClick={() => {
                     dispatch(eventActions.deleteEventThunk(id));
                     history.push('/events')
@@ -78,6 +92,7 @@ const SingleEvent = () => {
                 DELETE
             </button>
             <button
+                style={{ visibility : canEdit ? 'visible' : 'hidden'}}
                 onClick={() => setShowEditForm(true)}
             >
                 EDIT</button>
