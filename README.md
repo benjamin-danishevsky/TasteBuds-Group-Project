@@ -2,6 +2,8 @@
 
 TasteBuds is a clone of Meetup, a popular social media platform for hosting and organizing in-person and virtual activities, gatherings, and events for people and communities of similar interests, hobbies, and professions. 
 
+## Live Site Link
+[Tastebuds](https://taste-buds-project.herokuapp.com/)
 
 ## Technologies Used
 - ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
