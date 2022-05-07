@@ -90,6 +90,9 @@ const SingleGroup = () => {
           setInGroup(true)
          dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</motion.button>
       }
+      {inGroup && (
+        <motion.button onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
+      )}
     </>
   )
 }
