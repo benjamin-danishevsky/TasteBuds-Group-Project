@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as groupActions from '../../store/groups'
 import './Groups.css'
+import { motion } from "framer-motion";
 
 const Groups = () => {
-
+  const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect(async () => {
@@ -13,10 +15,11 @@ const Groups = () => {
 
   const groups = useSelector(state => state.groups);
   const groupData = Object.values(groups)
-
+  
   return (
     <>
     <div>
+      <motion.button style={{ margin: '5px', backgroundColor: '#ff5607', border:'none', borderRadius:'20px', height:'2.3rem', width: '10rem', color:'white'}} whileHover={{scale: 1.1}} whileTap={{scale: .9}} onClick={() => history.push('/groups/new-group')}>Create A New Group</motion.button>
       {groupData.map((group, idx) => (
         <>
         <div className ="allGroups" key={idx}>

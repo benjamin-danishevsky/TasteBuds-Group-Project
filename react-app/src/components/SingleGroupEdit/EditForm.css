@@ -5,4 +5,25 @@
 
 .EditGroupForm input {
   height: 25px;
+  flex-direction: column;
+  border-radius: 3px;
+  border-color: lightgray;
+}
+
+.EditGroupForm input:hover {
+  border-color: black;
+}
+
+.EditGroupForm button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #ff5607;
+  border: none;
+  height: 2.3rem;
+  width: 10rem;
+  color:white;
+  border-radius: 20px;
 }
