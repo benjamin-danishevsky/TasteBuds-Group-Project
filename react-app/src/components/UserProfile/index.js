@@ -24,6 +24,8 @@ export const UserProfile = () => {
     const eventsInUser = useSelector(state => state.usersEvents)
 
     const groupsInUser = useSelector(state => state.usersGroups)
+
+
     const allEvents = Object.values(eventsInUser)
     const allGroups = Object.values(groupsInUser)
 
@@ -44,6 +46,10 @@ export const UserProfile = () => {
 
 
     const sessionUser = useSelector(state => state.session.user)
+
+    if(!sessionUser) {
+        history.push('/forbidden')
+    }
 
     const groups = useSelector(state => Object.values(state.groups))
 
