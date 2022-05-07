@@ -1,0 +1,93 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Login Form Styling */
+
+.loginForm {
+  height: 500px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+}
+
+.loginForm label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.loginForm input {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border-color: lightgray;
+}
+
+.loginForm input:hover {
+  border-color: black;
+}
+
+.formButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.formButtons button {
+  background-color: #ff5607;
+  border: none;
+  border-radius: 20px;
+  height: 2.3rem;
+  width: 10rem;
+  color: white;
+}
+
+/* Sign up Form Styling */
+
+.signUpForm {
+  height: 500px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUpForm label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signUpForm input {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border-color: lightgray;
+}
+
+.signUpForm input:hover {
+  border-color: black;
+}
+
+.signUpForm button {
+  background-color: #ff5607;
+  border: none;
+  border-radius: 20px;
+  height: 2.3rem;
+  width: 10rem;
+  color: white;
+  margin-top: 30px;
+}
+

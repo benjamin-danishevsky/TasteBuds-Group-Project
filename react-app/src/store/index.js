@@ -8,16 +8,19 @@ import usersEventsReducer from './users-in-event'
 import searchReducer from './search'
 // import homeReducer from './home';
 import userEventsReducer from './events-in-user';
+import groupsJoinEventsReducer from './groups-events';
+import usersGroupsReducer from './groups-in-users';
 
 const rootReducer = combineReducers({
   session,
   groups,
-  // home: homeReducer,
+  groupEvents: groupsJoinEventsReducer,
   calendar: calendarReducer,
   events: eventsReducer,
   usersAttending: usersEventsReducer,
   searches: searchReducer,
-  usersEvents: userEventsReducer
+  usersEvents: userEventsReducer,
+  usersGroups: usersGroupsReducer
 });
 
 

@@ -1,6 +1,7 @@
 const GET_EVENTS = "event/GET_EVENTS";
 const GET_FILTERED_EVENT = "event/GET_FILTERED_EVENT"
 const CLEAR_STATE = 'event/CLEAR_STATE'
+const GET_WEEK = 'event/GET_WEEK'
 
 const loadUserEvents = events => ({
     type: GET_EVENTS,
@@ -19,6 +20,10 @@ const clearState = () => ({
     type: CLEAR_STATE,
 })
 
+const getWeeksEvents = events => ({
+    type: GET_WEEK,
+    events
+})
 
 
 export const filterEventThunk = (date, id) => async dispatch => {
@@ -37,7 +42,6 @@ export const filterEventThunk = (date, id) => async dispatch => {
         dispatch(getEvent(events))
     }
 }
-
 
 export const loadUserEventsThunk = id => async dispatch => {
     const res = await fetch(`/api/users/${id}/join`, {
@@ -71,7 +75,6 @@ const userEventsReducer = (state = {}, action) => {
             } else {
                 return { ...filtered }
             }
-            console.log('right before return ==>', { ...filtered})
             return { ...state, ...filtered }
         case CLEAR_STATE:
             return {}

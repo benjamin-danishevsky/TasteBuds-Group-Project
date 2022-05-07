@@ -6,7 +6,6 @@ user_routes = Blueprint('users', __name__)
 
 
 @user_routes.route('/')
-@login_required
 def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
@@ -59,3 +58,14 @@ def filter_events(id):
         }
     else:
         return {}
+
+
+@user_routes.route('/<int:id>/groups')
+def user_groups(id):
+    user = User.query.get(id)
+    groups = user.group
+
+    print(groups, '<-- \n')
+    return {
+        "groups": [group.to_dict() for group in groups]
+    }

@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { filterEventThunk } from "../../store/events-in-user";
+import { filterEventThunk, loadUserEventsThunk } from "../../store/events-in-user";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { motion } from 'framer-motion'
 
 export const ShowCalendar = ({ setSubmit, allEvents }) => {
     // user id
     const { id } = useParams()
-
+    const [errors, setErrors] = useState([])
     const [date, setDate] = useState()
     const dispatch = useDispatch()
 
@@ -18,7 +19,18 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
     let filteredEvents;
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log(date, '<-- date on submission')
 
+
+        console.log(typeof(date), '+++++ type of date')
+
+        if(typeof(date) != String && !date) {
+            const errors = []
+            errors.push('Please enter a valid date')
+            setErrors(errors)
+            return
+        }
+        setErrors([])
         const formatDate = date.split('T').join(' ') + ':00'
 
 
@@ -41,13 +53,25 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
         <>
             <div>
                 <form onSubmit={handleSubmit}>
+                    {errors && errors.map((error) => (
+                        <li className='error'key={error} style={{color: 'red'}}>{error}</li>
+                    ))}
                     <input
                         type="datetime-local"
                         value={date}
                         onChange={e => setDate(e.target.value)}
                     />
-                    <button>Filter Events</button>
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >Filter Events</motion.button>
+
                 </form>
+                    <motion.button
+                        onClick={() => dispatch(loadUserEventsThunk(id))}
+                        whileHover={{ scale:1.1 }}
+                        whileTap={{ scale: .9 }}
+                    >Clear Filter</motion.button>
             </div>
 
             {eventsFromThunk?.map(event => (

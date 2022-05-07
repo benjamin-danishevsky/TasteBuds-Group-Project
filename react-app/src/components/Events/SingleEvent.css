@@ -1,0 +1,50 @@
+.attendeesCards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    width: 50%;
+    /* background-color: #D3D3D3; */
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+
+.attendeeHeader{
+    font-size: 25px;
+    color: black;
+    font-weight: bolder;
+}
+
+
+.personalCard{
+    background-color: #D3D3D3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    width: 120%;
+    padding: 7%;
+    margin: 8%;
+    border-radius: 15px;
+}
+
+.personalName{
+    margin-top: 50%;
+    margin-left: 10%;
+}
+
+
+.topNavEvent{
+    background-color: #F5F5F5;
+    margin-bottom: 2%;
+    padding-left: 6%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.allNav{
+    padding-left: 6%
+}
+
+.descriptionBox{
+    width: 700px;
+}
