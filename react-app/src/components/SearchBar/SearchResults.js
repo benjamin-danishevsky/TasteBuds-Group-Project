@@ -15,18 +15,21 @@ const SearchResults = () => {
 
     return (
         <>
-            <div>
+            <div className='parentContent'>
                 {searchData.map((event, idx) => (
-                    <a href={`/events/${event.id}`} key={idx}>
-                        <h3>{event?.title}</h3>
-                        <ul>
-                            <li>Posted By: </li>
-                            <li>{event?.description}</li>
-                            <li>{event?.location}</li>
-                            <li>{event?.date}</li>
-                            <img src={event?.background_img}/>
-                        </ul>
-                    </a>
+                     <a href={`/events/${event.id}`} key={idx}>
+                     {/* <h3>{event?.title}</h3> */}
+                         <div className='eventContent'>
+                             <p className='subContent'>{event?.title}</p>
+                             <p>{event?.location}</p>
+                             <p>{event?.description}</p>
+                             <img src={event?.background_img} style={{ height: "200px", width: "300px" }} className='eventImg' />
+                         </div>
+                         {/* <li>Posted By: </li> */}
+                         {/* <li>{event?.description}</li> */}
+                         {/* <li>{event?.date}</li> */}
+
+                 </a>
                 ))}
             </div>
         </>
