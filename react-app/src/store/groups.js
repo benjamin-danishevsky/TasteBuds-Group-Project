@@ -119,9 +119,10 @@ const groupReducer = (state = initialState, action) => {
         ...allGroups
       };
     case ADD_GROUP:
-      const newGroup = { ...state };
-      newGroup[action.group.id] = action.group;
-      return newGroup;
+      const newGroup = {  };
+      newGroup[action.group.group.id] = action.group.group;
+      //return newGroup;
+      return {...state, ...newGroup};
     case EDIT_ONE_GROUP:
       return {
         ...state,
