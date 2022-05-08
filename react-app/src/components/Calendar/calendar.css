@@ -5,6 +5,11 @@
     color: black;
 }
 
+.calendar {
+    display: flex;
+    flex-direction: column;
+    /* flex-direction: row; */
+}
 
 .calendarImg:hover{
     -webkit-filter: brightness(50%);
@@ -18,4 +23,14 @@
 
 .calendarImg{
     border-radius: 10px;
+}
+
+button {
+    border-radius: 20px;
+    background-color: #ff5670;
+    color: white;
+    border: none;
+    height: 2rem;
+    width: 10rem;
+    margin: 3px;
 }

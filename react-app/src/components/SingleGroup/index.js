@@ -82,11 +82,11 @@ const SingleGroup = () => {
       </div>
     </div>
       {inGroup
-        ? <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => {
+        ? <motion.button id="button" whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
           setInGroup(false)
          dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))}}>Leave</motion.button>
          :
-        <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => {
+        <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
           setInGroup(true)
          dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</motion.button>
       }
