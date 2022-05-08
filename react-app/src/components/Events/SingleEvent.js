@@ -7,7 +7,7 @@ import * as groupActions from '../../store/groups'
 import UpdateEventForm from "./UpdateEventForm"
 import { BsPersonCircle } from 'react-icons/bs'
 import './SingleEvent.css'
-
+import { motion } from "framer-motion";
 
 
 const SingleEvent = () => {
@@ -60,8 +60,7 @@ const SingleEvent = () => {
     }, [dispatch]);
 
 
-    const ownerId = event?.owner_id;
-    let eventOwner = users?.filter((user) => user?.id === ownerId);
+    let eventOwner = users?.filter((user) => user?.id === event?.owner_id);
 
     //console.log(eventOwner, 'event owner #@$_', users, 'users -1231')
     let content = null
@@ -94,7 +93,7 @@ const SingleEvent = () => {
                     <img src={event?.background_img} style={{ width: '700px', height: '500px' }} />
                     <p className="descriptionBox">{`Description: ${event?.description}`}</p>
                     <p>{`Location: ${event?.location}`}</p>
-                    <button
+                    <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}}
                         style={{ visibility: canEdit ? 'visible' : 'hidden' }}
                         onClick={() => {
                             dispatch(eventActions.deleteEventThunk(id));
@@ -102,12 +101,12 @@ const SingleEvent = () => {
                         }}
                     >
                         DELETE
-                    </button>
-                    <button
+                    </motion.button >
+                    <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}}
                         style={{ visibility: canEdit ? 'visible' : 'hidden' }}
                         onClick={() => setShowEditForm(true)}
                     >
-                        EDIT</button>
+                        EDIT</motion.button >
                     {showEditForm && content}
                 </div>
                 <div className='attendeesCards'>
@@ -128,14 +127,14 @@ const SingleEvent = () => {
                     </ul>
                 </div>
                 {joinedEvent
-                    ? <button style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
+                    ? <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden', backgroundColor: "#ff5607", border: "none", borderRadius:'20px', height: '2.3rem', width: '4rem', color: 'white'   }} onClick={() => {
                         dispatch(usersAttendingActions.leavingEventThunk(id, user))
                         setJoinedEvent(false)
-                    }}>LEAVE</button>
-                    : <button style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
+                    }}>LEAVE</motion.button >
+                    : <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden', backgroundColor: "#ff5607", border: "none", borderRadius:'20px', height: '2.3rem', width: '4rem', color: 'white' }} onClick={() => {
                         dispatch(usersAttendingActions.joiningEventThunk(id, user))
                         setJoinedEvent(true)
-                    }}>JOIN</button>
+                    }}>JOIN</motion.button >
                 }
             </div>
         </>

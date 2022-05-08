@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as eventActions from '../../store/events'
 import './EventForm.css'
+import { motion } from 'framer-motion';
 
 const EventForm = () => {
     const dispatch = useDispatch()
@@ -115,7 +116,7 @@ const EventForm = () => {
                 />
                 </div>
                 <div>
-                <button>Create New Event</button>
+                <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
                 </div>
             </form>
         </div>

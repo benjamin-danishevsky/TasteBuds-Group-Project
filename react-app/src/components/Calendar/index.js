@@ -54,32 +54,34 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
     return (
         <>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form className='calendar' onSubmit={handleSubmit}>
                     {errors && errors.map((error) => (
                         <li className='error' key={error} style={{ color: 'red' }}>{error}</li>
                     ))}
                     <input
+                        style={{ border: 'lightgray', width: 'fit-content' }}
                         type="datetime-local"
                         value={date}
                         onChange={e => setDate(e.target.value)}
                     />
                     <motion.button
+                        // style={{transform: 'translate(-88px, 33.5px)'}}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >Pick a Date</motion.button>
 
+                    <motion.button
+                        onClick={() => dispatch(loadUserEventsThunk(id))}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: .9 }}
+                    >Clear Filter</motion.button>
                 </form>
-                <motion.button
-                    onClick={() => dispatch(loadUserEventsThunk(id))}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: .9 }}
-                >Clear Filter</motion.button>
             </div>
             <div className='calendarRes'>
                 {eventsFromThunk?.map(event => (
                     <a href={`/events/${event.id}`}>
                         <p className="calContent">{event.title}</p>
-                        <img src={event.background_img} style={{ width: 300, height: 200 }} className="calendarImg"/>
+                        <img src={event.background_img} style={{ width: 300, height: 200 }} className="calendarImg" />
                         {/* <p>{event.location}</p> */}
                     </a>
                 ))}

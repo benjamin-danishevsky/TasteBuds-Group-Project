@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from "../../store/groups";
 import './EditForm.css'
+import { motion} from "framer-motion";
 
 const EditGroupForm = ({group, hideForm}) => {
 
@@ -108,11 +109,11 @@ return (
         onChange={(e) => setState(e.target.value)}
         className="fieldText"
       />
-      <button className="updateBtn" type="Submit">Edit Group</button>
-      <button type="button" onClick={() => {
+      <motion.button whileHover={{scale:1.1}} whileTap={{scale: .9}} className="updateBtn" type="Submit">Edit Group</motion.button>
+      <motion.button whileHover={{scale:1.1}} whileTap={{scale: .9}} type="button" onClick={() => {
         dispatch(groupActions.deleteGroupThunk(id))
         history.push('/groups')
-      }}>Delete</button>
+      }}>Delete</motion.button>
     </form>
   </section>
 )

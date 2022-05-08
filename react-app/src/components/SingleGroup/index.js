@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import * as groupActions from '../../store/groups'
 import * as joinActions from '../../store/groups-events'
 import * as userJoinGroupActions from '../../store/users-in-groups';
-
+import { motion } from "framer-motion";
 import EditGroupForm from "../SingleGroupEdit/EditForm";
 import './SingleGroup.css'
 
@@ -58,7 +58,7 @@ const SingleGroup = () => {
           <p>{groups?.city}, {groups?.state}</p>
             {sessionUser?.id === ownerId && (
               <>
-              <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
+              <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
                 {showEditForm && <EditGroupForm />}
               </>
             )}
@@ -82,16 +82,18 @@ const SingleGroup = () => {
       </div>
     </div>
       {inGroup
-        ? <button onClick={() => {
+        ? <motion.button id="button" whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
           setInGroup(false)
-         dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))}}>Leave</button>
+         dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))}}>Leave</motion.button>
          :
-        <button onClick={() => {
+        <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
           setInGroup(true)
-         dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</button>
+         dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</motion.button>
       }
+      {inGroup && (
+        <motion.button className='button' onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
+      )}
     </>
   )
 }
-
 export default SingleGroup;

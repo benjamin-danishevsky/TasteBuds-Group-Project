@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as groupActions from '../../store/groups'
 import './Groups.css'
-import { useHistory } from "react-router-dom";
 import { motion } from 'framer-motion';
 
 const Groups = () => {
-
   const dispatch = useDispatch()
   const history = useHistory()
   const [visibility, setVisibility] = useState(true)
