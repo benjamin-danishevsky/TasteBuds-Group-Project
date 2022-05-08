@@ -39,17 +39,18 @@ const NavBar = () => {
               Groups
             </NavLink>
           </li>
-          <div className='search-bar' style={{ marginTop: '7px'}}>
+
+          <div className='search-bar' style={{ marginTop: '7px' }}>
             <SearchBar />
           </div>
           <div className='auth-routes'>
-            <li style={{display:'inline-block', marginRight: '3.3px'}}>
+            <li style={{ display: 'inline-block', marginRight: '3.3px' }}>
               <LogoutButton />
             </li>
-            <li style={{display:'inline-block', marginRight: '6.3px' }}>
+            <li style={{ display: 'inline-block', marginRight: '6.3px' }}>
               <LoginFormModal />
             </li>
-            <li style={{display:'inline-block', marginLeft: '3.3px'}}>
+            <li style={{ display: 'inline-block', marginLeft: '3.3px' }}>
               <SignUpFormModal />
             </li>
           </div>

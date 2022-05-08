@@ -6,8 +6,9 @@ import * as eventActions from '../../store/events';
 // import * as userEventsActions from '../../store/users-in-event'
 import * as userEventActions from '../../store/events-in-user'
 import * as userGroupActions from '../../store/groups-in-users'
-import {ShowCalendar} from '../Calendar'
-import {motion} from 'framer-motion'
+import { ShowCalendar } from '../Calendar'
+import { motion } from 'framer-motion'
+import './UserProfile.css'
 
 export const UserProfile = () => {
     // current user id
@@ -64,44 +65,45 @@ export const UserProfile = () => {
     return (
         <>
             <div>
-                <h2>THIS IS MY USER PROFILE</h2>
+                <h2 className="welcomeSign">Welcome, {sessionUser.username}</h2>
                 {/* <p>Total Groups: {`${myCreatedGroups.length}`}</p>
                 <p>Total Events: {`${myCreatedEvents.length}`}</p> */}
-                <div>
-                    <h1>My Created Groups</h1>
-                    {myCreatedGroups.map((group, idx) => (
-                        <p>{group.name}</p>
-                    ))}
-                </div>
-
-
-                <div>
-                    <h1>My Created Events</h1>
-                    {myCreatedEvents.map((event, idx) => (
-                        <p>{event.title}</p>
-                    ))}
-                </div>
-
-
-                <div>
-                    <h1>Groups Joined</h1>
-                    {allGroups.map((group, idx) => (
-                        <p key={idx}>{group.name}</p>
-                    ))}
-                </div>
-
-
-
-                <div>
+                <div className="UpcomingEvents">
                     <h1>Upcoming Events</h1>
-                    <ShowCalendar setSubmit={setSubmit} allEvents={allEvents}/>
+                    <ShowCalendar setSubmit={setSubmit} allEvents={allEvents} />
                     {/* {!submit && (allEvents.map((event, idx) => (
                         <p>{event.title}</p>
                     )))} */}
 
                 </div>
+                <div className="groupsJoined">
+                    <h1>Groups Joined</h1>
+                    {allGroups.map((group, idx) => (
+                        <a href={`/groups/${group.id}`}>
+                            <p key={idx} className='linkText'>{group.name}</p>
+                        </a>
+                    ))}
+                </div>
+                {/* <div className="bottomTwo">
+                    <div className="groupsCreated">
+                        <h1>Groups Created</h1>
+                        {myCreatedGroups.map((group, idx) => (
+                            <a href={`/groups/${group.id}`}>
+                                <p key={idx} className='linkText'>{group.name}</p>
+                            </a>
+                        ))}
+                    </div>
 
 
+                    <div className="eventsCreated">
+                        <h1>Events Created</h1>
+                        {myCreatedEvents.map((event, idx) => (
+                            <a href={`/events/${event.id}`}>
+                                <p key={idx} className='linkText'>{event.title}</p>
+                            </a>
+                        ))}
+                    </div>
+                </div> */}
             </div>
         </>
     )

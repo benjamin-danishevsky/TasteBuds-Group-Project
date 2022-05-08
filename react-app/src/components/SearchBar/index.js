@@ -4,6 +4,8 @@ import { useHistory, useParams } from "react-router-dom";
 import * as searchActions from '../../store/search'
 import { motion } from 'framer-motion';
 
+
+
 function SearchBar(){
 
     const [search, setSearch] = useState('')
