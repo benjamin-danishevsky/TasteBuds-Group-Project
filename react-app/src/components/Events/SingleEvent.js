@@ -22,11 +22,10 @@ const SingleEvent = () => {
     const [canEdit, setCanEdit] = useState(false)
 
     const sessionUser = useSelector(state => state.session.user)
-    const group = useSelector(state => state.groups[id]);
+    const group = useSelector(state => state.groups);
     const event = useSelector((state) => state.events[id]);
-
-
-
+    const eventGroup = Object.values(group)[0]
+    console.log(eventGroup?.name)
 
     useEffect(() => {
         if (!sessionUser) {
@@ -40,7 +39,7 @@ const SingleEvent = () => {
                 setCanEdit(true)
             }
         }
-        dispatch(groupActions.loadGroupThunk(event?.group_id))
+        doDispatch()
     }, [event])
 
     useEffect(() => {
@@ -50,16 +49,19 @@ const SingleEvent = () => {
             setUsers(responseData.users);
         }
         fetchData();
+
     }, []);
 
     useEffect(() => {
-
         dispatch(eventActions.getSingleEventThunk(id));
         dispatch(usersAttendingActions.usersAttendingThunk(id))
 
+        doDispatch()
     }, [dispatch]);
 
-
+    const doDispatch = () => {
+        return dispatch(groupActions.loadGroupThunk(event?.group_id))
+    }
     let eventOwner = users?.filter((user) => user?.id === event?.owner_id);
 
     //console.log(eventOwner, 'event owner #@$_', users, 'users -1231')
@@ -86,7 +88,7 @@ const SingleEvent = () => {
                 <h1>{event?.title}</h1>
                 <span>{`Date/Time: ${event?.date}`}</span>
                 <div>Hosted By {eventOwner[0]?.username}</div>
-                <a href={`/groups/${group?.id}`}>From Group: {group?.name}</a>
+                <a href={`/groups/${eventGroup?.id}`}>From Group: {eventGroup?.name}</a>
             </div>
             <div className="allNav">
                 <div className="bottomNavEvent">

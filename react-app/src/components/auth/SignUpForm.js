@@ -6,6 +6,7 @@ import './modals.css'
 
 const SignUpForm = ({showModal}) => {
   const [errors, setErrors] = useState([]);
+  const [frontErrors, setFrontErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +17,16 @@ const SignUpForm = ({showModal}) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    const validateErrors = []
+    if(!username) validateErrors.push("Username is required.")
+    if(!email) validateErrors.push("Email is required.")
+    if(!password) validateErrors.push("Password is required.")
+    if(!repeatPassword) validateErrors.push("Confirmation Password is required.")
+    if(password !== repeatPassword) validateErrors.push("Passwords must match.")
+    if(validateErrors.length > 0){
+      setFrontErrors(validateErrors)
+      return
+    }
 
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, profilePic));
@@ -53,6 +64,9 @@ const SignUpForm = ({showModal}) => {
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))}
+        {frontErrors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
@@ -101,7 +115,7 @@ const SignUpForm = ({showModal}) => {
             name='repeat_password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
-            required={true}
+
           ></input>
         </div>
         <button type='submit'>Sign Up</button>
