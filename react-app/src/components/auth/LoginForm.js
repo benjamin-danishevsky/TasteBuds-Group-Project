@@ -48,6 +48,7 @@ const LoginForm = ({showModal}) => {
   return (
     <>
     <form className="loginForm" onSubmit={onLogin}>
+        <img src="https://res.cloudinary.com/jameschenn/image/upload/v1652044466/Tastebuds/tastebuds_jmf4sw.png" alt="cute_logo" className="cute_logo"/ >
       <h2>Log in</h2>
       <div>
         {errors.map((error, ind) => (

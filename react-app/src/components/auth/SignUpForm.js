@@ -51,13 +51,14 @@ const SignUpForm = ({showModal}) => {
 
   return (
     <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
       <div className='signUpForm'>
+        <img src="https://res.cloudinary.com/jameschenn/image/upload/v1652044476/Tastebuds/tastebuds2_ffox6e.png" alt="cute_logo" className="cute_logo" />
         <h2>Sign Up</h2>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <div>
           <label>User Name</label>
           <input
