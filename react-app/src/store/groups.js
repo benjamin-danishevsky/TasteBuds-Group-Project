@@ -2,7 +2,7 @@ const ADD_GROUP = 'groups/ADD_GROUP'
 const LOAD = 'groups/LOAD';
 const LOAD_ONE_GROUP = 'groups/LOAD_ONE_GROUP';
 const DELETE_ONE_GROUP = 'groups/DELETE_ONE_GROUP';
-const EDIT_ONE_GROUP = 'groups/EDIT_ONE_GROUP'; 
+const EDIT_ONE_GROUP = 'groups/EDIT_ONE_GROUP';
 
 
 const load = groups => ({
@@ -119,9 +119,10 @@ const groupReducer = (state = initialState, action) => {
         ...allGroups
       };
     case ADD_GROUP:
-      const newGroup = { ...state };
-      newGroup[action.group.id] = action.group;
-      return newGroup;
+      const newGroup = {  };
+      newGroup[action.group.group.id] = action.group.group;
+      //return newGroup;
+      return {...state, ...newGroup};
     case EDIT_ONE_GROUP:
       return {
         ...state,

@@ -3,6 +3,7 @@ const SINGLE_EVENT = "events/SINGLE_EVENT";
 const CREATE_EVENT = "events/CREATE_EVENT";
 const DELETE_EVENT = "events/DELETE_EVENT";
 const UPDATE_EVENT = "events/UPDATE_EVENT";
+const GET_EVENT_GROUP = 'events/GET_EVENT_GROUP';
 
 
 const getEvents = (events) => ({
@@ -30,7 +31,10 @@ const updateEvent = (event) => ({
     event,
 });
 
-
+const getEventGroup = group => ({
+    type: GET_EVENT_GROUP,
+    group
+})
 
 export const getAllEventsThunk = () => async (dispatch) => {
     const res = await fetch("/api/events/", {
@@ -102,6 +106,18 @@ export const deleteEventThunk = (id) => async (dispatch) => {
     }
 };
 
+export const loadGroupThunk = id => async dispatch => {
+    const result = await fetch(`/api/groups/${id}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (result.ok) {
+      const data = await result.json();
+      dispatch(getEventGroup(data));
+    }
+  }
+
 
 
 const eventsReducer = (state = {}, action) => {
@@ -141,7 +157,7 @@ const eventsReducer = (state = {}, action) => {
             const updateState = { ...state };
             updateState[action.event.id] = action.event;
             return updateState;
-        
+
         default:
             return state;
     }

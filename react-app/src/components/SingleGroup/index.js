@@ -31,7 +31,9 @@ const SingleGroup = () => {
     })
   }, [userInGroup])
 
-
+  const users = Object.values(userInGroup)
+  let groupOnwer = users?.filter(user => user?.id === groups?.owner_id)
+  console.log('TEST', groupOnwer)
 
 
   const ownerId = groups?.owner_id;
@@ -55,20 +57,34 @@ const SingleGroup = () => {
         </div>
         <div className="header_right">
           <h1>{groups?.name}</h1>
-          <p>{groups?.city}, {groups?.state}</p>
+            <p><i class="fa-solid fa-location-dot"></i> {groups?.city}, {groups?.state}</p>
+            <p><i class="fa-solid fa-person"></i> {users?.length} members</p>
+            <p><i class="fa-solid fa-user"></i> Oranized by <span style={{ fontWeight: "bold"}}>{groupOnwer[0]?.username}</span> </p>
             {sessionUser?.id === ownerId && (
               <>
               <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
                 {showEditForm && <EditGroupForm />}
               </>
             )}
+            {inGroup
+              ? <motion.button id="button" whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} onClick={() => {
+                setInGroup(false)
+                dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))
+              }}>Leave</motion.button>
+              :
+              <motion.button className='button' whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} onClick={() => {
+                setInGroup(true)
+                dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))
+              }}>Join</motion.button>
+            }
         </div>
       </div>
       <div>
+        <h3>What we're about:</h3>
         {groups?.description}
       </div>
       <div className="groupEvents">
-        <h3>Events</h3>
+        <h3>Events ({events?.length})</h3>
           {events?.map((event, i) => (
             <a href={`/events/${event.id}`} key={i}>
               <ul>
@@ -81,15 +97,6 @@ const SingleGroup = () => {
           ))}
       </div>
     </div>
-      {inGroup
-        ? <motion.button id="button" whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
-          setInGroup(false)
-         dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))}}>Leave</motion.button>
-         :
-        <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
-          setInGroup(true)
-         dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</motion.button>
-      }
       {inGroup && (
         <motion.button className='button' onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
       )}
