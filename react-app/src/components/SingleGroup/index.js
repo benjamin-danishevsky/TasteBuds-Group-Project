@@ -26,7 +26,7 @@ const SingleGroup = () => {
   useEffect(() => {
     const allUsers = Object.values(userInGroup)
     allUsers.forEach(user => {
-      if(user.id === sessionUser.id) {
+      if (user.id === sessionUser.id) {
         setInGroup(true)
       }
     })
@@ -55,39 +55,40 @@ const SingleGroup = () => {
 
   return (
     <>
-      <div>
+      <div className="groupDiv">
         <div className="group_header">
-        <div className="header_left">
-          <img className="header_img" src={groups?.background_img} alt={groups?.name}/>
-        </div>
-        <div className="header_right">
-          <h1>{groups?.name}</h1>
-          <p>{groups?.city}, {groups?.state}</p>
+          <div className="header_left">
+            <img className="header_img" src={groups?.background_img} alt={groups?.name} style={{ height: "500px", width: "600px" }} />
+          </div>
+          <div className="header_right">
+            <h1>{groups?.name}</h1>
+            <p>Location: {groups?.city}, {groups?.state}</p>
+            <p>About: {groups?.description}</p>
             {sessionUser?.id === ownerId && (
               <>
-              <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
+                <motion.button className='button' whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
                 {showEditForm && <EditGroupForm />}
               </>
             )}
+          </div>
         </div>
-      </div>
-      <div>
-        {groups?.description}
-      </div>
-      <div className="groupEvents">
-        <h3>Events</h3>
+        {/* <div className="groupDesc">
+          <p>About this Group: {groups?.description}</p>
+        </div> */}
+        <div className="groupEvents">
+          <h3 className="eventsHead">Upcoming Events</h3>
           {events?.map((event, i) => (
             <a href={`/events/${event.id}`} key={i}>
               <ul>
-                <li>{event?.date}</li>
-                <li>{event?.title}</li>
-                <li>{event?.description}</li>
-                <li>{event?.location}</li>
+                <li className="eventTitle">{event?.title}</li>
+                <li className="eventContent">{event?.date}</li>
+                <li className="eventContent">{event?.description}</li>
+                <li className="eventContent">{event?.location}</li>
               </ul>
             </a>
           ))}
+        </div>
       </div>
-    </div>
       {inGroup
         ? <motion.button id="button" whileHover={{scale:1.1}} whileTape={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden'}} onClick={() => {
           setInGroup(false)
@@ -95,7 +96,8 @@ const SingleGroup = () => {
          :
         <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden'}} onClick={() => {
           setInGroup(true)
-         dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</motion.button>
+          dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))
+        }}>Join</motion.button>
       }
       {inGroup && (
         <motion.button className='button' style={{ visibility: visibility ? 'visible' : 'hidden'}} onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>

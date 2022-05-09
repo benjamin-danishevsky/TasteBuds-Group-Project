@@ -68,7 +68,7 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
                         // style={{transform: 'translate(-88px, 33.5px)'}}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                    >Pick a Date</motion.button>
+                    >Select Date</motion.button>
 
                     <motion.button
                         onClick={() => dispatch(loadUserEventsThunk(id))}

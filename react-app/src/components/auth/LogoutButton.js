@@ -14,7 +14,7 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  return <motion.button style={{border: 'none', borderRadius: '20px', height: '2.3rem', width:'10rem', color:'white', backgroundColor:'#ff5607'}} hidden={!sessionUser} whileHover={{scale: 1.1}} whileTap={{scale: .9}} onClick={onLogout}>Logout</motion.button>;
+  return <motion.button style={{border: 'none', borderRadius: '20px', height: '2.3rem', width:'5rem', color:'white', backgroundColor:'#ff5607'}} hidden={!sessionUser} whileHover={{scale: 1.1}} whileTap={{scale: .9}} onClick={onLogout}>Logout</motion.button>;
 };
 
 export default LogoutButton;

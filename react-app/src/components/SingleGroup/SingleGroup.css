@@ -23,12 +23,15 @@ h1 {
   display: flex;
   margin-right: 100px;
   justify-content: center;
+  height: 500px;
+  width: 600px;
 }
 
 .header_img {
   object-fit: contain;
-  height: 600px;
-  width: 600px
+  height: 500px;
+  width: 600px;
+  padding-left: 10%;
 }
 
 .header_right {
@@ -46,4 +49,30 @@ li, a {
   border: solid 1px black;
   border-radius: 5px;
   padding: 20px;
+  padding-left: 5%;
+}
+
+/* .groupDesc{
+  padding-left: 16.5%;
+} */
+
+
+.groupDiv{
+  padding-top: 5%;
+}
+
+
+.eventTitle{
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.eventContent{
+  color: black;
+}
+
+.eventsHead{
+  padding-left: 5%;
+  font-size: 30px;
 }
