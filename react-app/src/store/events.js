@@ -70,12 +70,10 @@ export const createEventThunk = (id, payload) => async (dispatch) => {
         body: JSON.stringify(payload),
     });
 
-    // console.log(res);
 
     if (res.ok) {
         const newEvent = await res.json();
 
-        // console.log('New Event after res.json()', newEvent)
 
         return dispatch(createEvent(newEvent));
     }
@@ -133,7 +131,6 @@ const eventsReducer = (state = {}, action) => {
             newEvent[action.event.event.id] = action.event.event;
             return { ...state, ...newEvent };
         case CREATE_EVENT:
-            console.log("Action event", action.event.event.id);
             if (!state[action.event.event.id]) {
                 const newState = {
                     ...state,

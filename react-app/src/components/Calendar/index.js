@@ -16,15 +16,12 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
 
 
 
-    console.log(allEvents, 'all events prop')
 
     let filteredEvents;
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(date, '<-- date on submission')
 
 
-        console.log(typeof (date), '+++++ type of date')
 
         if (typeof (date) != String && !date) {
             const errors = []
@@ -40,7 +37,6 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
             datetime: formatDate
         }
 
-        console.log(payload, '<- payload going into thunk')
 
         filteredEvents = await dispatch(filterEventThunk(payload, id))
         setSubmit(true)
@@ -49,7 +45,6 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
     const eventsFromThunk = useSelector(state => Object.values(state.usersEvents))
 
 
-    console.log(eventsFromThunk, '<- filtered events from thunk')
 
     return (
         <>

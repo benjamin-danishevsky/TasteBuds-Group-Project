@@ -61,7 +61,6 @@ const usersJoinGroupsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USERS:
       const allUsers = {}
-      console.log(action.users, '102312301023010203002030102301203')
       action.users.users.forEach(user => {
         allUsers[user.id] = user
       })

@@ -72,7 +72,6 @@ function App() {
           <ShowCalendar/>
         </Route>
         <Route path='/home/:id' exact={true}>
-          {console.log("SINGLE USER ROUTE")}
           <UserProfile />
         </Route>
         <Route exact path='/events'>

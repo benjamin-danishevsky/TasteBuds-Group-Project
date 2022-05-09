@@ -99,7 +99,6 @@ def new_event(id):
             "event": event.to_dict()
           }
 
-    return 'hello ben'
 
 # EDIT
 @group_routes.route('/<int:id>/edit', methods=["POST"])
