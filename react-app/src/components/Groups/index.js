@@ -21,6 +21,7 @@ const Groups = () => {
   }, [])
 
   const sessionUser = useSelector(state => state.session.user)
+
   const groups = useSelector(state => state.groups);
   const groupData = Object.values(groups)
 

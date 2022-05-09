@@ -106,15 +106,15 @@ export const deleteEventThunk = (id) => async (dispatch) => {
 
 export const loadGroupThunk = id => async dispatch => {
     const result = await fetch(`/api/groups/${id}`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+        headers: {
+            'Content-Type': 'application/json'
+        }
     });
     if (result.ok) {
-      const data = await result.json();
-      dispatch(getEventGroup(data));
+        const data = await result.json();
+        dispatch(getEventGroup(data));
     }
-  }
+}
 
 
 

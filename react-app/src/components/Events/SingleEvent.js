@@ -63,6 +63,7 @@ const SingleEvent = () => {
     }
     let eventOwner = users?.filter((user) => user?.id === event?.owner_id);
 
+
     let content = null
     if (showEditForm) {
         content = (

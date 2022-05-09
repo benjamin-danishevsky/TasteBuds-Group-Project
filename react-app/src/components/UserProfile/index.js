@@ -31,6 +31,7 @@ export const UserProfile = () => {
     const allGroups = Object.values(groupsInUser)
 
 
+
     useEffect(async () => {
 
         await dispatch(groupActions.loadAllGroupsThunk())

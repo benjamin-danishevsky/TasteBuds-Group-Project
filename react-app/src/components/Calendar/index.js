@@ -22,7 +22,6 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
         e.preventDefault()
 
 
-
         if (typeof (date) != String && !date) {
             const errors = []
             errors.push('Please enter a valid date')
@@ -43,6 +42,7 @@ export const ShowCalendar = ({ setSubmit, allEvents }) => {
     }
 
     const eventsFromThunk = useSelector(state => Object.values(state.usersEvents))
+
 
 
 
