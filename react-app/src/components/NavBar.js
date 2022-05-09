@@ -24,11 +24,13 @@ const NavBar = () => {
               </a>
             </li>
           )}
+          {!sessionUser && (
           <li className='homeButton'>
             <NavLink to='/' exact={true} activeClassName='active'>
               Home
             </NavLink>
           </li>
+          )}
           <li className='homeButton'>
             <NavLink to='/events' exact={true} activeClassName='active'>
               Events

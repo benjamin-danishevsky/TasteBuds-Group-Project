@@ -52,17 +52,17 @@ const SingleGroup = () => {
     <>
       <div>
         <div className="group_header">
-        <div className="header_left">
-          <img className="header_img" src={groups?.background_img} alt={groups?.name}/>
-        </div>
-        <div className="header_right">
-          <h1>{groups?.name}</h1>
+          <div className="header_left">
+            <img className="header_img" src={groups?.background_img} alt={groups?.name} />
+          </div>
+          <div className="header_right">
+            <h1>{groups?.name}</h1>
             <p><i class="fa-solid fa-location-dot"></i> {groups?.city}, {groups?.state}</p>
             <p><i class="fa-solid fa-person"></i> {users?.length} members</p>
-            <p><i class="fa-solid fa-user"></i> Oranized by <span style={{ fontWeight: "bold"}}>{groupOnwer[0]?.username}</span> </p>
+            <p><i class="fa-solid fa-user"></i> Oranized by <span style={{ fontWeight: "bold" }}>{groupOnwer[0]?.username}</span> </p>
             {sessionUser?.id === ownerId && (
               <>
-              <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}}onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
+                <motion.button className='button' whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} onClick={() => setShowEditForm(!showEditForm)}>Edit</motion.button>
                 {showEditForm && <EditGroupForm />}
               </>
             )}
@@ -77,29 +77,30 @@ const SingleGroup = () => {
                 dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))
               }}>Join</motion.button>
             }
+          </div>
         </div>
+
+          <div>
+            <h3>What we're about:</h3>
+            {groups?.description}
+          </div>
+          <div className="groupEvents">
+            <h3>Events ({events?.length})</h3>
+            {events?.map((event, i) => (
+              <a href={`/events/${event.id}`} key={i}>
+                <ul>
+                  <li>{event?.date}</li>
+                  <li>{event?.title}</li>
+                  <li>{event?.description}</li>
+                  <li>{event?.location}</li>
+                </ul>
+              </a>
+            ))}
+          </div>
+        {inGroup && (
+          <motion.button className='button' onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }}>Create New Event</motion.button>
+        )}
       </div>
-      <div>
-        <h3>What we're about:</h3>
-        {groups?.description}
-      </div>
-      <div className="groupEvents">
-        <h3>Events ({events?.length})</h3>
-          {events?.map((event, i) => (
-            <a href={`/events/${event.id}`} key={i}>
-              <ul>
-                <li>{event?.date}</li>
-                <li>{event?.title}</li>
-                <li>{event?.description}</li>
-                <li>{event?.location}</li>
-              </ul>
-            </a>
-          ))}
-      </div>
-    </div>
-      {inGroup && (
-        <motion.button className='button' onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
-      )}
     </>
   )
 }

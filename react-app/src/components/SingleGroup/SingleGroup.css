@@ -47,3 +47,7 @@ li, a {
   border-radius: 5px;
   padding: 20px;
 }
+
+.gray {
+  background-color: lightsteelblue;
+}
