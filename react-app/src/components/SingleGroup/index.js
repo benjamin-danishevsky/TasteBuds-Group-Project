@@ -21,6 +21,7 @@ const SingleGroup = () => {
   const userInGroup = useSelector(state => state.usersJoinGroups)
 
   const [inGroup, setInGroup] = useState(false)
+  const [visibility, setVisibility] = useState(true)
 
   useEffect(() => {
     const allUsers = Object.values(userInGroup)
@@ -30,6 +31,12 @@ const SingleGroup = () => {
       }
     })
   }, [userInGroup])
+
+  useEffect(() => {
+    if (!sessionUser) {
+        setVisibility(false)
+    }
+}, [])
 
 
 
@@ -82,16 +89,16 @@ const SingleGroup = () => {
       </div>
     </div>
       {inGroup
-        ? <motion.button id="button" whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
+        ? <motion.button id="button" whileHover={{scale:1.1}} whileTape={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden'}} onClick={() => {
           setInGroup(false)
          dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))}}>Leave</motion.button>
          :
-        <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}} onClick={() => {
+        <motion.button className='button' whileHover={{scale:1.1}} whileTape={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden'}} onClick={() => {
           setInGroup(true)
          dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))}}>Join</motion.button>
       }
       {inGroup && (
-        <motion.button className='button' onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
+        <motion.button className='button' style={{ visibility: visibility ? 'visible' : 'hidden'}} onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{scale:1.1}} whileTap={{scale: .9}}>Create New Event</motion.button>
       )}
     </>
   )
