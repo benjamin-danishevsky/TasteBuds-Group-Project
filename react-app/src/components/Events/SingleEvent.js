@@ -25,7 +25,7 @@ const SingleEvent = () => {
     const group = useSelector(state => state.groups);
     const event = useSelector((state) => state.events[id]);
     const eventGroup = Object.values(group)[0]
-    console.log(eventGroup?.name)
+
 
     useEffect(() => {
         if (!sessionUser) {
@@ -64,7 +64,7 @@ const SingleEvent = () => {
     }
     let eventOwner = users?.filter((user) => user?.id === event?.owner_id);
 
-    //console.log(eventOwner, 'event owner #@$_', users, 'users -1231')
+    
     let content = null
     if (showEditForm) {
         content = (

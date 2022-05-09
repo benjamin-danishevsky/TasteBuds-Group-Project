@@ -37,7 +37,7 @@ export const filterEventThunk = (date, id) => async dispatch => {
 
     if (res.ok) {
         const events = await res.json()
-        console.log(events)
+        
         dispatch(clearState())
         dispatch(getEvent(events))
     }

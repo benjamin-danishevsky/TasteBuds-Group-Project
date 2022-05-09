@@ -30,7 +30,7 @@ export const usersAttendingThunk = (id) => async (dispatch) => {
 };
 
 export const joiningEventThunk = (id, user) => async dispatch => {
-    // console.log(id, user, '<--');
+
     const res = await fetch(`/api/events/${id}/join`, {
         method: 'POST',
         headers: {
@@ -52,7 +52,7 @@ export const leavingEventThunk = (id, user) => async dispatch => {
 
     if(res.ok) {
         const leftUser = await res.json()
-        console.log('--->', leftUser)
+
         dispatch(leaveEvent(leftUser.user.id))
     }
 }
@@ -62,7 +62,7 @@ const usersEventsReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_USERS:
             const allUsers = {};
-            console.log(action.users, ' <== action')
+            
             action.users.users.forEach((user) => {
                 allUsers[user.id] = user;
             });
