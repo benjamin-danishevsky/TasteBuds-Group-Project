@@ -21,7 +21,7 @@ import EditGroupForm from './components/SingleGroupEdit/EditForm';
 import SearchBar from './components/SearchBar/index'
 import SearchResults from './components/SearchBar/SearchResults'
 import { ShowCalendar } from './components/Calendar';
-import  {UserProfile}  from './components/UserProfile';
+import { UserProfile } from './components/UserProfile';
 import ErrorPage from './components/Errors/ErrorPage';
 
 
@@ -69,10 +69,9 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
         <Route exact path='/groups/:id/calendar'>
-          <ShowCalendar/>
+          <ShowCalendar />
         </Route>
         <Route path='/home/:id' exact={true}>
-          {console.log("SINGLE USER ROUTE")}
           <UserProfile />
         </Route>
         <Route exact path='/events'>
@@ -94,14 +93,14 @@ function App() {
         <Route path='/search/results'>
           <SearchResults />
         </Route>
-        <Route exact path ='/forbidden'>
+        <Route exact path='/forbidden'>
           <h2>Please log in before trying again</h2>
         </Route>
         <Route path="*">
           <ErrorPage />
         </Route>
       </Switch>
-        <Footer />
+      <Footer />
     </BrowserRouter>
   );
 }
