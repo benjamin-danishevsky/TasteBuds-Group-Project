@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <div className='nav-bar'>
-      <img src="./TasteBudsFinal.png" style={{ width: '120px', height: '120px' }} className='logo'/>
+      <img src="https://res.cloudinary.com/dv3gxfdon/image/upload/v1652055057/TasteBudsFinal_ptiqvv.png" style={{ width: '120px', height: '120px' }} className='logo'/>
       <nav>
         <ul>
           {sessionUser && (
