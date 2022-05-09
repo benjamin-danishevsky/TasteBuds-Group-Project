@@ -13,7 +13,10 @@ nav ul {
 }
 
 .pfp {
-  transform: translate(-75px, 5px);
+  /* transform: translate(-75px, 5px); */
+  margin-top: 0.5%;
+  position: absolute;
+  right:0
 }
 
 
@@ -39,12 +42,68 @@ nav ul {
 
 }
 
-.search-bar form {
+/* .search-bar form {
   margin-left: 500px;
-}
+} */
 
-.homeButton {
+
+.homeButton{
+  font-weight: bolder;
   margin-top: 8px;
-  margin-left: 5px;
+  margin-left: 10px;
+  background-image: linear-gradient(
+    to right,
+    #54b3d6,
+    #54b3d6 50%,
+    #000 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
 }
 
+
+.homeButton:before{
+  content: '';
+  background: #54b3d6;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.homeButton:hover {
+ background-position: 0;
+}
+
+.homeButton:hover::before{
+  width: 100%;
+}
+
+.authBtn{
+  position: absolute;
+  left: 0;
+  right: 0;
+  align-items: center;
+}
+
+.logo{
+  position: absolute;
+  left: 0;
+  margin-left: 2%;
+}
+
+
+.search-bar{
+  position: absolute;
+  right: 0;
+  top: 0;
+}

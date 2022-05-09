@@ -15,34 +15,36 @@ const NavBar = () => {
 
   return (
     <div className='nav-bar'>
+      <img src="./TasteBudsFinal.png" style={{ width: '120px', height: '120px' }} className='logo'/>
       <nav>
         <ul>
           {sessionUser && (
-            <li>
+            <li className='pfp'>
               <a href={`/home/${sessionUser?.id}`} >
                 {sessionUser?.profile_pic ? <img src={sessionUser.profile_pic} className='pfp' style={{ height: '30px', borderRadius: '50%' }} /> : <BsPersonCircle className='pfp' style={{ fontSize: '30px' }} />}
               </a>
             </li>
           )}
-          <li className='homeButton'>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              Home
-            </NavLink>
-          </li>
-          <li className='homeButton'>
-            <NavLink to='/events' exact={true} activeClassName='active'>
-              Events
-            </NavLink>
-          </li>
-          <li className='homeButton'>
-            <NavLink to='/groups' exact={true} activeClassName='active'>
-              Groups
-            </NavLink>
-          </li>
-
-          <div className='search-bar' style={{ marginTop: '7px' }}>
-            <SearchBar />
+          <div className='authBtn'>
+            <li className='homeButton'>
+              <NavLink to='/' exact={true} activeClassName='active'>
+                Home
+              </NavLink>
+            </li>
+            <li className='homeButton'>
+              <NavLink to='/events' exact={true} activeClassName='active'>
+                Events
+              </NavLink>
+            </li>
+            <li className='homeButton'>
+              <NavLink to='/groups' exact={true} activeClassName='active'>
+                Groups
+              </NavLink>
+            </li>
           </div>
+          {/* <div className='search-bar' style={{ marginTop: '7px' }}>
+            <SearchBar />
+          </div> */}
           <div className='auth-routes'>
             <li style={{ display: 'inline-block', marginRight: '3.3px' }}>
               <LogoutButton />
@@ -55,6 +57,9 @@ const NavBar = () => {
             </li>
           </div>
         </ul>
+        <div className='search-bar' style={{ marginTop: '7px' }}>
+          <SearchBar />
+        </div>
       </nav>
     </div>
   );
