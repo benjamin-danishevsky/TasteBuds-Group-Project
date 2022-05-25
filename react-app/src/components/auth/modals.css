@@ -19,7 +19,7 @@
 }
 
 .loginForm {
-  height: 500px;
+  height: 600px;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -65,15 +65,19 @@
   color: white;
 }
 
+.cute_logo {
+  padding-top: 30px;
+}
 /* Sign up Form Styling */
 
 .signUpForm {
-  height: 500px;
+  height: 700px;
   width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .signUpForm label {
@@ -104,4 +108,3 @@
   color: white;
   margin-top: 30px;
 }
-
