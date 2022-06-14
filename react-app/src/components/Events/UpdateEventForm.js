@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as eventActions from '../../store/events';
 import './UpdateEventForm.css'
 
-const UpdateEventForm = ({ hideForm}) => {
+const UpdateEventForm = ({ hideForm }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const {id} = useParams()
