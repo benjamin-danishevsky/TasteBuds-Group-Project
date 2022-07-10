@@ -27,7 +27,16 @@ const Groups = () => {
 
   return (
     <>
-      <h1 className='header'>All Groups</h1>
+    <h1 className='header'>All Groups</h1>
+    <div className="allGroupsHeader">
+        <motion.button
+          style={{ backgroundColor: '#ff5607', border: 'none', borderRadius: '20px', height: '2.8em', width: '8rem', color: 'white', marginLeft: '5px', visibility: visibility ? 'visible' : 'hidden' }}
+          onClick={() => history.push('/groups/new-group')}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: .9 }}
+        >
+          Create New Group</motion.button>
+    </div>
       <div>
         {groupData.map((group, idx) => (
           <>
@@ -49,13 +58,6 @@ const Groups = () => {
           </>
         ))}
       </div>
-      <motion.button
-        style={{ backgroundColor: '#ff5607', border: 'none', borderRadius: '20px', height: '2.8em', width: '8rem', color: 'white', marginLeft: '5px', visibility: visibility ? 'visible' : 'hidden' }}
-        onClick={() => history.push('/groups/new-group')}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: .9 }}
-      >
-        Create New Group</motion.button>
     </>
   )
 }

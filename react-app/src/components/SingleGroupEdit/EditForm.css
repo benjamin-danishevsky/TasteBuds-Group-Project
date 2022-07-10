@@ -28,4 +28,7 @@
   border-radius: 20px;
 }
 
-
+.errors li {
+  color: red;
+  font-weight: bold;
+}
