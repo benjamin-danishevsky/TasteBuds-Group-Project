@@ -14,20 +14,13 @@ const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <div className='nav-bar'>
-      <img src="https://res.cloudinary.com/dv3gxfdon/image/upload/v1652055057/TasteBudsFinal_ptiqvv.png" style={{ width: '120px', height: '120px' }} className='logo'/>
-      <nav>
-        <ul>
-          {sessionUser && (
-            <li className='pfp'>
-              <a href={`/home/${sessionUser?.id}`} >
-                {sessionUser?.profile_pic ? <img src={sessionUser.profile_pic} className='pfp' style={{ height: '30px', borderRadius: '50%' }} /> : <BsPersonCircle className='pfp' style={{ fontSize: '30px' }} />}
-              </a>
-            </li>
-          )}
-          <div className='authBtn'>
+    <nav>
+      <div className='nav-bar'>
+        <div className='nav-left'>
+          <img src="https://res.cloudinary.com/dv3gxfdon/image/upload/v1652055057/TasteBudsFinal_ptiqvv.png" alt='tastebuds-logo' className='logo'/>
+        <div className='home-container'>
             <li className='homeButton'>
-              <NavLink to='/' exact={true} activeClassName='active'>
+              <NavLink to={`/home/${sessionUser?.id}`} exact={true} activeClassName='active'>
                 Home
               </NavLink>
             </li>
@@ -41,27 +34,36 @@ const NavBar = () => {
                 Groups
               </NavLink>
             </li>
-          </div>
-          {/* <div className='search-bar' style={{ marginTop: '7px' }}>
-            <SearchBar />
-          </div> */}
+        </div>
+        </div>
+        <div className='search-bar'>
+          <SearchBar />
+        </div>
+
+          <ul>
+
           <div className='auth-routes'>
-            <li style={{ display: 'inline-block', marginRight: '3.3px' }}>
+          {sessionUser && (
+            <li>
+              <a href={`/home/${sessionUser?.id}`} >
+                {sessionUser?.profile_pic ? <img src={sessionUser.profile_pic} alt='profile-pic' className='pfp' /> : <BsPersonCircle style={{fontSize: '40px', marginRight: '15px'}} />}
+              </a>
+            </li>
+          )}
+            <li>
               <LogoutButton />
             </li>
-            <li style={{ display: 'inline-block', marginRight: '6.3px' }}>
+            <li>
               <LoginFormModal />
             </li>
-            <li style={{ display: 'inline-block', marginLeft: '3.3px' }}>
+            <li>
               <SignUpFormModal />
             </li>
           </div>
         </ul>
-        <div className='search-bar' style={{ marginTop: '7px' }}>
-          <SearchBar />
-        </div>
-      </nav>
+
     </div>
+    </nav>
   );
 }
 
