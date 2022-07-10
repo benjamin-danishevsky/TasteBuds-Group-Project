@@ -30,7 +30,7 @@ export const UserProfile = () => {
     const allEvents = Object.values(eventsInUser)
     const allGroups = Object.values(groupsInUser)
 
-    console.log(allEvents, '<---')
+    
 
     useEffect(async () => {
 

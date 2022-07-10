@@ -34,9 +34,9 @@ const SingleGroup = () => {
 
   useEffect(() => {
     if (!sessionUser) {
-        setVisibility(false)
+      setVisibility(false)
     }
-}, [])
+  }, [])
 
 
 
@@ -90,7 +90,7 @@ const SingleGroup = () => {
           )}
         </div>
         <div className="groupEvents">
-          <h3 className="eventsHead">Upcoming Events</h3>
+          <h3 className="eventsHead">Upcoming Events ({events.length})</h3>
           {events?.map((event, i) => (
             <a href={`/events/${event.id}`} key={i}>
               <ul>
