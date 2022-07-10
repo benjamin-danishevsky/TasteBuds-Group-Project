@@ -52,7 +52,7 @@ const LoginForm = ({showModal}) => {
       <h2>Log in</h2>
       <div>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind} style={{fontWeight:'bold', color:'red', marginBottom:'5px'}}>{error}</div>
         ))}
       </div>
       <div>
@@ -76,7 +76,7 @@ const LoginForm = ({showModal}) => {
         />
         <div className="formButtons">
           <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} type='submit'>Login</motion.button>
-          <p>or</p>
+          <p style={{fontWeight:'bold'}}>or</p>
           <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} type="submit" className="demoBtn" onClick={onDemo}>Demo Login</motion.button>
         </div>
       </div>
