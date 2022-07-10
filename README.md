@@ -31,3 +31,25 @@ TasteBuds is a clone of Meetup, a popular social media platform for hosting and 
 8. Start the services in the react-app directory.
 	- ```npm start```
  
+ ## Features
+ 
+ ### Events
+ All users can view listed events. Users can create events and join them
+ ![image](https://user-images.githubusercontent.com/65691441/173885035-8af84d7c-849d-47ea-b740-713299d7a58f.png)
+ ![image](https://user-images.githubusercontent.com/65691441/173885206-551252b4-6614-47f1-b61c-8d71dc918412.png)
+
+### Groups 
+Users can view a list of groups. Users can select a group to join them and can also see all events in the group. Upon joining a group they will show up on the user profile page.
+![image](https://user-images.githubusercontent.com/65691441/173885355-070cbd23-80f9-495b-8601-d4724662250c.png)
+![image](https://user-images.githubusercontent.com/65691441/173885728-daca70c2-cf50-482e-a3fb-b66350345c58.png)
+![image](https://user-images.githubusercontent.com/65691441/173886250-6dbfa844-1b24-47ce-9f10-fc6e96206739.png)
+
+
+### Date Filter
+After signing in and going to their profile page, users can use a date selector to find upcoming events
+![image](https://user-images.githubusercontent.com/65691441/173886744-3ff13e42-0c1c-45e4-9a07-800886c9b274.png)
+
+
+### Search Bar
+All users can search for events using the search bar
+![image](https://user-images.githubusercontent.com/65691441/173886846-9c9c5e4d-1e8c-4b0e-9f54-34cdfaa14550.png)

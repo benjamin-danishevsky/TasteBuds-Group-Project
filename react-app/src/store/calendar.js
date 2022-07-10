@@ -20,7 +20,7 @@ export const filterEventThunk = (date, id) => async dispatch => {
 
     if (res.ok) {
         const events = await res.json()
-        console.log(events, 'filtered events in the thunk')
+
         return dispatch(getEvent(events))
     }
 }
@@ -38,7 +38,7 @@ const calendarReducer = (state = {}, action) => {
             } else {
                 return { ...allEvents }
             }
-            // console.log('right before return ==>', { ...allEvents})
+            
             return { ...state, ...allEvents }
         default:
             return state

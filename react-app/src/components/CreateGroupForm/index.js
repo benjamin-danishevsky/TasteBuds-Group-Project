@@ -35,7 +35,7 @@ function CreateGroup() {
 
         if(!city) validateErrors.push('Group city is required.')
 
-        if(!state) validateErrors.push('Group state is required.');
+        if(state.length < 3) validateErrors.push("Please enter full state's name");
         if(!background_img) validateErrors.push('Group image is required.')
         else if ((!(background_img.match(imageValidator)))) validateErrors.push('Please enter a valid URL for your group image');
 
