@@ -113,7 +113,19 @@ const SingleEvent = () => {
                 </div>
                 <div className='attendeesCards'>
                     <ul>
+                        <div className='attendee-header'>
                         <h1 className='attendeeHeader'>Attendees({attendeeList.length})</h1>
+                        {joinedEvent
+                            ? <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }} style={{ visibility: visibility ? 'visible' : 'hidden', backgroundColor: "#ff5607", border: "none", borderRadius: '20px', height: '2.3rem', width: '4rem', color: 'white' }} onClick={() => {
+                                dispatch(usersAttendingActions.leavingEventThunk(id, user))
+                                setJoinedEvent(false)
+                            }}>LEAVE </motion.button >
+                            : <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }} style={{ visibility: visibility ? 'visible' : 'hidden', backgroundColor: "#ff5607", border: "none", borderRadius: '20px', height: '2.3rem', width: '4rem', color: 'white' }} onClick={() => {
+                                dispatch(usersAttendingActions.joiningEventThunk(id, user))
+                                setJoinedEvent(true)
+                            }}>JOIN</motion.button >
+                        }
+                        </div>
                         {attendeeList.map(attendee => (
                             <div className="personalCard">
                                 <li style={{ listStyle: "none" }} >
@@ -128,16 +140,6 @@ const SingleEvent = () => {
                         ))}
                     </ul>
                 </div>
-                {joinedEvent
-                    ? <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden', backgroundColor: "#ff5607", border: "none", borderRadius:'20px', height: '2.3rem', width: '4rem', color: 'white'   }} onClick={() => {
-                        dispatch(usersAttendingActions.leavingEventThunk(id, user))
-                        setJoinedEvent(false)
-                    }}>LEAVE</motion.button >
-                    : <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}} style={{ visibility: visibility ? 'visible' : 'hidden', backgroundColor: "#ff5607", border: "none", borderRadius:'20px', height: '2.3rem', width: '4rem', color: 'white' }} onClick={() => {
-                        dispatch(usersAttendingActions.joiningEventThunk(id, user))
-                        setJoinedEvent(true)
-                    }}>JOIN</motion.button >
-                }
             </div>
         </>
     );

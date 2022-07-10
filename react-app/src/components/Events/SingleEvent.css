@@ -47,3 +47,13 @@
 .descriptionBox{
     width: 700px;
 }
+
+.attendee-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.attendee-header button {
+    margin-left: 15px;
+}
