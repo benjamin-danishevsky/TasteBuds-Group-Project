@@ -19,6 +19,9 @@ function CreateGroup() {
     const sessionUser = useSelector((state) => state.session.user)
     const groups = useSelector(state => state.groups)
 
+
+    const imageValidator = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -34,6 +37,8 @@ function CreateGroup() {
 
         if(state.length < 3) validateErrors.push("Please enter full state's name");
         if(!background_img) validateErrors.push('Group image is required.')
+        else if ((!(background_img.match(imageValidator)))) validateErrors.push('Please enter a valid URL for your group image');
+
         if(validateErrors.length > 0){
             setErrors(validateErrors);
             return

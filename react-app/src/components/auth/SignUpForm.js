@@ -15,6 +15,8 @@ const SignUpForm = ({showModal}) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const imageValidator = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
   const onSignUp = async (e) => {
     e.preventDefault();
     const validateErrors = []
@@ -23,6 +25,7 @@ const SignUpForm = ({showModal}) => {
     if(!password) validateErrors.push("Password is required.")
     if(!repeatPassword) validateErrors.push("Confirmation Password is required.")
     if(password !== repeatPassword) validateErrors.push("Passwords must match.")
+    if (profilePic && (!(profilePic.match(imageValidator)))) validateErrors.push('Please enter a valid URL for your profile picture');
     if(validateErrors.length > 0){
       setFrontErrors(validateErrors)
       return
@@ -62,16 +65,16 @@ const SignUpForm = ({showModal}) => {
 
   return (
     <form onSubmit={onSignUp}>
+      <div className='signUpForm'>
+        <img src="https://res.cloudinary.com/jameschenn/image/upload/v1652044476/Tastebuds/tastebuds2_ffox6e.png" alt="cute_logo" className="cute_logo" />
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
         {frontErrors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind} style={{fontWeight:'bold', color:'red', marginBottom:'5px', textAlign:'center'}}>{error}</div>
         ))}
       </div>
-      <div className='signUpForm'>
-        <img src="https://res.cloudinary.com/jameschenn/image/upload/v1652044476/Tastebuds/tastebuds2_ffox6e.png" alt="cute_logo" className="cute_logo" />
         <h2>Sign Up</h2>
         <div>
           {errors.map((error, ind) => (

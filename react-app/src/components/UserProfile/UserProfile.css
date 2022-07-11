@@ -7,14 +7,15 @@
 }
 
 
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+
 .groupsJoined{
-    position:fixed;
-    float: right;
-    /* position: absolute; */
-    padding-top: 6.6%;
-    padding-right: 15%;
-    top: 0;
-    right:0
+    width: 55vh;
+    margin-top: 11vh;
 }
 
 .linkText:hover{
@@ -28,6 +29,10 @@ box-shadow: inset 0 0 0 0 #54b3d6;
   margin: 0 -.25rem;
   padding: 0 .25rem;
   transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.calendarImg {
+    object-fit: cover;
 }
 
 

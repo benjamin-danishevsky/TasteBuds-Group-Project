@@ -12,11 +12,20 @@ h1 {
   color: white;
 }
 
+.groupButtons {
+  margin-left: 20px;
+  margin-top: 20px;
+}
 
 .group_header {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  /* background-color: snow;
+  border: solid 2px black;
+  border-radius: 30px;
+  width:80%;
+  margin-left: 10rem; */
 }
 
 .header_left {

@@ -23,10 +23,7 @@
   width: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-self: center;
   align-items: center;
-  align-self: center;
 }
 
 .loginForm label {
@@ -66,13 +63,14 @@
 }
 
 .cute_logo {
-  padding-top: 30px;
+  height: 12rem;
+  width: 12rem;
 }
 /* Sign up Form Styling */
 
 .signUpForm {
-  height: 700px;
-  width: 300px;
+  height: 800px;
+  width: 330px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,7 +81,7 @@
 .signUpForm label {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -106,5 +104,5 @@
   height: 2.3rem;
   width: 10rem;
   color: white;
-  margin-top: 30px;
+  margin-top: 20px;
 }

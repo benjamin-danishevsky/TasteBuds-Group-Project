@@ -64,24 +64,27 @@ export const UserProfile = () => {
 
     return (
         <>
-            <div>
-                <h2 className="welcomeSign">Welcome, {sessionUser.username}</h2>
-                {/* <p>Total Groups: {`${myCreatedGroups.length}`}</p>
+        <div className="profile-container">
+            <div className="profile-left">
+                <div>
+                    <h2 className="welcomeSign">Welcome, {sessionUser.username}</h2>
+                    {/* <p>Total Groups: {`${myCreatedGroups.length}`}</p>
                 <p>Total Events: {`${myCreatedEvents.length}`}</p> */}
-                <div className="UpcomingEvents">
-                    <h1>Upcoming Events</h1>
-                    <ShowCalendar setSubmit={setSubmit} allEvents={allEvents} />
-                    {/* {!submit && (allEvents.map((event, idx) => (
+                    <div className="UpcomingEvents">
+                        <h1>Upcoming Events</h1>
+                        <ShowCalendar setSubmit={setSubmit} allEvents={allEvents} />
+                        {/* {!submit && (allEvents.map((event, idx) => (
                         <p>{event.title}</p>
                     )))} */}
 
+                    </div>
                 </div>
+            </div>
+            <div className="profile-right">
                 <div className="groupsJoined">
                     <h1>Groups Joined</h1>
                     {allGroups.map((group, idx) => (
-                        <a href={`/groups/${group.id}`}>
-                            <p key={idx} className='linkText'>{group.name}</p>
-                        </a>
+                    <a href={`/groups/${group.id}`}><p key={idx} className='linkText'>{group.name}</p></a>
                     ))}
                 </div>
                 {/* <div className="bottomTwo">
@@ -105,6 +108,7 @@ export const UserProfile = () => {
                     </div>
                 </div> */}
             </div>
+        </div>
         </>
     )
 }

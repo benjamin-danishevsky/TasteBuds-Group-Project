@@ -1,1 +1,15 @@
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 180px;
+  margin-bottom: 40vh;
+}
 
+.no-results a {
+  color: orange;
+}
+
+.no-results a:hover {
+  color: orangered;
+}

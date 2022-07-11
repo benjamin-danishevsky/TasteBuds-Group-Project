@@ -55,6 +55,7 @@ const SingleGroup = () => {
 
   return (
     <>
+
       <div className="groupDiv">
         <div className="group_header">
           <div className="header_left">
@@ -72,9 +73,22 @@ const SingleGroup = () => {
             )}
           </div>
         </div>
-        {/* <div className="groupDesc">
-          <p>About this Group: {groups?.description}</p>
-        </div> */}
+        <div className='groupButtons'>
+          {inGroup
+            ? <motion.button id="button" whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
+              setInGroup(false)
+              dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))
+            }}>Leave Group</motion.button>
+            :
+            <motion.button className='button' whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
+              setInGroup(true)
+              dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))
+            }}>Join Group</motion.button>
+          }
+          {inGroup && (
+            <motion.button className='button' style={{ visibility: visibility ? 'visible' : 'hidden', marginLeft: '15px' }} onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }}>Create New Event</motion.button>
+          )}
+        </div>
         <div className="groupEvents">
           <h3 className="eventsHead">Upcoming Events ({events.length})</h3>
           {events?.map((event, i) => (
@@ -89,20 +103,6 @@ const SingleGroup = () => {
           ))}
         </div>
       </div>
-      {inGroup
-        ? <motion.button id="button" whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
-          setInGroup(false)
-          dispatch(userJoinGroupActions.leaveGroupThunk(id, sessionUser))
-        }}>Leave</motion.button>
-        :
-        <motion.button className='button' whileHover={{ scale: 1.1 }} whileTape={{ scale: .9 }} style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => {
-          setInGroup(true)
-          dispatch(userJoinGroupActions.joinGroupThunk(id, sessionUser))
-        }}>Join</motion.button>
-      }
-      {inGroup && (
-        <motion.button className='button' style={{ visibility: visibility ? 'visible' : 'hidden' }} onClick={() => history.push(`/groups/${id}/new-event`)} whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }}>Create New Event</motion.button>
-      )}
     </>
   )
 }

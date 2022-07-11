@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import * as eventActions from '../../store/events';
+import './search.css'
 
 const SearchResults = () => {
     const dispatch = useDispatch()
@@ -15,9 +16,11 @@ const SearchResults = () => {
 
     return (
         <>
+        {searchData.length > 0 ? (
+
             <div className='parentContent'>
                 {searchData.map((event, idx) => (
-                     <a href={`/events/${event.id}`} key={idx}>
+                    <a href={`/events/${event.id}`} key={idx}>
                      {/* <h3>{event?.title}</h3> */}
                          <div className='eventContent'>
                              <p className='subContent'>{event?.title}</p>
@@ -32,6 +35,11 @@ const SearchResults = () => {
                  </a>
                 ))}
             </div>
+                ): (
+                    <div className='no-results'>
+                        <h1>Oh crêpe! There were no results.<br/> Donut worry, there are more <a href='/events'>events</a> to explore.</h1>
+                    </div>
+                )}
         </>
     )
 

@@ -25,9 +25,9 @@ function SearchBar(){
         <>
             <form  onSubmit={handleSubmit}>
                 <input
-                    style={{borderRadius: '3px', borderColor:'lightgray'}}
+                    style={{borderRadius: '30px', borderColor:'lightgray', width:'25rem', height: '2rem'}}
                     type='text'
-                    placeholder='Search for Events'
+                    placeholder='Search for Events...'
                     name='search'
                     onChange={e => setSearch(e.target.value)}
                     value={search}

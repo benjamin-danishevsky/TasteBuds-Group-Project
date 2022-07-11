@@ -1,7 +1,3 @@
-img {
-  height: 150px;
-}
-
 .allGroupsImg {
   display:flex;
   height: 200px;
@@ -10,6 +6,10 @@ img {
   padding-top: 15px;
   padding-bottom: 15px;
   padding-right: 50px;
+}
+
+.allGroupsImg img {
+  object-fit: cover;
 }
 
 .allGroups ul {
@@ -27,4 +27,11 @@ img {
 .allGroupsInfo {
   display: flex;
   flex-direction: column;
+}
+
+.allGroupsHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 15px;
 }
