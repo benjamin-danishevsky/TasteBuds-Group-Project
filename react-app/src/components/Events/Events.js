@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import * as eventActions from '../../store/events';
-import './Events.css'
+import '../Groups/Groups.css'
 
 
 const Events = () => {
@@ -20,18 +21,24 @@ const Events = () => {
             <h1 className='header'>All Events</h1>
             <div className='parentContent'>
                 {eventsData.map((event, idx) => (
-                    <a href={`/events/${event.id}`} key={idx}>
-                        {/* <h3>{event?.title}</h3> */}
-                            <div className='eventContent'>
-                                <p className='subContent'>{event?.title}</p>
-                                {/* <p className='subContent'>{event?.location}</p> */}
-                                <img src={event?.background_img} style={{ height: "200px", width: "300px" }} className='eventImg' />
-                            </div>
-                            {/* <li>Posted By: </li> */}
-                            {/* <li>{event?.description}</li> */}
-                            {/* <li>{event?.date}</li> */}
-
-                    </a>
+                    <>
+                    {console.log('EVENT', event)}
+                        <div className="allGroups" key={idx}>
+                            <a href={`/events/${event.id}`} key={idx}>
+                                <ul>
+                                    <div className="allGroupsImg">
+                                        <img src={event?.background_img} alt={event?.name} style={{ height: "200px", width: "300px" }} />
+                                    </div>
+                                    <div className="allGroupsInfo grow">
+                                        <li style={{ color:"#ffc100", fontWeight:'bold'}}>{moment(event?.date).format('LLLL')}</li>
+                                        <span style={{ fontWeight: "bold", fontSize: "30px", marginBottom: "20px" }}><li>{event?.title}</li></span>
+                                        <li>{event?.description}</li>
+                                        <li><i class="fa-solid fa-location-dot"></i> {event?.location}</li>
+                                    </div>
+                                </ul>
+                            </a>
+                        </div>
+                    </>
                 ))}
             </div>
         </>

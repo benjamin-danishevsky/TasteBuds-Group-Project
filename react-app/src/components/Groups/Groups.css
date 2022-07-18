@@ -1,3 +1,7 @@
+.header {
+  text-align: center;
+}
+
 .allGroupsImg {
   display:flex;
   height: 200px;
@@ -10,14 +14,19 @@
 
 .allGroupsImg img {
   object-fit: cover;
+  border-radius: 20px;
 }
 
 .allGroups ul {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-top: solid lightgray 1px;
-  border-bottom: solid lightgray 1px;
+  margin-left: 3%;
+  width: 90%;
+  /* border-top: solid lightgray 1px;
+  border-bottom: solid lightgray 1px; */
+    border: solid lightgray 1px;
+    border-radius: 20px;
 }
 
 .allGroups li {
@@ -27,6 +36,7 @@
 .allGroupsInfo {
   display: flex;
   flex-direction: column;
+  color: black;
 }
 
 .allGroupsHeader {

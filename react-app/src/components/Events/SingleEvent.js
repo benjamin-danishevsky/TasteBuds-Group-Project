@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import moment from "moment";
 import * as eventActions from "../../store/events";
 import * as usersAttendingActions from '../../store/users-in-event'
 import * as groupActions from '../../store/groups'
@@ -86,7 +87,7 @@ const SingleEvent = () => {
         <>
             <div className="topNavEvent">
                 <h1>{event?.title}</h1>
-                <span>{`Date/Time: ${event?.date}`}</span>
+                <div>Date/Time: <span style={{ fontWeight: 'bold' }}>{moment(event?.date).format('LLLL')}</span></div>
                 <div>Hosted By <span style={{fontWeight: 'bold'}}>{eventOwner[0]?.username}</span></div>
                 {/* <a href={`/groups/${eventGroup?.id}`}>From Group: {eventGroup?.name}</a> */}
             </div>
@@ -109,7 +110,7 @@ const SingleEvent = () => {
                         </div>
                             <h2>Details</h2>
                     <p className="descriptionBox">{`${event?.description}`}</p>
-                    <p>{`Location: ${event?.location}`}</p>
+                        <p><i style={{marginRight: '5px'}} class="fa-solid fa-location-dot"></i> {`${event?.location}`}</p>
                     <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}}
                         style={{ visibility: canEdit ? 'visible' : 'hidden' }}
                         onClick={() => {

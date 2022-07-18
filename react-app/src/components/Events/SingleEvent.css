@@ -1,6 +1,6 @@
 .bottomNavEvent {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .bottomNavEvent-img img {
@@ -13,7 +13,7 @@
 }
 
 .group-info a {
-        border: solid 1px #D3D3D3;
+    border: solid 1px #D3D3D3;
     background-color: #F5F5F5;
     display: flex;
     justify-content: space-evenly;
@@ -79,6 +79,7 @@
 
 .personalCard{
     background-color: #D3D3D3;
+    border: solid 1px #F5F5F5;
     display: flex;
     align-items: center;
     width: 12%;
@@ -105,7 +106,7 @@
 }
 
 .descriptionBox{
-    width: 700px;
+    word-break: break-word;
 }
 
 .attendee-header {

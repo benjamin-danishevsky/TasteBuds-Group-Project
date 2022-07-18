@@ -21,7 +21,7 @@ const Groups = () => {
   }, [])
 
   const sessionUser = useSelector(state => state.session.user)
-  
+
   const groups = useSelector(state => state.groups);
   const groupData = Object.values(groups)
 
@@ -48,8 +48,7 @@ const Groups = () => {
                   </div>
                   <div className="allGroupsInfo grow">
                     <span style={{ fontWeight: "bold", fontSize: "30px", marginBottom: "20px" }}><li>{group?.name}</li></span>
-                    <li>{group?.city}, {group?.state}</li>
-                    <li>{group?.location}</li>
+                    <li style={{fontWeight:'bold'}}>{group?.city}, {group?.state}</li>
                     <li>{group?.description}</li>
                   </div>
                 </ul>
