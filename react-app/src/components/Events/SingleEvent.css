@@ -1,6 +1,6 @@
 .bottomNavEvent {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .bottomNavEvent-img img {
@@ -9,7 +9,7 @@
 }
 
 .bottomNavEvent-info {
-    margin-left: 69px;
+    margin-left: 7rem;
 }
 
 .group-info a {
