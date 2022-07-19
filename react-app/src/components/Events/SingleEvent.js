@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import moment from "moment";
 import * as eventActions from "../../store/events";
 import * as usersAttendingActions from '../../store/users-in-event'
 import * as groupActions from '../../store/groups'
@@ -64,7 +65,7 @@ const SingleEvent = () => {
     }
     let eventOwner = users?.filter((user) => user?.id === event?.owner_id);
 
-    
+
     let content = null
     if (showEditForm) {
         content = (
@@ -86,33 +87,48 @@ const SingleEvent = () => {
         <>
             <div className="topNavEvent">
                 <h1>{event?.title}</h1>
-                <span>{`Date/Time: ${event?.date}`}</span>
-                <div>Hosted By {eventOwner[0]?.username}</div>
-                <a href={`/groups/${eventGroup?.id}`}>From Group: {eventGroup?.name}</a>
+                <div>Date/Time: <span style={{ fontWeight: 'bold' }}>{moment(event?.date).format('LLLL')}</span></div>
+                <div>Hosted By <span style={{fontWeight: 'bold'}}>{eventOwner[0]?.username}</span></div>
+                {/* <a href={`/groups/${eventGroup?.id}`}>From Group: {eventGroup?.name}</a> */}
             </div>
             <div className="allNav">
                 <div className="bottomNavEvent">
+                    <div className='bottomNavEvent-img'>
+
                     <img src={event?.background_img} style={{ width: '700px', height: '500px' }} />
-                    <p className="descriptionBox">{`Description: ${event?.description}`}</p>
-                    <p>{`Location: ${event?.location}`}</p>
+                    </div>
+                    <div className='bottomNavEvent-info'>
+                            <div className='group-info'>
+                                <a href={`/groups/${eventGroup?.id}`}>
+                            <div className='group-image'>
+                                <img src={eventGroup?.background_img} alt='group-name'/>
+                            </div>
+                            <div className='group-name'>
+                                {eventGroup?.name}
+                            </div>
+                            </a>
+                        </div>
+                            <h2>Details</h2>
+                    <p className="descriptionBox">{`${event?.description}`}</p>
+                        <p><i style={{marginRight: '5px'}} class="fa-solid fa-location-dot"></i> {`${event?.location}`}</p>
                     <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}}
                         style={{ visibility: canEdit ? 'visible' : 'hidden' }}
                         onClick={() => {
                             dispatch(eventActions.deleteEventThunk(id));
                             history.push('/events')
                         }}
-                    >
+                        >
                         DELETE
                     </motion.button >
                     <motion.button whileHover={{scale: 1.1}} whileTap={{scale: .9}}
                         style={{ visibility: canEdit ? 'visible' : 'hidden' }}
                         onClick={() => setShowEditForm(true)}
-                    >
+                        >
                         EDIT</motion.button >
                     {showEditForm && content}
+                    </div>
                 </div>
-                <div className='attendeesCards'>
-                    <ul>
+                <div className='bottom-half'>
                         <div className='attendee-header'>
                         <h1 className='attendeeHeader'>Attendees({attendeeList.length})</h1>
                         {joinedEvent
@@ -126,6 +142,8 @@ const SingleEvent = () => {
                             }}>JOIN</motion.button >
                         }
                         </div>
+                    <ul>
+                        <div className='attendeesCards'>
                         {attendeeList.map(attendee => (
                             <div className="personalCard">
                                 <li style={{ listStyle: "none" }} >
@@ -138,9 +156,10 @@ const SingleEvent = () => {
                                 <li style={{ listStyle: "none" }} key={attendee.id} className='personalName'>{attendee.username}</li>
                             </div>
                         ))}
+            </div>
                     </ul>
                 </div>
-            </div>
+        </div>
         </>
     );
 };

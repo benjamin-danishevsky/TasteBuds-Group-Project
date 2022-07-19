@@ -5,6 +5,7 @@ import * as groupActions from '../../store/groups'
 import * as joinActions from '../../store/groups-events'
 import * as userJoinGroupActions from '../../store/users-in-groups';
 import { motion } from "framer-motion";
+import moment from "moment";
 import EditGroupForm from "../SingleGroupEdit/EditForm";
 import './SingleGroup.css'
 
@@ -94,8 +95,8 @@ const SingleGroup = () => {
           {events?.map((event, i) => (
             <a href={`/events/${event.id}`} key={i}>
               <ul>
+                <li style={{fontWeight:'bold', color:'orange'}} className="eventContent">{moment(event?.date).format('LLLL')}</li>
                 <li className="eventTitle">{event?.title}</li>
-                <li className="eventContent">{event?.date}</li>
                 <li className="eventContent">{event?.description}</li>
                 <li className="eventContent">{event?.location}</li>
               </ul>
