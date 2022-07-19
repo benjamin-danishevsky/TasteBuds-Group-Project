@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import moment from 'moment';
 import * as eventActions from '../../store/events';
 import './search.css'
 
@@ -13,26 +14,30 @@ const SearchResults = () => {
     const searches = useSelector(state => state.searches);
 
     const searchData = Object.values(searches)
-
+    console.log('data', searchData);
     return (
         <>
         {searchData.length > 0 ? (
 
-            <div className='parentContent'>
+            <div className='search_container'>
                 {searchData.map((event, idx) => (
+                    <ul>
+                        <li>
                     <a href={`/events/${event.id}`} key={idx}>
-                     {/* <h3>{event?.title}</h3> */}
-                         <div className='eventContent'>
-                             <p className='subContent'>{event?.title}</p>
+                         <div className='search_card'>
+                            <div className='search_card_header'>
+                                        <p style={{ fontWeight: 'bold', color: "orange" }}>{moment(event?.date).format('LLLL')}</p>
+                             <p style={{fontWeight:'bold'}}>{event?.title}</p>
+                            </div>
+                            <div className='search_card_img'>
+                             <img src={event?.background_img} className='event_Img' />
+                            </div>
                              <p>{event?.location}</p>
                              <p>{event?.description}</p>
-                             <img src={event?.background_img} style={{ height: "200px", width: "300px" }} className='eventImg' />
                          </div>
-                         {/* <li>Posted By: </li> */}
-                         {/* <li>{event?.description}</li> */}
-                         {/* <li>{event?.date}</li> */}
-
                  </a>
+                    </li>
+                </ul>
                 ))}
             </div>
                 ): (

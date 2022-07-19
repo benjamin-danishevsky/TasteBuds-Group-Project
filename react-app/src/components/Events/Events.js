@@ -22,7 +22,6 @@ const Events = () => {
             <div className='parentContent'>
                 {eventsData.map((event, idx) => (
                     <>
-                    {console.log('EVENT', event)}
                         <div className="allGroups" key={idx}>
                             <a href={`/events/${event.id}`} key={idx}>
                                 <ul>
